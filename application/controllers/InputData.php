@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  @property TabelModel $TabelModel 
  */
 
-class Data extends CI_Controller {
+class InputData extends CI_Controller {
 
    public function __construct(){
 		parent::__construct();
@@ -147,5 +147,6 @@ class Data extends CI_Controller {
          $this->TabelModel->inputDataSuhu($inter, 'inter');
          $this->TabelModel->inputDataSuhu($trans, 'trans');
      }
+     echo "test";
    }
 }

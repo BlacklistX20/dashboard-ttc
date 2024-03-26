@@ -4,7 +4,7 @@ class TabelModel extends CI_Model {
 
    public function getDataSuhu($table)
    {
-      $this->db->get($table);
+      return $this->db->get($table)->last_row('array');
    }
 
    public function inputDataSuhu($data, $table)
@@ -16,6 +16,6 @@ class TabelModel extends CI_Model {
    {
       $potency = $this->load->database('potensi', TRUE);
 
-      $potency->get($table);
+      return $potency->get($table);
    }
 }
