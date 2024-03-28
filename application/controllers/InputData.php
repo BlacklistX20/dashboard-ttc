@@ -1,20 +1,84 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *  @property input $input
  *  @property TabelModel $TabelModel 
  */
 
-class InputData extends CI_Controller {
+class InputData extends CI_Controller
+{
 
-   public function __construct(){
-		parent::__construct();
+   public function __construct()
+   {
+      parent::__construct();
 
       $this->load->model('TabelModel');
-	}
+   }
 
-   public function lt4() 
+   public function pue()
+   {
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+         $table = $this->input->post("table");
+         $tgl = $this->input->post("tanggal");
+         $lvmdp = $this->input->post("lvmdp");
+         $rect1 = $this->input->post("rect1");
+         $rect2 = $this->input->post("rect2");
+         $rect3 = $this->input->post("rect3");
+         $rect4 = $this->input->post("rect4");
+         $rect5 = $this->input->post("rect5");
+         $rect6 = $this->input->post("rect6");
+         $rect7 = $this->input->post("rect7");
+         $rect8 = $this->input->post("rect8");
+         $rect9 = $this->input->post("rect9");
+         $rect10 = $this->input->post("rect10");
+         $rect11 = $this->input->post("rect11");
+         $rect12 = $this->input->post("rect12");
+         $rect13 = $this->input->post("rect13");
+         $ups1 = $this->input->post("ups1");
+         $ups2 = $this->input->post("ups2");
+         $ups3 = $this->input->post("ups3");
+         $ups4 = $this->input->post("ups4");
+         $ups5 = $this->input->post("ups5");
+         $ups6 = $this->input->post("ups6");
+
+         $rectiT = $rect1 + $rect2 + $rect3 + $rect4 + $rect5 + $rect6 + $rect7 + $rect8 + $rect9 + $rect10 + $rect11 + $rect12 + $rect13;
+         $upsT = $ups1 + $ups2 + $ups3 + $ups4 + $ups5 + $ups6;
+         $loadIT = $rectiT + $upsT;
+         $pue = $lvmdp / $loadIT;
+
+         $data = array(
+            'waktu' => $tgl,
+            'lvmdp' => $lvmdp,
+            'rect1' => $rect1,
+            'rect2' => $rect2,
+            'rect3' => $rect3,
+            'rect4' => $rect4,
+            'rect5' => $rect5,
+            'rect6' => $rect6,
+            'rect7' => $rect7,
+            'rect8' => $rect8,
+            'rect9' => $rect9,
+            'rect10' => $rect10,
+            'rect11' => $rect11,
+            'rect12' => $rect12,
+            'rect13' => $rect13,
+            'ups1' => $ups1,
+            'ups2' => $ups2,
+            'ups3' => $ups3,
+            'ups4' => $ups4,
+            'ups5' => $ups5,
+            'ups6' => $ups6,
+            'total' => $loadIT,
+            'pue' => $pue
+         );
+
+         $this->TabelModel->inputDataPue($data, $table);
+         redirect('pages/pue');
+      }
+   }
+
+   public function lt4()
    {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $tgl = date('Y-m-d H:i:s');
@@ -44,16 +108,6 @@ class InputData extends CI_Controller {
          $temperature9 = $this->input->post("temperature9");
 
          // Interconnection Room
-         $humidity17 = $this->input->post("humidity17");
-         $temperature17 = $this->input->post("temperature17");
-         $humidity18 = $this->input->post("humidity18");
-         $temperature18 = $this->input->post("temperature18");
-         $humidity19 = $this->input->post("humidity19");
-         $temperature19 = $this->input->post("temperature19");
-         $humidity20 = $this->input->post("humidity20");
-         $temperature20 = $this->input->post("temperature20");
-
-         // Transmission Room
          $humidity10 = $this->input->post("humidity10");
          $temperature10 = $this->input->post("temperature10");
          $humidity11 = $this->input->post("humidity11");
@@ -62,21 +116,29 @@ class InputData extends CI_Controller {
          $temperature12 = $this->input->post("temperature12");
          $humidity13 = $this->input->post("humidity13");
          $temperature13 = $this->input->post("temperature13");
+
+         // Transmission Room
          $humidity14 = $this->input->post("humidity14");
          $temperature14 = $this->input->post("temperature14");
          $humidity15 = $this->input->post("humidity15");
          $temperature15 = $this->input->post("temperature15");
          $humidity16 = $this->input->post("humidity16");
          $temperature16 = $this->input->post("temperature16");
-         
+         $humidity17 = $this->input->post("humidity17");
+         $temperature17 = $this->input->post("temperature17");
+         $humidity18 = $this->input->post("humidity18");
+         $temperature18 = $this->input->post("temperature18");
+         $humidity19 = $this->input->post("humidity19");
+         $temperature19 = $this->input->post("temperature19");
+
 
          $battery = array(
-             's1' => $temperature1,
-             'k1' => $humidity1,
-             'w1' => $tgl,
-             's2' => $temperature2,
-             'k2' => $humidity2,
-             'w2' => $tgl
+            's1' => $temperature1,
+            'k1' => $humidity1,
+            'w1' => $tgl,
+            's2' => $temperature2,
+            'k2' => $humidity2,
+            'w2' => $tgl
          );
          $recti = array(
             's1' => $temperature3,
@@ -104,20 +166,6 @@ class InputData extends CI_Controller {
             'w4' => $tgl
          );
          $inter = array(
-            's1' => $temperature17,
-            'k1' => $humidity17,
-            'w1' => $tgl,
-            's2' => $temperature18,
-            'k2' => $humidity18,
-            'w2' => $tgl,
-            's3' => $temperature19,
-            'k3' => $humidity19,
-            'w3' => $tgl,
-            's4' => $temperature20,
-            'k4' => $humidity20,
-            'w4' => $tgl
-         );
-         $trans = array(
             's1' => $temperature10,
             'k1' => $humidity10,
             'w1' => $tgl,
@@ -129,16 +177,27 @@ class InputData extends CI_Controller {
             'w3' => $tgl,
             's4' => $temperature13,
             'k4' => $humidity13,
+            'w4' => $tgl
+         );
+         $trans = array(
+            's1' => $temperature14,
+            'k1' => $humidity14,
+            'w1' => $tgl,
+            's2' => $temperature15,
+            'k2' => $humidity15,
+            'w2' => $tgl,
+            's3' => $temperature16,
+            'k3' => $humidity16,
+            'w3' => $tgl,
+            's4' => $temperature17,
+            'k4' => $humidity17,
             'w4' => $tgl,
-            's5' => $temperature14,
-            'k5' => $humidity14,
+            's5' => $temperature18,
+            'k5' => $humidity18,
             'w5' => $tgl,
-            's6' => $temperature15,
-            'k6' => $humidity15,
+            's6' => $temperature19,
+            'k6' => $humidity19,
             'w6' => $tgl,
-            's7' => $temperature16,
-            'k7' => $humidity16,
-            'w7' => $tgl
          );
 
          $this->TabelModel->inputDataSuhu($battery, 'battery4');
@@ -146,7 +205,23 @@ class InputData extends CI_Controller {
          $this->TabelModel->inputDataSuhu($bss, 'bss');
          $this->TabelModel->inputDataSuhu($inter, 'inter');
          $this->TabelModel->inputDataSuhu($trans, 'trans');
-     }
-     echo "test";
+      }
+      echo "test";
+   }
+
+   public function tangki()
+   {
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+         $tgl = date('Y-m-d H:i:s');
+         $tinggi = $this->input->post("tangki1");
+
+         $data = array(
+            'tinggi' => $tinggi,
+            'waktu' => $tgl
+         );
+
+         $this->TabelModel->inputDataTangki($data, 'tangki1');
+      }
+      echo "oke";
    }
 }

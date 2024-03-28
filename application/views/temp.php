@@ -23,9 +23,6 @@
 <?php $this->load->view('layout/footer'); ?>
 
 <!-- Custom JS -->
-<script>
-   const baseUrl = '<?= base_url() ?>'
-</script>
 <script src="<?= base_url(); ?>asset/js/scriptTemp.js"></script>
 
 </body>

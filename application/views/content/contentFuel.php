@@ -3,13 +3,13 @@
       <h2>Tangki Harian</h2>
       <div class="row">
          <div class="col-6">
-            <p class="tank-label"><span id="tank1Value">250</span> / <span>1000</span></p>
+            <p class="tank-label"><span id="tank1Value"></span> / <span id="tank1Max">1500</span></p>
             <div class="tank-bar">
                <div id="tank1-level" class="tank-level" style="background-color: #007bff;"></div>
             </div>
          </div>
          <div class="col-6">
-            <p class="tank-label"><span id="tank2Value">1000</span> / <span>1000</span></p>
+            <p class="tank-label"><span id="tank2Value">1000</span> / <span>1500</span></p>
             <div class="tank-bar">
                <div id="tank2-level" class="tank-level" style="background-color: #007bff;"></div>
             </div>

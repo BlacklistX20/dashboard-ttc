@@ -69,7 +69,7 @@
             <h5 class="modal-title" id="electricModalLabel">Modal title</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
-         <form action="config\inputDataPue.php" method="post" class="needs-validation" novalidate>
+         <form action="<?= base_url() . 'InputData/pue'; ?>" method="post" class="needs-validation" novalidate>
             <div class="modal-body">
                <div class="my-3">
                   <label for="validationCustom01" class="form-label">Tanggal</label>

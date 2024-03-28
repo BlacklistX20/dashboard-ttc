@@ -7,15 +7,43 @@ class TabelModel extends CI_Model {
       return $this->db->get($table)->last_row('array');
    }
 
-   public function inputDataSuhu($data, $table)
-   {
-      $this->db->insert($table, $data);
-   }
-
    public function getDataPotency($table)
    {
       $potency = $this->load->database('potensi', TRUE);
 
       return $potency->get($table);
+   }
+
+   public function getDataFuel($table)
+   {
+      $fuel = $this->load->database('fuel', TRUE);
+
+      return $fuel->get($table)->last_row('array');
+   }
+
+   public function getDataPue($table)
+   {
+      $pue = $this->load->database('pue', TRUE);
+
+      return $pue->get($table);
+   }
+
+   public function inputDataSuhu($data, $table)
+   {
+      $this->db->insert($table, $data);
+   }
+
+   public function inputDataPue($data, $table)
+   {
+      $pue = $this->load->database('pue', TRUE);
+
+      $pue->insert($table, $data);
+   }
+
+   public function inputDataTangki($data, $table)
+   {
+      $fuel = $this->load->database('fuel', TRUE);
+
+      $fuel->insert($table, $data);
    }
 }

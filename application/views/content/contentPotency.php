@@ -1,5 +1,3 @@
-<?php require('config\getDataPotensi.php'); ?>
-
 <div class="tabset">
   <!-- Tab 1 -->
   <input type="radio" name="tabset" id="tab1" aria-controls="electric" checked>
@@ -59,15 +57,15 @@
           <?php foreach ($electric as $key => $e) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $e[1]; ?></td>
-              <td><?= $e[2]; ?></td>
-              <td class="text-center"><?= $e[3]; ?></td>
-              <td class="text-center"><?= $e[4]; ?></td>
+              <td><?= $e->nama; ?></td>
+              <td><?= $e->merk; ?></td>
+              <td class="text-center"><?= $e->kapasitas; ?></td>
+              <td class="text-center"><?= $e->jumlah; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary btn-edit" data-id="<?= $key[0]; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                <button type="button" class="btn btn-primary btn-edit" data-id="<?= $e->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                   <i class='bx bxs-edit'></i>
                 </button>
-                <button type="button" class="btn btn-danger btn-delete" data-id="<?= $key[0]; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                <button type="button" class="btn btn-danger btn-delete" data-id="<?= $e->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
                   <i class='bx bxs-trash'></i>
                 </button>
               </td>
@@ -105,13 +103,13 @@
           <?php foreach ($cooling as $key => $c) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $c[1]; ?></td>
-              <td><?= $c[2]; ?></td>
-              <td class="text-center"><?= $c[3]; ?></td>
-              <td class="text-center"><?= $c[4]; ?></td>
+              <td><?= $c->nama; ?></td>
+              <td><?= $c->merk; ?></td>
+              <td class="text-center"><?= $c->jumlah; ?></td>
+              <td class="text-center"><?= $c->keterangan; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
+                <button type="button" class="btn btn-primary" data-id="<?= $c->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
+                <button type="button" class="btn btn-danger" data-id="<?= $c->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
               </td>
             </tr>
           <?php } ?>
@@ -147,13 +145,13 @@
           <?php foreach ($fire as $key => $f) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $f[1]; ?></td>
-              <td><?= $f[2]; ?></td>
-              <td class="text-center"><?= $f[3]; ?></td>
-              <td class="text-center"><?= $f[4]; ?></td>
+              <td><?= $f->nama; ?></td>
+              <td><?= $f->merk; ?></td>
+              <td class="text-center"><?= $f->jumlah; ?></td>
+              <td class="text-center"><?= $f->keterangan; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
+                <button type="button" class="btn btn-primary" data-id="<?= $f->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
+                <button type="button" class="btn btn-danger" data-id="<?= $f->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
               </td>
             </tr>
           <?php } ?>
@@ -189,13 +187,13 @@
           <?php foreach ($angkut as $key => $a) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $a[1]; ?></td>
-              <td><?= $a[2]; ?></td>
-              <td class="text-center"><?= $a[3]; ?></td>
-              <td class="text-center"><?= $a[4]; ?></td>
+              <td><?= $a->nama; ?></td>
+              <td><?= $a->merk; ?></td>
+              <td class="text-center"><?= $a->jumlah; ?></td>
+              <td class="text-center"><?= $a->keterangan; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
+                <button type="button" class="btn btn-primary" data-id="<?= $a->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
+                <button type="button" class="btn btn-danger" data-id="<?= $a->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
               </td>
             </tr>
           <?php } ?>
@@ -228,16 +226,16 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($angkut as $key => $a) { ?>
+          <?php foreach ($ups as $key => $u) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $a[1]; ?></td>
-              <td><?= $a[2]; ?></td>
-              <td class="text-center"><?= $a[3]; ?></td>
-              <td class="text-center"><?= $a[4]; ?></td>
+              <td><?= $u->nama; ?></td>
+              <td><?= $u->merk; ?></td>
+              <td class="text-center"><?= $u->jumlah; ?></td>
+              <td class="text-center"><?= $u->keterangan; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
+                <button type="button" class="btn btn-primary" data-id="<?= $u->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
+                <button type="button" class="btn btn-danger" data-id="<?= $u->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
               </td>
             </tr>
           <?php } ?>
@@ -270,16 +268,16 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($angkut as $key => $a) { ?>
+          <?php foreach ($recti as $key => $r) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $a[1]; ?></td>
-              <td><?= $a[2]; ?></td>
-              <td class="text-center"><?= $a[3]; ?></td>
-              <td class="text-center"><?= $a[4]; ?></td>
+              <td><?= $r->nama; ?></td>
+              <td><?= $r->merk; ?></td>
+              <td class="text-center"><?= $r->jumlah; ?></td>
+              <td class="text-center"><?= $r->keterangan; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
+                <button type="button" class="btn btn-primary" data-id="<?= $r->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
+                <button type="button" class="btn btn-danger" data-id="<?= $r->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
               </td>
             </tr>
           <?php } ?>
@@ -312,16 +310,16 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($angkut as $key => $a) { ?>
+          <?php foreach ($penerangan as $key => $p) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $a[1]; ?></td>
-              <td><?= $a[2]; ?></td>
-              <td class="text-center"><?= $a[3]; ?></td>
-              <td class="text-center"><?= $a[4]; ?></td>
+              <td><?= $p->nama; ?></td>
+              <td><?= $p->merk; ?></td>
+              <td class="text-center"><?= $p->jumlah; ?></td>
+              <td class="text-center"><?= $p->keterangan; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
+                <button type="button" class="btn btn-primary" data-id="<?= $p->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
+                <button type="button" class="btn btn-danger" data-id="<?= $p->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
               </td>
             </tr>
           <?php } ?>
@@ -354,16 +352,16 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($angkut as $key => $a) { ?>
+          <?php foreach ($warning as $key => $w) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $a[1]; ?></td>
-              <td><?= $a[2]; ?></td>
-              <td class="text-center"><?= $a[3]; ?></td>
-              <td class="text-center"><?= $a[4]; ?></td>
+              <td><?= $w->nama; ?></td>
+              <td><?= $w->merk; ?></td>
+              <td class="text-center"><?= $w->jumlah; ?></td>
+              <td class="text-center"><?= $w->keterangan; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
+                <button type="button" class="btn btn-primary" data-id="<?= $w->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
+                <button type="button" class="btn btn-danger" data-id="<?= $w->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
               </td>
             </tr>
           <?php } ?>
@@ -396,16 +394,16 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($angkut as $key => $a) { ?>
+          <?php foreach ($support as $key => $s) { ?>
             <tr>
               <td class="text-center"><?= $key + 1; ?></td>
-              <td><?= $a[1]; ?></td>
-              <td><?= $a[2]; ?></td>
-              <td class="text-center"><?= $a[3]; ?></td>
-              <td class="text-center"><?= $a[4]; ?></td>
+              <td><?= $s->nama; ?></td>
+              <td><?= $s->merk; ?></td>
+              <td class="text-center"><?= $s->jumlah; ?></td>
+              <td class="text-center"><?= $s->keterangan; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
+                <button type="button" class="btn btn-primary" data-id="<?= $s->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
+                <button type="button" class="btn btn-danger" data-id="<?= $s->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
               </td>
             </tr>
           <?php } ?>

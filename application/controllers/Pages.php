@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ *  @property TabelModel $TabelModel 
+ */
+
+
 class Pages extends CI_Controller {
 
 	public function __construct(){
@@ -31,7 +36,18 @@ class Pages extends CI_Controller {
 
 	public function potency()
 	{
-		$this->load->view('potency');
+		$data['electric'] = $this->TabelModel->getDataPotency('electricity')->result();
+		$data['cooling'] = $this->TabelModel->getDataPotency('cooling')->result();
+		$data['fire'] = $this->TabelModel->getDataPotency('fire')->result();
+		$data['angkut'] = $this->TabelModel->getDataPotency('angkut')->result();
+		$data['ups'] = $this->TabelModel->getDataPotency('ups')->result();
+		$data['recti'] = $this->TabelModel->getDataPotency('recti')->result();
+		$data['penerangan'] = $this->TabelModel->getDataPotency('penerangan')->result();
+		$data['warning'] = $this->TabelModel->getDataPotency('warning')->result();
+		$data['support'] = $this->TabelModel->getDataPotency('support')->result();
+
+		// print_r($data);
+		$this->load->view('potency', $data);
 	}
 
 	public function space()

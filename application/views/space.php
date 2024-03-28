@@ -1,6 +1,9 @@
 <?php $this->load->view('layout/header'); ?>
 
-<h2>Space Management</h2>
+<div class="text-center">
+   <h2 class="fw-bold">SPACE MANAGEMENT</h2>
+   <h4>TTC Sudiang Makassar</h2>
+</div>
 
 <?php $this->load->view('content/contentSpace'); ?>
 
