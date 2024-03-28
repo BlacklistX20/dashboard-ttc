@@ -13,7 +13,24 @@
 <?php $this->load->view('layout/footer'); ?>
 
 <!-- Custom JS -->
-<script src="<?= base_url(); ?>asset/js/scriptFolder.js"></script>
+<script src="<?= base_url(); ?>asset/js/scriptPotency.js"></script>
+<script>
+   $(".btnEdit").click(function() {
+      var id = $(this).data("id");
+      $.ajax({
+         url: '<?= base_url('changedata/editpotency/'); ?>' + id,
+         success: function(respond) {
+            var data = JSON.parse(respond)
+            $('#editNama').val(data.nama)
+            $('#editMerk').val(data.merk)
+            $('#editKapasitas').val(data.kapasitas)
+            $('#editJumlah').val(data.jumlah)
+            $('#formEdit').attr('action', '<?= base_url('changedata/editpotency/'); ?>' + id);
+            $('#edit').modal('show');
+         },
+      });
+   });
+</script>
 
 </body>
 

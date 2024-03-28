@@ -206,7 +206,24 @@ class InputData extends CI_Controller
          $this->TabelModel->inputDataSuhu($inter, 'inter');
          $this->TabelModel->inputDataSuhu($trans, 'trans');
       }
-      echo "test";
+   }
+
+   public function potencyEl()
+   {
+      $nama = $this->input->post("nama");
+      $merk = $this->input->post("merk");
+      $kapasitas = $this->input->post("kapasitas");
+      $jumlah = $this->input->post("jumlah");
+
+      $data = array(
+         'nama' => $nama,
+         'merk' => $merk,
+         'kapasitas' => $kapasitas,
+         'jumlah' => $jumlah
+      );
+
+      $this->TabelModel->inputDataPotency($data, 'electricity');
+      redirect('pages/potency');
    }
 
    public function tangki()
@@ -222,6 +239,5 @@ class InputData extends CI_Controller
 
          $this->TabelModel->inputDataTangki($data, 'tangki1');
       }
-      echo "oke";
    }
 }

@@ -1,6 +1,7 @@
 <?php
 
-class TabelModel extends CI_Model {
+class TabelModel extends CI_Model
+{
 
    public function getDataSuhu($table)
    {
@@ -33,6 +34,20 @@ class TabelModel extends CI_Model {
       $this->db->insert($table, $data);
    }
 
+   public function inputDataTangki($data, $table)
+   {
+      $fuel = $this->load->database('fuel', TRUE);
+
+      $fuel->insert($table, $data);
+   }
+
+   public function inputDataPotency($data, $table)
+   {
+      $potency = $this->load->database('potensi', TRUE);
+
+      $potency->insert($table, $data);
+   }
+
    public function inputDataPue($data, $table)
    {
       $pue = $this->load->database('pue', TRUE);
@@ -40,10 +55,19 @@ class TabelModel extends CI_Model {
       $pue->insert($table, $data);
    }
 
-   public function inputDataTangki($data, $table)
+   public function editDataPotency($id, $data, $table)
    {
-      $fuel = $this->load->database('fuel', TRUE);
+      $potency = $this->load->database('potensi', TRUE);
 
-      $fuel->insert($table, $data);
+      $potency->where('ID', $id);
+      $potency->update($table, $data);
    }
+
+   public function hapusDataPotency($where,$table)
+   {
+      $potency = $this->load->database('potensi', TRUE);
+
+      $potency->where($where);
+      $potency->delete($table);
+  }
 }

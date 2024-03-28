@@ -31,11 +31,11 @@ async function getDataFuel() {
   var max = $("#tank1Max").text();
 
   var percentage = (tinggi / max) * 100;
-  var tinggi = percentage.toFixed(1);
+  var height = percentage.toFixed(1);
 
   $("#tank1Value").text(tinggi);
   $("#tank1-level").animate(
-    { height: tinggi + "%"}
+    { height: height + "%"}
   )
 
   // console.log(tinggi);

@@ -62,10 +62,10 @@
               <td class="text-center"><?= $e->kapasitas; ?></td>
               <td class="text-center"><?= $e->jumlah; ?></td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary btn-edit" data-id="<?= $e->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                <button type="button" class="btn btn-primary btnEdit" data-id="<?= $e->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                   <i class='bx bxs-edit'></i>
                 </button>
-                <button type="button" class="btn btn-danger btn-delete" data-id="<?= $e->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                <button type="button" class="btn btn-danger btnDelete" data-id="<?= $e->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
                   <i class='bx bxs-trash'></i>
                 </button>
               </td>
@@ -420,23 +420,35 @@
           <h5 class="modal-title" id="addLabel">Modal title</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="config\inputPotensiElectric.php" method="post">
+        <form action="<?= base_url() ?>inputdata/potencyEl" method="post" class="needs-validation" novalidate>
           <div class="modal-body">
             <div class="mb-3">
-              <label for="inputNama" class="form-label">Nama</label>
-              <input type="text" class="form-control" id="inputNama" name="nama">
+              <label for="validationCustom01" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="validationCustom01" name="nama" required>
+              <div class="invalid-feedback">
+                Masukkan Nama
+              </div>
             </div>
             <div class="mb-3">
-              <label for="inputMerk" class="form-label">Merk</label>
-              <input type="text" class="form-control" id="inputMerk" name="merk">
+              <label for="validationCustom02" class="form-label">Merk</label>
+              <input type="text" class="form-control" id="validationCustom02" name="merk" required>
+              <div class="invalid-feedback">
+                Masukkan Merk
+              </div>
             </div>
             <div class="mb-3" id="change">
-              <label for="inputKapasitas" class="form-label">Kapasitas</label>
-              <input type="number" class="form-control" id="inputKapasitas" name="kapasitas">
+              <label for="validationCustom03" class="form-label">Kapasitas</label>
+              <input type="number" class="form-control" id="validationCustom03" name="kapasitas" required>
+              <div class="invalid-feedback">
+                Masukkan Kapasitas
+              </div>
             </div>
             <div class="mb-3">
-              <label for="inputJumlah" class="form-label">Jumlah</label>
-              <input type="number" class="form-control" id="inputJumlah" name="jumlah">
+              <label for="validationCustom04" class="form-label">Jumlah</label>
+              <input type="number" class="form-control" id="validationCustom04" name="jumlah" required>
+              <div class="invalid-feedback">
+                Masukkan Jumlah
+              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -458,20 +470,20 @@
         <form action="#" method="post" id="editModal">
           <div class="modal-body">
             <div class="mb-3">
-              <label for="inputNama" class="form-label">Nama</label>
-              <input type="text" class="form-control" id="inputNama" name="nama">
+              <label for="editNama" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="editNama" name="nama">
             </div>
             <div class="mb-3">
-              <label for="inputMerk" class="form-label">Merk</label>
-              <input type="text" class="form-control" id="inputMerk" name="merk">
+              <label for="editMerk" class="form-label">Merk</label>
+              <input type="text" class="form-control" id="editMerk" name="merk">
             </div>
             <div class="mb-3" id="change">
-              <label for="inputKapasitas" class="form-label">Kapasitas</label>
-              <input type="number" class="form-control" id="inputKapasitas" name="kapasitas">
+              <label for="editKapasitas" class="form-label">Kapasitas</label>
+              <input type="number" class="form-control" id="editKapasitas" name="kapasitas">
             </div>
             <div class="mb-3">
-              <label for="inputJumlah" class="form-label">Jumlah</label>
-              <input type="number" class="form-control" id="inputJumlah" name="jumlah">
+              <label for="editJumlah" class="form-label">Jumlah</label>
+              <input type="number" class="form-control" id="editJumlah" name="jumlah">
             </div>
           </div>
           <div class="modal-footer">
