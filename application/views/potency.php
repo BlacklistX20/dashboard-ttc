@@ -18,17 +18,33 @@
    $(".btnEdit").click(function() {
       var id = $(this).data("id");
       $.ajax({
-         url: '<?= base_url('changedata/editpotency/'); ?>' + id,
+         url: '<?= base_url('getdata/potencyElById/'); ?>' + id,
          success: function(respond) {
             var data = JSON.parse(respond)
             $('#editNama').val(data.nama)
             $('#editMerk').val(data.merk)
             $('#editKapasitas').val(data.kapasitas)
+            $('#editSatuan').val(data.satuan).change()
             $('#editJumlah').val(data.jumlah)
-            $('#formEdit').attr('action', '<?= base_url('changedata/editpotency/'); ?>' + id);
+            $('#editModal').attr('action', '<?= base_url() ?>ChangeData/editPotencyEl/' + id);
             $('#edit').modal('show');
          },
       });
+   });
+
+   $('.btnDelete').click(function() {
+      var id = $(this).data("id");
+      $.ajax({
+         url: '<?= base_url('getdata/potencyElById/'); ?>' + id,
+         success: function(respond) {
+            var data = JSON.parse(respond)
+
+            $('#deleteName').text(data.nama)
+            $('#deleteMerk').text(data.merk)
+            $('#deleteButton').attr('href', '<?= base_url() ?>ChangeData/deletePotencyEl/' + id);
+            $('#delete').modal('show');
+         }
+      })
    });
 </script>
 

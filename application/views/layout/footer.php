@@ -3,6 +3,7 @@
 
     <!-- chart.js -->
     <script src="<?= base_url() ?>asset/src/chart.js-4.4.1/node_modules/chart.js/dist/chart.umd.js"></script>
+    <script src="<?= base_url() ?>asset/src/chart.js-4.4.1/chartjs-plugin-datalabels/chartjs-plugin-datalabels.js"></script>
 
     <!-- bootstrap .js -->
     <script src="<?= base_url() ?>asset/src/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>

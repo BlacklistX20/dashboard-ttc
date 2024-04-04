@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  *  @property input $input
  *  @property TabelModel $TabelModel 
+ *  @property session   $session
  */
 
 class InputData extends CI_Controller
@@ -19,6 +20,29 @@ class InputData extends CI_Controller
    public function pue()
    {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
+         $tablePue = $this->TabelModel->getPue('pue')->result_array();
+
+         function getIdByDate($array, $date)
+         {
+            foreach ($array as $day) {
+               if ($day['tgl'] === $date) {
+                  return $day['id']; // Return the id if date is found
+               }
+            }
+            return null; // Return null if date is not found
+         }
+
+         function hasNoNullValues($array)
+         {
+            foreach ($array as $day) {
+               if ($day['pagi'] !== null && $day['siang'] !== null && $day['malam'] !== null) {
+                  $avg = ($day['pagi'] + $day['siang'] + $day['malam']) / 3;
+                  return array('id' => $day['id'], 'avg' => $avg);
+               }
+            }
+            return null; // Return null if no such day found
+         }
+
          $table = $this->input->post("table");
          $tgl = $this->input->post("tanggal");
          $lvmdp = $this->input->post("lvmdp");
@@ -48,7 +72,7 @@ class InputData extends CI_Controller
          $pue = $lvmdp / $loadIT;
 
          $data = array(
-            'waktu' => $tgl,
+            'tgl' => $tgl,
             'lvmdp' => $lvmdp,
             'rect1' => $rect1,
             'rect2' => $rect2,
@@ -69,11 +93,39 @@ class InputData extends CI_Controller
             'ups4' => $ups4,
             'ups5' => $ups5,
             'ups6' => $ups6,
+            'recti' => $rectiT,
+            'ups' => $upsT,
             'total' => $loadIT,
             'pue' => $pue
          );
+         $this->TabelModel->inputPue($data, $table);
 
-         $this->TabelModel->inputDataPue($data, $table);
+         $dataPue1 = array(
+            'tgl' => $tgl,
+            $table => $pue
+         );
+         $dataPue2 = array(
+            $table => $pue
+         );
+
+         $idByDate = getIdByDate($tablePue, $tgl);
+         $idByValue = hasNoNullValues($tablePue);
+
+         if ($idByDate !== null) {
+            $this->TabelModel->editPueById($idByDate, $dataPue2);
+         } else {
+            $this->TabelModel->inputPue($dataPue1, 'pue');
+         };
+
+         if ($idByValue !== null) {
+            $id = $idByValue['id'];
+            $avg = $idByValue['avg'];
+            $dataAvg = array(
+               'average' => $avg
+            );
+            $this->TabelModel->editPueById($id, $dataAvg);
+         }
+
          redirect('pages/pue');
       }
    }
@@ -200,11 +252,11 @@ class InputData extends CI_Controller
             'w6' => $tgl,
          );
 
-         $this->TabelModel->inputDataSuhu($battery, 'battery4');
-         $this->TabelModel->inputDataSuhu($recti, 'recti4');
-         $this->TabelModel->inputDataSuhu($bss, 'bss');
-         $this->TabelModel->inputDataSuhu($inter, 'inter');
-         $this->TabelModel->inputDataSuhu($trans, 'trans');
+         $this->TabelModel->inputSuhu($battery, 'battery4');
+         $this->TabelModel->inputSuhu($recti, 'recti4');
+         $this->TabelModel->inputSuhu($bss, 'bss');
+         $this->TabelModel->inputSuhu($inter, 'inter');
+         $this->TabelModel->inputSuhu($trans, 'trans');
       }
    }
 
@@ -213,16 +265,42 @@ class InputData extends CI_Controller
       $nama = $this->input->post("nama");
       $merk = $this->input->post("merk");
       $kapasitas = $this->input->post("kapasitas");
+      $satuan = $this->input->post("satuan");
       $jumlah = $this->input->post("jumlah");
 
       $data = array(
          'nama' => $nama,
          'merk' => $merk,
          'kapasitas' => $kapasitas,
+         'satuan' => $satuan,
          'jumlah' => $jumlah
       );
 
-      $this->TabelModel->inputDataPotency($data, 'electricity');
+      // print_r($data);
+
+      $this->TabelModel->inputPotency($data, 'electricity');
+      redirect('pages/potency');
+   }
+
+   public function potencyCool()
+   {
+      $nama = $this->input->post("nama");
+      $merk = $this->input->post("merk");
+      $type = $this->input->post("type");
+      $jumlah = $this->input->post("jumlah");
+      $keterangan = $this->input->post("keterangan");
+
+      $data = array(
+         'nama' => $nama,
+         'merk' => $merk,
+         'type' => $type,
+         'jumlah' => $jumlah,
+         'keterangan' => $keterangan
+      );
+
+      // print_r($data);
+
+      $this->TabelModel->inputPotency($data, 'cooling');
       redirect('pages/potency');
    }
 
@@ -230,14 +308,17 @@ class InputData extends CI_Controller
    {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $tgl = date('Y-m-d H:i:s');
-         $tinggi = $this->input->post("tangki1");
+         $tangki1 = $this->input->post("tangki1");
+         $tangki2 = $this->input->post("tangki2");
 
          $data = array(
-            'tinggi' => $tinggi,
-            'waktu' => $tgl
+            't1' => $tangki1,
+            'w1' => $tgl,
+            't2' => $tangki2,
+            'w2' => $tgl
          );
 
-         $this->TabelModel->inputDataTangki($data, 'tangki1');
+         $this->TabelModel->inputTangki($data, 'harian');
       }
    }
 }

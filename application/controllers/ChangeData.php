@@ -15,7 +15,7 @@ class ChangeData extends CI_Controller
       $this->load->model('TabelModel');
    }
 
-   public function editPotency($id)
+   public function editPotencyEl($id)
    {
       $nama = $this->input->post("nama");
       $merk = $this->input->post("merk");
@@ -29,7 +29,14 @@ class ChangeData extends CI_Controller
          'jumlah' => $jumlah
       );
 
-      $this->TabelModel->editDataPotency($id, $data, 'electricity');
+      $this->TabelModel->editPotencyById($id, $data, 'electricity');
+      redirect('pages/potency');
+   }
+
+   public function deletePotencyEl($id)
+   {
+      $this->TabelModel->deletePotencyById($id, 'electricity');
+
       redirect('pages/potency');
    }
 }

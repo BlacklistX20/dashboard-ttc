@@ -36,15 +36,15 @@ class Pages extends CI_Controller {
 
 	public function potency()
 	{
-		$data['electric'] = $this->TabelModel->getDataPotency('electricity')->result();
-		$data['cooling'] = $this->TabelModel->getDataPotency('cooling')->result();
-		$data['fire'] = $this->TabelModel->getDataPotency('fire')->result();
-		$data['angkut'] = $this->TabelModel->getDataPotency('angkut')->result();
-		$data['ups'] = $this->TabelModel->getDataPotency('ups')->result();
-		$data['recti'] = $this->TabelModel->getDataPotency('recti')->result();
-		$data['penerangan'] = $this->TabelModel->getDataPotency('penerangan')->result();
-		$data['warning'] = $this->TabelModel->getDataPotency('warning')->result();
-		$data['support'] = $this->TabelModel->getDataPotency('support')->result();
+		$data['electric'] = $this->TabelModel->getPotency('electricity')->result();
+		$data['cooling'] = $this->TabelModel->getPotency('cooling')->result();
+		$data['fire'] = $this->TabelModel->getPotency('fire')->result();
+		$data['angkut'] = $this->TabelModel->getPotency('angkut')->result();
+		$data['ups'] = $this->TabelModel->getPotency('ups')->result();
+		$data['recti'] = $this->TabelModel->getPotency('recti')->result();
+		$data['penerangan'] = $this->TabelModel->getPotency('penerangan')->result();
+		$data['warning'] = $this->TabelModel->getPotency('warning')->result();
+		$data['support'] = $this->TabelModel->getPotency('support')->result();
 
 		// print_r($data);
 		$this->load->view('potency', $data);
@@ -57,6 +57,14 @@ class Pages extends CI_Controller {
 
 	public function pue()
 	{
-		$this->load->view('pue');
+		$data['pagi'] = $this->TabelModel->getPue('pagi')->result();
+		$data['siang'] = $this->TabelModel->getPue('siang')->result();
+		$data['malam'] = $this->TabelModel->getPue('malam')->result();
+		$data['avg'] = $this->TabelModel->getPueAvg()->result('array');
+		$data['min'] = $this->TabelModel->getPueMinMax('ASC')->result('array');
+		$data['max'] = $this->TabelModel->getPueMinMax('DESC')->result('array');
+
+		// print_r($data);
+		$this->load->view('pue', $data);
 	}
 }

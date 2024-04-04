@@ -37,13 +37,13 @@ async function getDataSuhu() {
 	var sensorW19 = suhuLt4.inter.w3;
 	var sensorW20 = suhuLt4.inter.w4;
 
-	// var sensorW10 = suhuLt4.trans.w1;
-	// var sensorW11 = suhuLt4.trans.w2;
-	// var sensorW12 = suhuLt4.trans.w3;
-	// var sensorW13 = suhuLt4.trans.w4;
-	// var sensorW14 = suhuLt4.trans.w5;
-	// var sensorW15 = suhuLt4.trans.w6;
-	// var sensorW16 = suhuLt4.trans.w7;
+	var sensorW10 = suhuLt4.trans.w1;
+	var sensorW11 = suhuLt4.trans.w2;
+	var sensorW12 = suhuLt4.trans.w3;
+	var sensorW13 = suhuLt4.trans.w4;
+	var sensorW14 = suhuLt4.trans.w5;
+	var sensorW15 = suhuLt4.trans.w6;
+	var sensorW16 = suhuLt4.trans.w7;
 
 	var suhuBatt4 = suhuLt4.batt4T.st.toFixed(2);
 	var kelemBatt4 = suhuLt4.batt4T.kt.toFixed(2);
@@ -53,14 +53,14 @@ async function getDataSuhu() {
 	var kelemBSS = suhuLt4.bssT.kt.toFixed(2);
 	var suhuInter = suhuLt4.interT.st.toFixed(2);
 	var kelemInter = suhuLt4.interT.kt.toFixed(2);
-	// var suhuTrans = suhuLt4.transT.st.toFixed(2);
-	// var kelemTrans = suhuLt4.transT.kt.toFixed(2);
+	var suhuTrans = suhuLt4.transT.st.toFixed(2);
+	var kelemTrans = suhuLt4.transT.kt.toFixed(2);
 
 	changeColor(suhuBatt4, "cardBatt");
 	changeColor(suhuRecti4, "cardRecti");
 	changeColor(suhuBSS, "cardBss");
 	changeColor(suhuInter, "cardInter");
-	// changeColor(suhuTrans, "cardTrans");
+	changeColor(suhuTrans, "cardTrans");
 
 	$("#suhuBatt4").text(suhuBatt4);
 	$("#kelemBatt4").text(kelemBatt4);
@@ -74,9 +74,9 @@ async function getDataSuhu() {
 	$("#suhuInter").text(suhuInter);
 	$("#kelemInter").text(kelemInter);
 	$("#dateInter").text(sensorW17);
-	// $("#suhuTrans").text(suhuTrans);
-	// $("#kelemTrans").text(kelemTrans);
-	// $("#dateTrans").text(sensorW10);
+	$("#suhuTrans").text(suhuTrans);
+	$("#kelemTrans").text(kelemTrans);
+	$("#dateTrans").text(sensorW10);
 
 	// console.log(suhuLt4);
 }

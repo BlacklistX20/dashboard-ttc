@@ -30,7 +30,7 @@
 
   <div class="tab-panels">
     <section id="electric" class="tab-panel">
-      <button type="button" class="btn btn-success btn-icon-split my-2" data-bs-toggle="modal" data-bs-target="#add">
+      <button type="button" class="btn btn-success btn-icon-split my-2" data-bs-toggle="modal" data-bs-target="#addElec">
         <span class="icon text-white-50">
           <i class='bx bx-plus' style='color:#ffffff'></i>
         </span>
@@ -59,7 +59,7 @@
               <td class="text-center"><?= $key + 1; ?></td>
               <td><?= $e->nama; ?></td>
               <td><?= $e->merk; ?></td>
-              <td class="text-center"><?= $e->kapasitas; ?></td>
+              <td class="text-center"><?= $e->kapasitas; ?> <?= $e->satuan; ?></td>
               <td class="text-center"><?= $e->jumlah; ?></td>
               <td class="text-center">
                 <button type="button" class="btn btn-primary btnEdit" data-id="<?= $e->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
@@ -75,7 +75,7 @@
       </table>
     </section>
     <section id="cool" class="tab-panel">
-      <button type="button" class="btn btn-success btn-icon-split my-2" id="switch">
+      <button type="button" class="btn btn-success btn-icon-split my-2" data-bs-toggle="modal" data-bs-target="#addCool">
         <span class="icon text-white-50">
           <i class='bx bx-plus' style='color:#ffffff'></i>
         </span>
@@ -84,16 +84,17 @@
       <table class="table table-striped table-bordered">
         <colgroup>
           <col style="width: 3%;">
-          <col span="2">
-          <col style="width: 8%;">
-          <col style="width: 25%;">
-          <col style="width: 9%;">
+          <col span="3" style="width: 22%;">
+          <col style="width: 5%;">
+          <col style="width: 20%;">
+          <col style="width: 6%;">
         </colgroup>
         <thead>
           <tr class="table-dark text-center">
             <th>No</th>
             <th>Nama</th>
             <th>Merk</th>
+            <th>Type</th>
             <th>Jumlah</th>
             <th>Keterangan</th>
             <th>Aksi</th>
@@ -105,6 +106,7 @@
               <td class="text-center"><?= $key + 1; ?></td>
               <td><?= $c->nama; ?></td>
               <td><?= $c->merk; ?></td>
+              <td><?= $c->type; ?></td>
               <td class="text-center"><?= $c->jumlah; ?></td>
               <td class="text-center"><?= $c->keterangan; ?></td>
               <td class="text-center">
@@ -412,12 +414,66 @@
     </section>
   </div>
 
-  <!-- Add Modal -->
-  <div class="modal fade" id="add" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+  <!-- Add Modal Cooling -->
+  <div class="modal fade" id="addCool" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addLabel">Modal title</h5>
+          <h5 class="modal-title" id="addLabel">Tambah Data Potensi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="<?= base_url() ?>inputdata/potencyCool" method="post" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="validationCustom01" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="validationCustom01" name="nama" required>
+              <div class="invalid-feedback">
+                Masukkan Nama
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="validationCustom02" class="form-label">Merk</label>
+              <input type="text" class="form-control" id="validationCustom02" name="merk" required>
+              <div class="invalid-feedback">
+                Masukkan Merk
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="validationCustom03" class="form-label">Type</label>
+              <input type="text" class="form-control" id="validationCustom03" name="type" required>
+              <div class="invalid-feedback">
+                Masukkan Type
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="validationCustom04" class="form-label">Jumlah</label>
+              <input type="number" class="form-control" id="validationCustom04" name="jumlah" required>
+              <div class="invalid-feedback">
+                Masukkan Jumlah
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="validationCustom05" class="form-label">Keterangan</label>
+              <input type="text" class="form-control" id="validationCustom05" name="keterangan" required>
+              <div class="invalid-feedback">
+                Masukkan Keterangan
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Tambah</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Modal Electric -->
+  <div class="modal fade" id="addElec" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addLabel">Tambah Data Potensi</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="<?= base_url() ?>inputdata/potencyEl" method="post" class="needs-validation" novalidate>
@@ -438,14 +494,22 @@
             </div>
             <div class="mb-3" id="change">
               <label for="validationCustom03" class="form-label">Kapasitas</label>
-              <input type="number" class="form-control" id="validationCustom03" name="kapasitas" required>
+              <div class="input-group">
+                <input type="number" class="form-control" id="validationCustom03" name="kapasitas" required>
+                <select class="form-select" name="satuan" id="validationCustom04">
+                  <option selected>Pilih</option>
+                  <option value="KVA">KVA</option>
+                  <option value="KW">KW</option>
+                  <option value="A">A</option>
+                </select>
+              </div>
               <div class="invalid-feedback">
                 Masukkan Kapasitas
               </div>
             </div>
             <div class="mb-3">
-              <label for="validationCustom04" class="form-label">Jumlah</label>
-              <input type="number" class="form-control" id="validationCustom04" name="jumlah" required>
+              <label for="validationCustom05" class="form-label">Jumlah</label>
+              <input type="number" class="form-control" id="validationCustom05" name="jumlah" required>
               <div class="invalid-feedback">
                 Masukkan Jumlah
               </div>
@@ -459,12 +523,12 @@
     </div>
   </div>
 
-  <!-- Edit Modal  -->
+  <!-- Edit Modal Electric  -->
   <div class="modal fade" id="edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editLabel">Modal title</h5>
+          <h5 class="modal-title" id="editLabel">Edit Data Potensi</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="#" method="post" id="editModal">
@@ -479,7 +543,18 @@
             </div>
             <div class="mb-3" id="change">
               <label for="editKapasitas" class="form-label">Kapasitas</label>
-              <input type="number" class="form-control" id="editKapasitas" name="kapasitas">
+              <div class="input-group">
+                <input type="number" class="form-control" id="editKapasitas" name="kapasitas" required>
+                <select class="form-select" id="editSatuan">
+                  <option>Pilih</option>
+                  <option name="satuan" value="KVA">KVA</option>
+                  <option name="satuan" value="KW">KW</option>
+                  <option name="satuan" value="A">A</option>
+                </select>
+              </div>
+              <div class="invalid-feedback">
+                Masukkan Kapasitas
+              </div>
             </div>
             <div class="mb-3">
               <label for="editJumlah" class="form-label">Jumlah</label>
@@ -493,4 +568,22 @@
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Delete Modal Electric -->
+  <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteLabel">Hapus Data Potensi</h5>
+        </div>
+        <div class="modal-body">
+          <p>Apakah anda yakin menghapus data <span id="deleteName"></span> <span id="deleteMerk"></span></p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-danger" id="deleteButton" href="#">Hapus</a>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Kembali</button>
+        </div>
+      </div>
+    </div>
+
+  </div>

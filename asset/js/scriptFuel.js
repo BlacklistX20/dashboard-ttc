@@ -26,6 +26,7 @@ async function getDataFuel() {
 		url: baseUrl + "getdata/tangki",
 		dataType: "json",
 	});
+  // console.log(fuel);
 
   var tinggi = fuel.tinggi;
   var max = $("#tank1Max").text();

@@ -15,13 +15,20 @@ class GetData extends CI_Controller
       $this->load->model('TabelModel');
    }
 
+   public function main()
+   {
+      $data['pue'] = $this->TabelModel->getPueWeekly('pue')->result_array();
+
+      echo json_encode($data);
+   }
+
    public function lt4()
    {
-      $data['batt4'] = $this->TabelModel->getDataSuhu('battery4');
-      $data['recti4'] = $this->TabelModel->getDataSuhu('recti4');
-      $data['bss'] = $this->TabelModel->getDataSuhu('bss');
-      $data['inter'] = $this->TabelModel->getDataSuhu('inter');
-      // $data['trans'] = $this->TabelModel->getDataSuhu('trans');
+      $data['batt4'] = $this->TabelModel->getSuhu('battery4');
+      $data['recti4'] = $this->TabelModel->getSuhu('recti4');
+      $data['bss'] = $this->TabelModel->getSuhu('bss');
+      $data['inter'] = $this->TabelModel->getSuhu('inter');
+      $data['trans'] = $this->TabelModel->getSuhu('trans');
 
       function sum(...$numbers)
       {
@@ -49,17 +56,35 @@ class GetData extends CI_Controller
       $interKelem = sum($data['inter']['k1'], $data['inter']['k2'], $data['inter']['k3'], $data['inter']['k4']);
       $data['interT'] = ["st" => $interSuhu, "kt" => $interKelem];
 
-      // $transSuhu = sum($data['trans']['s1'], $data['trans']['s2'], $data['trans']['s3'], $data['trans']['s4'], $data['trans']['s5'], $data['trans']['s6']);
-      // $transKelem = sum($data['trans']['k1'], $data['trans']['k2'], $data['trans']['k3'], $data['trans']['k4'], $data['trans']['k5'], $data['trans']['k6']);
-      // $data['transT'] = ["st" => $transSuhu, "kt" => $transKelem];
+      $transSuhu = sum($data['trans']['s1'], $data['trans']['s2'], $data['trans']['s3'], $data['trans']['s4'], $data['trans']['s5'], $data['trans']['s6']);
+      $transKelem = sum($data['trans']['k1'], $data['trans']['k2'], $data['trans']['k3'], $data['trans']['k4'], $data['trans']['k5'], $data['trans']['k6']);
+      $data['transT'] = ["st" => $transSuhu, "kt" => $transKelem];
 
       echo json_encode($data);
    }
 
    public function tangki()
    {
-      $data = $this->TabelModel->getDataFuel('tangki1');
+      $data = $this->TabelModel->getFuel('tangki1');
 
       echo json_encode($data);
    }
+
+   public function potencyElById($id)
+   {
+      $data = $this->TabelModel->getPotencyById("id = $id", 'electricity')->row_array();
+
+      echo json_encode($data);
+   }
+
+   public function pueWeekly()
+   {
+      $data['pagi'] = $this->TabelModel->getPueWeekly('pagi')->result_array();
+      $data['siang'] = $this->TabelModel->getPueWeekly('siang')->result_array();
+      $data['malam'] = $this->TabelModel->getPueWeekly('malam')->result_array();
+
+      echo json_encode($data);
+   }
+
+   
 }
