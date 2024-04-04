@@ -28,15 +28,22 @@ async function getDataFuel() {
 	});
   // console.log(fuel);
 
-  var tinggi = fuel.tinggi;
+  var tangki1 = fuel.t1;
+  var tangki2 = fuel.t2
   var max = $("#tank1Max").text();
 
-  var percentage = (tinggi / max) * 100;
-  var height = percentage.toFixed(1);
+  var percentaget1 = (tangki1 / max) * 100;
+  var heightt1 = percentaget1.toFixed(1);
+  var percentaget2 = (tangki2 / max) * 100;
+  var heightt2 = percentaget2.toFixed(1);
 
-  $("#tank1Value").text(tinggi);
+  $("#tank1Value").text(tangki1);
   $("#tank1-level").animate(
-    { height: height + "%"}
+    { height: heightt1 + "%"}
+  )
+  $("#tank2Value").text(tangki2);
+  $("#tank2-level").animate(
+    { height: heightt2 + "%"}
   )
 
   // console.log(tinggi);
