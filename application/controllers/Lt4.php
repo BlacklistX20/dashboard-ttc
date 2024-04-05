@@ -8,6 +8,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Lt4 extends CI_Controller
 {
+   public function __construct()
+   {
+      parent::__construct();
+      $this->load->model('TabelModel');
+   }
+
    public function battery()
    {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -29,7 +35,7 @@ class Lt4 extends CI_Controller
 
          $this->TabelModel->inputSuhu($battery, 'battery4');
       }
-      echo "ok";
+      // echo "ok";
    }
 
    public function recti()
@@ -97,7 +103,7 @@ class Lt4 extends CI_Controller
    {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $tgl = date('Y-m-d H:i:s');
-         
+
          $humidity10 = $this->input->post("humidity10");
          $temperature10 = $this->input->post("temperature10");
          $humidity11 = $this->input->post("humidity11");
