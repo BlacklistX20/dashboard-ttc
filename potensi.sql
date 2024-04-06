@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2024 at 10:21 AM
+-- Generation Time: Apr 06, 2024 at 04:10 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -45,6 +45,7 @@ CREATE TABLE `cooling` (
   `id` int(255) NOT NULL,
   `nama` text NOT NULL,
   `merk` text NOT NULL,
+  `type` varchar(255) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `keterangan` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -60,6 +61,7 @@ CREATE TABLE `electricity` (
   `nama` text NOT NULL,
   `merk` text NOT NULL,
   `kapasitas` int(11) NOT NULL,
+  `satuan` text NOT NULL,
   `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -67,15 +69,10 @@ CREATE TABLE `electricity` (
 -- Dumping data for table `electricity`
 --
 
-INSERT INTO `electricity` (`id`, `nama`, `merk`, `kapasitas`, `jumlah`) VALUES
-(1, 'Genset', 'Genset', 5000, 3),
-(2, 'Trafo', 'Trafo', 10000, 1),
-(3, 'Cubical', 'Cubical', 20000, 1),
-(4, 'Rectifier', 'Huawei', 20000, 2),
-(5, 'UPS', 'Huawei', 25000, 4),
-(6, 'UPS', 'Siemens', 30000, 2),
-(7, 'Rectifier', 'recti', 12000, 4),
-(8, 'a', 'a', 21, 1);
+INSERT INTO `electricity` (`id`, `nama`, `merk`, `kapasitas`, `satuan`, `jumlah`) VALUES
+(1, 'PLN', 'ID Pelanggan 321302081770', 1385, 'KVA', 1),
+(2, 'Cubicle', 'Scneider', 2000, 'A', 1),
+(3, 'Transformator (Trafo)', 'Trafindo', 2000, 'KVA', 1);
 
 -- --------------------------------------------------------
 
@@ -89,6 +86,76 @@ CREATE TABLE `fire` (
   `merk` text NOT NULL,
   `jumlah` int(11) NOT NULL,
   `keterangan` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penerangan`
+--
+
+CREATE TABLE `penerangan` (
+  `id` int(255) NOT NULL,
+  `nama` text NOT NULL,
+  `merk` text NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recti`
+--
+
+CREATE TABLE `recti` (
+  `id` int(255) NOT NULL,
+  `nama` text NOT NULL,
+  `merk` text NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `support`
+--
+
+CREATE TABLE `support` (
+  `id` int(255) NOT NULL,
+  `nama` text NOT NULL,
+  `merk` text NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ups`
+--
+
+CREATE TABLE `ups` (
+  `id` int(255) NOT NULL,
+  `nama` text NOT NULL,
+  `merk` text NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `warning`
+--
+
+CREATE TABLE `warning` (
+  `id` int(11) NOT NULL,
+  `nama` text NOT NULL,
+  `merk` text NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -120,6 +187,36 @@ ALTER TABLE `fire`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `penerangan`
+--
+ALTER TABLE `penerangan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `recti`
+--
+ALTER TABLE `recti`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `support`
+--
+ALTER TABLE `support`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ups`
+--
+ALTER TABLE `ups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `warning`
+--
+ALTER TABLE `warning`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -133,19 +230,49 @@ ALTER TABLE `angkut`
 -- AUTO_INCREMENT for table `cooling`
 --
 ALTER TABLE `cooling`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `electricity`
 --
 ALTER TABLE `electricity`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `fire`
 --
 ALTER TABLE `fire`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `penerangan`
+--
+ALTER TABLE `penerangan`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `recti`
+--
+ALTER TABLE `recti`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `support`
+--
+ALTER TABLE `support`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ups`
+--
+ALTER TABLE `ups`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `warning`
+--
+ALTER TABLE `warning`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -29,11 +29,27 @@ class TabelModel extends CI_Model
       return $fuel->get($table)->last_row('array');
    }
 
+   public function getDataForPue($where, $table)
+   {
+      $pue = $this->load->database('pue', TRUE);
+
+      $pue->select('tgl, lvmdp, recti, ups');
+      $pue->where('tgl', $where);
+      return $pue->get($table)->row_array();
+   }
+
    public function getPue($table)
    {
       $pue = $this->load->database('pue', TRUE);
 
       return $pue->get($table);
+   }
+
+   public function getPueById($where, $table)
+   {
+      $pue = $this->load->database('pue', TRUE);
+
+      return $pue->get_where($table, $where)->row_array();
    }
 
    public function getPueWeekly($table)

@@ -17,6 +17,50 @@ class InputData extends CI_Controller
       $this->load->model('TabelModel');
    }
 
+   public function test()
+   {
+      $date = date_create("2024-04-04");
+      $tgl = date_format($date, "Y-m-d");;
+      function getIdByDate($array, $date)
+      {
+         foreach ($array as $day) {
+            if ($day['tgl'] === $date) {
+               return $day['id']; // Return the id if date is found
+            }
+         }
+         return null; // Return null if date is not found
+      }
+      function calculateAndAdd(&$data, $pagi, $siang, $malam)
+      {
+         // Check if pagi, siang, and malam are not null
+         if (isset($data['pagi']) && isset($data['siang']) && isset($data['malam'])) {
+            // Calculate the average
+            $average = ($data['pagi'] + $data['siang'] + $data['malam']) / 3;
+            $lvmdp = ($pagi['lvmdp'] + $siang['lvmdp'] + $malam['lvmdp']) / 3;
+            $recti = ($pagi['recti'] + $siang['recti'] + $malam['recti']) / 3;
+            $ups = ($pagi['ups'] + $siang['ups'] + $malam['ups']) / 3;
+
+            // Update the 'average' key in the array
+            $data['lvmdp'] = $lvmdp;
+            $data['recti'] = $recti;
+            $data['ups'] = $ups;
+            $data['average'] = $average;
+         }
+      }
+      $tablePue = $this->TabelModel->getPue('pue')->result_array();
+      $idByDate = getIdByDate($tablePue, $tgl);
+
+      $tablePueByID = $this->TabelModel->getPueById("id = $idByDate", 'pue');
+      $pagi = $this->TabelModel->getDataForPue($tgl, 'pagi');
+      $siang = $this->TabelModel->getDataForPue($tgl, 'siang');
+      $malam = $this->TabelModel->getDataForPue($tgl, 'malam');
+
+      calculateAndAdd($tablePueByID, $pagi, $siang, $malam);
+
+      print_r($tablePueByID);
+      // echo $tablePueByID['tgl'];
+   }
+
    public function pue()
    {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -32,15 +76,22 @@ class InputData extends CI_Controller
             return null; // Return null if date is not found
          }
 
-         function hasNoNullValues($array)
+         function calculateAndAdd(&$data, $pagi, $siang, $malam)
          {
-            foreach ($array as $day) {
-               if ($day['pagi'] !== null && $day['siang'] !== null && $day['malam'] !== null) {
-                  $avg = ($day['pagi'] + $day['siang'] + $day['malam']) / 3;
-                  return array('id' => $day['id'], 'avg' => $avg);
-               }
+            // Check if pagi, siang, and malam are not null
+            if (isset($data['pagi']) && isset($data['siang']) && isset($data['malam'])) {
+               // Calculate
+               $average = ($data['pagi'] + $data['siang'] + $data['malam']) / 3;
+               $lvmdp = ($pagi['lvmdp'] + $siang['lvmdp'] + $malam['lvmdp']) / 3;
+               $recti = ($pagi['recti'] + $siang['recti'] + $malam['recti']) / 3;
+               $ups = ($pagi['ups'] + $siang['ups'] + $malam['ups']) / 3;
+
+               // Update the array
+               $data['lvmdp'] = $lvmdp;
+               $data['recti'] = $recti;
+               $data['ups'] = $ups;
+               $data['average'] = $average;
             }
-            return null; // Return null if no such day found
          }
 
          $table = $this->input->post("table");
@@ -109,22 +160,20 @@ class InputData extends CI_Controller
          );
 
          $idByDate = getIdByDate($tablePue, $tgl);
-         $idByValue = hasNoNullValues($tablePue);
+         $tablePueByID = $this->TabelModel->getPueById("id = $idByDate", 'pue');
+         $pagi = $this->TabelModel->getDataForPue($tgl, 'pagi');
+         $siang = $this->TabelModel->getDataForPue($tgl, 'siang');
+         $malam = $this->TabelModel->getDataForPue($tgl, 'malam');
 
          if ($idByDate !== null) {
             $this->TabelModel->editPueById($idByDate, $dataPue2);
+            calculateAndAdd($tablePueByID, $pagi, $siang, $malam);
+            if ($tablePueByID['pagi'] !== null && $tablePueByID['siang'] !== null && $tablePueByID['malam'] !== null) {
+               $this->TabelModel->editPueById($idByDate, $tablePueByID);
+            }
          } else {
             $this->TabelModel->inputPue($dataPue1, 'pue');
          };
-
-         if ($idByValue !== null) {
-            $id = $idByValue['id'];
-            $avg = $idByValue['avg'];
-            $dataAvg = array(
-               'average' => $avg
-            );
-            $this->TabelModel->editPueById($id, $dataAvg);
-         }
 
          redirect('pages/pue');
       }
