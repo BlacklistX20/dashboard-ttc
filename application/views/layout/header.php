@@ -14,6 +14,9 @@
   <script src="<?= base_url() ?>asset/src/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
   <script src="<?= base_url() ?>asset/src/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- jQuery -->
+  <script src="<?= base_url() ?>asset/js/jquery-3.7.1.min.js"></script>
+
   <!-- Box Icon -->
   <link href='<?= base_url() ?>asset/src/boxicons-2.1.4/css/boxicons.min.css' rel='stylesheet'>
 

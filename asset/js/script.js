@@ -24,15 +24,9 @@ function convertDates(data) {
 	});
 }
 
-function splitAverage(data) {
-	return data.map(function (item) {
-		return item.average;
-	});
-}
-
-function splitLvmdp(data) {
-	return data.map(function (item) {
-		return item.lvmdp;
+function splitArrayData(array, data) {
+	return array.map(function (item) {
+		return item[data];
 	});
 }
 
@@ -48,22 +42,24 @@ async function getDataIndex() {
 	var recti = pue[0]["recti"];
 	var ups = pue[0]["ups"];
 
-	const dataPue = splitAverage(pue).reverse();
-   const dataLvmdp = splitLvmdp(pue).reverse();
-	const labelPue = convertDates(pue).reverse();
+	const dataPue = splitArrayData(pue, "average").reverse();
+	const dataLvmdp = splitArrayData(pue, "lvmdp").reverse();
+	const dataRecti = splitArrayData(pue, "recti").reverse();
+	const dataUps = splitArrayData(pue, "ups").reverse();
+	const label = convertDates(pue).reverse();
 
 	$("h3[id=pue]").text(lastPue);
-	$("h5[id=lvmdp]").text(lvmdp);
-	$("h5[id=recti]").text(recti);
-	$("h5[id=ups]").text(ups);
+	$("span[id=lvmdp]").text(lvmdp);
+	$("span[id=recti]").text(recti);
+	$("span[id=ups]").text(ups);
 
-	console.log(pue);
+	console.log(dataLvmdp);
 
 	var pueChart = document.getElementById("pueChart");
 	var myLineChart = new Chart(pueChart, {
 		type: "line",
 		data: {
-			labels: labelPue,
+			labels: label,
 			datasets: [
 				{
 					label: "PUE",
@@ -90,7 +86,7 @@ async function getDataIndex() {
 	var myBarChart = new Chart(lvmdp, {
 		type: "bar",
 		data: {
-			labels: labelPue,
+			labels: label,
 			datasets: [
 				{
 					label: "LVMDP",
@@ -108,6 +104,171 @@ async function getDataIndex() {
 				y: {
 					min: 400,
 					max: 800,
+					ticks: {
+						callback: function (value, index, ticks) {
+							return value + " kW";
+						},
+					},
+				},
+			},
+		},
+	});
+
+	var recti = document.getElementById("rectiChart");
+	var myBarChart = new Chart(recti, {
+		type: "bar",
+		data: {
+			labels: label,
+			datasets: [
+				{
+					label: "Rectifier",
+					backgroundColor: "rgba(245, 37, 37, 0.5)",
+					borderColor: "rgba(245, 37, 37, 1)",
+					data: dataRecti,
+					fill: "start",
+				},
+			],
+		},
+		options: {
+			maintainAspectRatio: false,
+			responsive: true,
+			scales: {
+				y: {
+					min: 200,
+					max: 250,
+					ticks: {
+						callback: function (value, index, ticks) {
+							return value + " kW";
+						},
+					},
+				},
+			},
+		},
+	});
+
+	var ups = document.getElementById("upsChart");
+	var myBarChart = new Chart(ups, {
+		type: "bar",
+		data: {
+			labels: label,
+			datasets: [
+				{
+					label: "UPS",
+					backgroundColor: "rgba(245, 37, 37, 0.5)",
+					borderColor: "rgba(245, 37, 37, 1)",
+					data: dataUps,
+					fill: "start",
+				},
+			],
+		},
+		options: {
+			maintainAspectRatio: false,
+			responsive: true,
+			scales: {
+				y: {
+					min: 90,
+					max: 110,
+					ticks: {
+						callback: function (value, index, ticks) {
+							return value + " kW";
+						},
+					},
+				},
+			},
+		},
+	});
+
+	var dailyFuel = document.getElementById("dailyFuelChart");
+	var myBarChart = new Chart(dailyFuel, {
+		type: "bar",
+		data: {
+			labels: label,
+			datasets: [
+				{
+					label: "Tangki Harian (Random Data)",
+					backgroundColor: "rgba(245, 37, 37, 0.5)",
+					borderColor: "rgba(245, 37, 37, 1)",
+					data: [186, 196, 188, 189, 196, 168, 189, 185, 168, 167, 185, 190],
+					fill: "start",
+				},
+			],
+		},
+		options: {
+			maintainAspectRatio: false,
+			responsive: true,
+			scales: {
+				y: {
+					min: 100,
+					max: 110,
+					ticks: {
+						callback: function (value, index, ticks) {
+							return value + " Liter";
+						},
+					},
+				},
+			},
+		},
+	});
+
+	var monthlyFuel = document.getElementById("monthlyFuelChart");
+	var myBarChart = new Chart(monthlyFuel, {
+		type: "bar",
+		data: {
+			labels: label,
+			datasets: [
+				{
+					label: "Tangki Bulanan (Random Data)",
+					backgroundColor: "rgba(245, 37, 37, 0.5)",
+					borderColor: "rgba(245, 37, 37, 1)",
+					data: [186, 196, 188, 189, 196, 168, 189, 185, 168, 167, 185, 190],
+					fill: "start",
+				},
+			],
+		},
+		options: {
+			maintainAspectRatio: false,
+			responsive: true,
+			scales: {
+				y: {
+					min: 100,
+					max: 110,
+					ticks: {
+						callback: function (value, index, ticks) {
+							return value + " Liter";
+						},
+					},
+				},
+			},
+		},
+	});
+
+	var dcTemp = document.getElementById("dcTempChart");
+	var myBarChart = new Chart(dcTemp, {
+		type: "bar",
+		data: {
+			labels: label,
+			datasets: [
+				{
+					label: "Suhu Data Center (Random Data)",
+					backgroundColor: "rgba(245, 37, 37, 0.5)",
+					borderColor: "rgba(245, 37, 37, 1)",
+					data: [16, 19, 18, 19, 16, 18, 19, 15, 18, 17, 15, 19],
+					fill: "start",
+				},
+			],
+		},
+		options: {
+			maintainAspectRatio: false,
+			responsive: true,
+			scales: {
+				y: {
+					min: 0,
+					max: 30,
+					ticks: {
+						callback: function (value, index, ticks) {
+							return value + " C";
+						},
+					},
 				},
 			},
 		},
