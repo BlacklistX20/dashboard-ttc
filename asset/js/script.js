@@ -198,8 +198,8 @@ async function getDataIndex() {
 			responsive: true,
 			scales: {
 				y: {
-					min: 100,
-					max: 110,
+					min: 150,
+					max: 200,
 					ticks: {
 						callback: function (value, index, ticks) {
 							return value + " Liter";
@@ -230,8 +230,8 @@ async function getDataIndex() {
 			responsive: true,
 			scales: {
 				y: {
-					min: 100,
-					max: 110,
+					min: 150,
+					max: 200,
 					ticks: {
 						callback: function (value, index, ticks) {
 							return value + " Liter";
@@ -263,7 +263,7 @@ async function getDataIndex() {
 			scales: {
 				y: {
 					min: 0,
-					max: 30,
+					max: 25,
 					ticks: {
 						callback: function (value, index, ticks) {
 							return value + " C";

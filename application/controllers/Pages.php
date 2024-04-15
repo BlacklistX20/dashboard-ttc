@@ -39,7 +39,6 @@ class Pages extends CI_Controller {
 		$data['electric'] = $this->TabelModel->getPotency('electricity')->result();
 		$data['cooling'] = $this->TabelModel->getPotency('cooling')->result();
 		$data['fire'] = $this->TabelModel->getPotency('fire')->result();
-		$data['angkut'] = $this->TabelModel->getPotency('angkut')->result();
 		$data['ups'] = $this->TabelModel->getPotency('ups')->result();
 		$data['recti'] = $this->TabelModel->getPotency('recti')->result();
 		$data['penerangan'] = $this->TabelModel->getPotency('penerangan')->result();

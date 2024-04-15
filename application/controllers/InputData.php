@@ -333,6 +333,112 @@ class InputData extends CI_Controller
 
    public function potencyCool()
    {
+      $lantai = $this->input->post("lantai");
+      $ruang = $this->input->post("ruang");
+      $merk = $this->input->post("merk");
+      $type = $this->input->post("type");
+      $compressor = $this->input->post("compressor");
+      $flow = $this->input->post("flow");
+      $jumlah = $this->input->post("jumlah");
+      $keterangan = $this->input->post("keterangan");
+
+      $data = array(
+         'lantai' => $lantai,
+         'ruang' => $ruang,
+         'merk' => $merk,
+         'type' => $type,
+         'compressor' => $compressor,
+         'flow' => $flow,
+         'jumlah' => $jumlah,
+         'keterangan' => $keterangan
+      );
+
+      // print_r($data);
+
+      $this->TabelModel->inputPotency($data, 'cooling');
+      redirect('pages/potency');
+   }
+
+   public function potencyFire()
+   {
+      $lantai = $this->input->post("lantai");
+      $ruang = $this->input->post("ruang");
+      $nama = $this->input->post("nama");
+      $merk = $this->input->post("merk");
+      $type = $this->input->post("type");
+      $jumlah = $this->input->post("jumlah");
+      $keterangan = $this->input->post("keterangan");
+
+      $data = array(
+         'lantai' => $lantai,
+         'ruang' => $ruang,
+         'nama' => $nama,
+         'merk' => $merk,
+         'type' => $type,
+         'jumlah' => $jumlah,
+         'keterangan' => $keterangan
+      );
+
+      // print_r($data);
+
+      $this->TabelModel->inputPotency($data, 'fire');
+      redirect('pages/potency');
+   }
+   
+   public function potencyUps()
+   {
+      $nama = $this->input->post("nama");
+      $merk = $this->input->post("merk");
+      $type = $this->input->post("type");
+      $merkBatt = $this->input->post("merk_battery");
+      $typeBatt = $this->input->post("type_battery");
+      $jumlahBatt = $this->input->post("jumlah_battery");
+      $keterangan = $this->input->post("keterangan");
+
+      $data = array(
+         'nama' => $nama,
+         'merk' => $merk,
+         'type' => $type,
+         'merk_battery' => $merkBatt,
+         'type_battery' => $typeBatt,
+         'jumlah_battery' => $jumlahBatt,
+         'keterangan' => $keterangan
+      );
+
+      // print_r($data);
+
+      $this->TabelModel->inputPotency($data, 'ups');
+      redirect('pages/potency');
+   }
+
+   public function potencyRect()
+   {
+      $nama = $this->input->post("nama");
+      $merk = $this->input->post("merk");
+      $type = $this->input->post("type");
+      $merkBatt = $this->input->post("merk_battery");
+      $typeBatt = $this->input->post("type_battery");
+      $jumlahBatt = $this->input->post("jumlah_battery");
+      $keterangan = $this->input->post("keterangan");
+
+      $data = array(
+         'nama' => $nama,
+         'merk' => $merk,
+         'type' => $type,
+         'merk_battery' => $merkBatt,
+         'type_battery' => $typeBatt,
+         'jumlah_battery' => $jumlahBatt,
+         'keterangan' => $keterangan
+      );
+
+      // print_r($data);
+
+      $this->TabelModel->inputPotency($data, 'recti');
+      redirect('pages/potency');
+   }
+
+   public function potencyPene()
+   {
       $nama = $this->input->post("nama");
       $merk = $this->input->post("merk");
       $type = $this->input->post("type");
@@ -349,7 +455,51 @@ class InputData extends CI_Controller
 
       // print_r($data);
 
-      $this->TabelModel->inputPotency($data, 'cooling');
+      $this->TabelModel->inputPotency($data, 'penerangan');
+      redirect('pages/potency');
+   }
+
+   public function potencyWarn()
+   {
+      $nama = $this->input->post("nama");
+      $merk = $this->input->post("merk");
+      $type = $this->input->post("type");
+      $jumlah = $this->input->post("jumlah");
+      $keterangan = $this->input->post("keterangan");
+
+      $data = array(
+         'nama' => $nama,
+         'merk' => $merk,
+         'type' => $type,
+         'jumlah' => $jumlah,
+         'keterangan' => $keterangan
+      );
+
+      // print_r($data);
+
+      $this->TabelModel->inputPotency($data, 'warning');
+      redirect('pages/potency');
+   }
+
+   public function potencySupp()
+   {
+      $nama = $this->input->post("nama");
+      $merk = $this->input->post("merk");
+      $type = $this->input->post("type");
+      $jumlah = $this->input->post("jumlah");
+      $keterangan = $this->input->post("keterangan");
+
+      $data = array(
+         'nama' => $nama,
+         'merk' => $merk,
+         'type' => $type,
+         'jumlah' => $jumlah,
+         'keterangan' => $keterangan
+      );
+
+      // print_r($data);
+
+      $this->TabelModel->inputPotency($data, 'support');
       redirect('pages/potency');
    }
 

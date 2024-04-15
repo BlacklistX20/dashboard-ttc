@@ -77,6 +77,55 @@ class GetData extends CI_Controller
       echo json_encode($data);
    }
 
+   public function potencyColById($id)
+   {
+      $data = $this->TabelModel->getPotencyById("id = $id", 'cooling')->row_array();
+
+      echo json_encode($data);
+   }
+
+   public function potencyFireById($id)
+   {
+      $data = $this->TabelModel->getPotencyById("id = $id", 'fire')->row_array();
+
+      echo json_encode($data);
+   }
+
+   public function potencyUpsById($id)
+   {
+      $data = $this->TabelModel->getPotencyById("id = $id", 'ups')->row_array();
+
+      echo json_encode($data);
+   }
+
+   public function potencyRectById($id)
+   {
+      $data = $this->TabelModel->getPotencyById("id = $id", 'recti')->row_array();
+
+      echo json_encode($data);
+   }
+
+   public function potencyPeneById($id)
+   {
+      $data = $this->TabelModel->getPotencyById("id = $id", 'penerangan')->row_array();
+
+      echo json_encode($data);
+   }
+
+   public function potencyWarnById($id)
+   {
+      $data = $this->TabelModel->getPotencyById("id = $id", 'warning')->row_array();
+
+      echo json_encode($data);
+   }
+
+   public function potencySuppById($id)
+   {
+      $data = $this->TabelModel->getPotencyById("id = $id", 'support')->row_array();
+
+      echo json_encode($data);
+   }
+
    public function pueWeekly()
    {
       $data['pagi'] = $this->TabelModel->getPueWeekly('pagi')->result_array();
