@@ -36,11 +36,12 @@ async function getDataIndex() {
 		dataType: "json",
 	});
 
-	var pue = data.pue;
-	var lastPue = pue[0]["average"];
-	var lvmdp = pue[0]["lvmdp"];
-	var recti = pue[0]["recti"];
-	var ups = pue[0]["ups"];
+	var pue = data.weekly;
+	var lastMonth = data.avgLastMonth;
+	var pueLastMonth = lastMonth.average;
+	var lvmdpLastMonth = lastMonth.lvmdp;
+	var rectiLastMonth = lastMonth.recti;
+	var upsLastMonth = lastMonth.ups;
 
 	const dataPue = splitArrayData(pue, "average").reverse();
 	const dataLvmdp = splitArrayData(pue, "lvmdp").reverse();
@@ -48,12 +49,12 @@ async function getDataIndex() {
 	const dataUps = splitArrayData(pue, "ups").reverse();
 	const label = convertDates(pue).reverse();
 
-	$("h3[id=pue]").text(lastPue);
-	$("span[id=lvmdp]").text(lvmdp);
-	$("span[id=recti]").text(recti);
-	$("span[id=ups]").text(ups);
+	$("p[id=pue]").text(pueLastMonth.toFixed(2));
+	$("span[id=lvmdp]").text(lvmdpLastMonth.toFixed(2));
+	$("span[id=recti]").text(rectiLastMonth.toFixed(2));
+	$("span[id=ups]").text(upsLastMonth.toFixed(2));
 
-	console.log(dataLvmdp);
+	console.log(lastMonth);
 
 	var pueChart = document.getElementById("pueChart");
 	var myLineChart = new Chart(pueChart, {

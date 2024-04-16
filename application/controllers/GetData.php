@@ -17,8 +17,67 @@ class GetData extends CI_Controller
 
    public function main()
    {
-      $data['pue'] = $this->TabelModel->getPueWeekly('pue')->result_array();
+      $data['weekly'] = $this->TabelModel->getPueWeekly('pue')->result_array();
+      $pue = $this->TabelModel->getPue('pue')->result_array();
 
+      function changeToMonth($data)
+      {
+         foreach ($data as &$item) {
+            $item['bln'] = date('m', strtotime($item['tgl']));
+            unset($item['tgl']); // Remove the old 'tgl' key
+         }
+         return $data;
+      }
+
+      function getLastMonthData($data)
+      {
+         // Find the highest 'bln' value
+         $highestMonth = max(array_column($data, 'bln'));
+
+         // Find the second-highest 'bln' value
+         $secondHighestMonth = max(array_diff(array_column($data, 'bln'), [$highestMonth]));
+
+         // Collect items with the second-highest 'bln' value
+         $secondHighestMonthData = array_filter($data, function ($item) use ($secondHighestMonth) {
+            return $item['bln'] == $secondHighestMonth;
+         });
+
+         return $secondHighestMonthData;
+      }
+
+      function calculatePropertyAverages($data)
+      {
+         $averages = array(
+            'lvmdp' => 0,
+            'recti' => 0,
+            'ups' => 0,
+            'pagi' => 0,
+            'siang' => 0,
+            'malam' => 0,
+            'average' => 0,
+            'bln' => 0
+         );
+
+         $count = count($data);
+
+         foreach ($data as $item) {
+            foreach ($averages as $key => $value) {
+               $averages[$key] += $item[$key];
+            }
+         }
+
+         foreach ($averages as $key => $value) {
+            $averages[$key] /= $count;
+         }
+
+         return $averages;
+      }
+
+      $month = changeToMonth($pue);
+      $last = getLastMonthData($month);
+      $data['avgLastMonth'] = calculatePropertyAverages($last);
+
+      // print_r($avg);
       echo json_encode($data);
    }
 
@@ -134,6 +193,4 @@ class GetData extends CI_Controller
 
       echo json_encode($data);
    }
-
-   
 }

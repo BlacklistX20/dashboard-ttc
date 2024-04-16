@@ -47,17 +47,6 @@
       </div>
    </div>
 </div>
-<div class="row">
-   <div class="col-sm-3 mb-3">
-
-   </div>
-   <div class="col-sm-3 mb-3">
-
-   </div>
-   <div class="col-sm-3 mb-3">
-
-   </div>
-</div>
 <div class="flexBox">
    <div class="box-33 border">
       <h4 class="text-center fw-bold">Pagi</h4>
