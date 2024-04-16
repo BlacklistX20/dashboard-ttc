@@ -41,10 +41,12 @@ async function getDataFuel() {
   $("#tank1-level").animate(
     { height: heightt1 + "%"}
   )
+  $("#tank1-percent").text(percentaget1.toFixed(1) + "%");
   $("#tank2Value").text(tangki2);
   $("#tank2-level").animate(
     { height: heightt2 + "%"}
   )
+  $("#tank2-percent").text(percentaget2.toFixed(1) + "%");
 
   // console.log(tinggi);
 };

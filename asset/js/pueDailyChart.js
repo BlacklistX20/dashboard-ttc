@@ -60,9 +60,9 @@ async function getDailyPue() {
 		malam[6].pue,
 	];
 
-	const labelPagi = convertDates(pagi).reverse();
-	const labelSiang = convertDates(siang).reverse();
-	const labelMalam = convertDates(malam).reverse();
+	const labelPagi = convertDates(pagi);
+	const labelSiang = convertDates(siang);
+	const labelMalam = convertDates(malam);
 
 	// console.log(labelPagi);
 
