@@ -19,45 +19,47 @@ class InputData extends CI_Controller
 
    public function test()
    {
-      $date = date_create("2024-04-04");
-      $tgl = date_format($date, "Y-m-d");;
-      function getIdByDate($array, $date)
-      {
-         foreach ($array as $day) {
-            if ($day['tgl'] === $date) {
-               return $day['id']; // Return the id if date is found
-            }
-         }
-         return null; // Return null if date is not found
-      }
-      function calculateAndAdd(&$data, $pagi, $siang, $malam)
-      {
-         // Check if pagi, siang, and malam are not null
-         if (isset($data['pagi']) && isset($data['siang']) && isset($data['malam'])) {
-            // Calculate the average
-            $average = ($data['pagi'] + $data['siang'] + $data['malam']) / 3;
-            $lvmdp = ($pagi['lvmdp'] + $siang['lvmdp'] + $malam['lvmdp']) / 3;
-            $recti = ($pagi['recti'] + $siang['recti'] + $malam['recti']) / 3;
-            $ups = ($pagi['ups'] + $siang['ups'] + $malam['ups']) / 3;
+      // $date = date_create("2024-04-04");
+      // $tgl = date_format($date, "Y-m-d");;
+      // function getIdByDate($array, $date)
+      // {
+      //    foreach ($array as $day) {
+      //       if ($day['tgl'] === $date) {
+      //          return $day['id']; // Return the id if date is found
+      //       }
+      //    }
+      //    return null; // Return null if date is not found
+      // }
+      // function calculateAndAdd(&$data, $pagi, $siang, $malam)
+      // {
+      //    // Check if pagi, siang, and malam are not null
+      //    if (isset($data['pagi']) && isset($data['siang']) && isset($data['malam'])) {
+      //       // Calculate the average
+      //       $average = ($data['pagi'] + $data['siang'] + $data['malam']) / 3;
+      //       $lvmdp = ($pagi['lvmdp'] + $siang['lvmdp'] + $malam['lvmdp']) / 3;
+      //       $recti = ($pagi['recti'] + $siang['recti'] + $malam['recti']) / 3;
+      //       $ups = ($pagi['ups'] + $siang['ups'] + $malam['ups']) / 3;
 
-            // Update the 'average' key in the array
-            $data['lvmdp'] = $lvmdp;
-            $data['recti'] = $recti;
-            $data['ups'] = $ups;
-            $data['average'] = $average;
-         }
-      }
-      $tablePue = $this->TabelModel->getPue('pue')->result_array();
-      $idByDate = getIdByDate($tablePue, $tgl);
+      //       // Update the 'average' key in the array
+      //       $data['lvmdp'] = $lvmdp;
+      //       $data['recti'] = $recti;
+      //       $data['ups'] = $ups;
+      //       $data['average'] = $average;
+      //    }
+      // }
+      // $tablePue = $this->TabelModel->getPue('pue')->result_array();
+      // $idByDate = getIdByDate($tablePue, $tgl);
 
-      $tablePueByID = $this->TabelModel->getPueById("id = $idByDate", 'pue');
-      $pagi = $this->TabelModel->getDataForPue($tgl, 'pagi');
-      $siang = $this->TabelModel->getDataForPue($tgl, 'siang');
-      $malam = $this->TabelModel->getDataForPue($tgl, 'malam');
+      // $tablePueByID = $this->TabelModel->getPueById("id = $idByDate", 'pue');
+      // $pagi = $this->TabelModel->getDataForPue($tgl, 'pagi');
+      // $siang = $this->TabelModel->getDataForPue($tgl, 'siang');
+      // $malam = $this->TabelModel->getDataForPue($tgl, 'malam');
 
-      calculateAndAdd($tablePueByID, $pagi, $siang, $malam);
+      // calculateAndAdd($tablePueByID, $pagi, $siang, $malam);
 
-      print_r($tablePueByID);
+      $pue = $this->TabelModel->getPue('pue')->result_array();
+
+      print_r($pue);
       // echo $tablePueByID['tgl'];
    }
 
@@ -160,22 +162,40 @@ class InputData extends CI_Controller
          );
 
          $idByDate = getIdByDate($tablePue, $tgl);
+
+         if ($idByDate !== null) {
+            $this->TabelModel->editPueById($idByDate, $dataPue2);
+         } else {
+            $this->TabelModel->inputPue($dataPue1, 'pue');
+         };
+
          $tablePueByID = $this->TabelModel->getPueById("id = $idByDate", 'pue');
          $pagi = $this->TabelModel->getDataForPue($tgl, 'pagi');
          $siang = $this->TabelModel->getDataForPue($tgl, 'siang');
          $malam = $this->TabelModel->getDataForPue($tgl, 'malam');
 
-         if ($idByDate !== null) {
-            $this->TabelModel->editPueById($idByDate, $dataPue2);
-            calculateAndAdd($tablePueByID, $pagi, $siang, $malam);
-            if ($tablePueByID['pagi'] !== null && $tablePueByID['siang'] !== null && $tablePueByID['malam'] !== null) {
-               $this->TabelModel->editPueById($idByDate, $tablePueByID);
-            }
-         } else {
-            $this->TabelModel->inputPue($dataPue1, 'pue');
-         };
+         if (
+            $tablePueByID['pagi'] !== null && $tablePueByID['siang'] !== null && $tablePueByID['malam'] !== null && $tablePueByID['average'] == null && $tablePueByID['lvmdp'] == null && $tablePueByID['recti'] == null && $tablePueByID['ups'] == null
+         ) {
+            $pueAvg = ($tablePueByID['pagi'] + $tablePueByID['siang'] + $tablePueByID['malam']) / 3;
+            $lvmdpAvg = ($pagi['lvmdp'] + $siang['lvmdp'] + $malam['lvmdp']) / 3;
+            $rectiAvg = ($pagi['recti'] + $siang['recti'] + $malam['recti']) / 3;
+            $upsAvg = ($pagi['ups'] + $siang['ups'] + $malam['ups']) / 3;
 
-         redirect('pages/pue');
+            $dataPue3 = array (
+               'lvmdp' => $lvmdpAvg,
+               'recti' => $rectiAvg,
+               'ups' => $upsAvg,
+               'average' => $pueAvg
+            );
+
+            $this->TabelModel->editPueById($idByDate, $dataPue3);
+            redirect('pages/pue');
+         } else {
+            redirect('pages/pue');
+         }
+
+         
       }
    }
 
@@ -384,7 +404,7 @@ class InputData extends CI_Controller
       $this->TabelModel->inputPotency($data, 'fire');
       redirect('pages/potency');
    }
-   
+
    public function potencyUps()
    {
       $nama = $this->input->post("nama");
