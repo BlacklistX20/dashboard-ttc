@@ -7,8 +7,8 @@
          <h2 class="fw-bold">Ruangan</h2>
       </div>
       <div class="col-6 text-end">
-         <h2 class="fw-bold">09 : 45 AM</h2>
-         <h4>Senin, 29 Januari 2024</h4>
+         <h2 id="time" class="fw-bold"></h2>
+         <h4 id="date"></h4>
       </div>
    </div>
 

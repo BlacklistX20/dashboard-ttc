@@ -1,8 +1,14 @@
-$(document).ready(function () {
-	$("a[id=temp]").addClass("active");
-});
+$(document).ready(
+	function () {
+		$("a[id=temp]").addClass("active");
+		$("#date").text(namaHari + ", " + tgl);
+	},
+	getDataSuhu(),
+	setInterval(getDataSuhu, 1000),
+	startTime()
+);
 
-$(document).ready(getDataSuhu(), setInterval(getDataSuhu, 1000));
+console.log(namaHari + ", " + tgl);
 
 function changeColor(a, b) {
 	if (a > 18) {

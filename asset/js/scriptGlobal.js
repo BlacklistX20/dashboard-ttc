@@ -61,3 +61,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		);
 	});
 })();
+
+let hariIni = new Date();
+let namaHari = hariIni.toLocaleString("id-ID", { weekday: "long" });
+let tgl = hariIni.toLocaleString("id-ID", { dateStyle: "long" });
+
+function startTime() {
+	const today = new Date();
+	let h = today.getHours();
+	let m = today.getMinutes();
+	m = checkTime(m);
+	$('#time').text(h + ":" + m)
+	setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+	if (i < 10) {
+		i = "0" + i;
+	} // add zero in front of numbers < 10
+	return i;
+}

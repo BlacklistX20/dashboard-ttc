@@ -1,6 +1,6 @@
 
     <!-- Custom Sidebar Script -->
-    <script src="<?= base_url() ?>asset/js/scriptSidebar.js"></script>
+    <script src="<?= base_url() ?>asset/js/scriptGlobal.js"></script>
 
     <!-- JS BaseUrl -->
     <script>
