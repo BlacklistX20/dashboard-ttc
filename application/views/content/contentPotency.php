@@ -785,7 +785,7 @@
             </div>
             <div class="mb-3">
               <label for="validationCustom05" class="form-label">Type</label>
-              <input type="text" class="form-control" id="validationCustom05" name="type" required>
+              <input type="text" class="form-control" id="validationCustom05" name="type">
               <div class="invalid-feedback">
                 Masukkan Type
               </div>
