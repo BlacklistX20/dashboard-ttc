@@ -40,7 +40,7 @@ async function getDailyPue() {
 		pagi[4].pue,
 		pagi[5].pue,
 		pagi[6].pue,
-	];
+	].reverse();
 	const dataSiang = [
 		siang[0].pue,
 		siang[1].pue,
@@ -49,7 +49,7 @@ async function getDailyPue() {
 		siang[4].pue,
 		siang[5].pue,
 		siang[6].pue,
-	];
+	].reverse();
 	const dataMalam = [
 		malam[0].pue,
 		malam[1].pue,
@@ -58,11 +58,11 @@ async function getDailyPue() {
 		malam[4].pue,
 		malam[5].pue,
 		malam[6].pue,
-	];
+	].reverse();
 
-	const labelPagi = convertDates(pagi);
-	const labelSiang = convertDates(siang);
-	const labelMalam = convertDates(malam);
+	const labelPagi = convertDates(pagi).reverse();
+	const labelSiang = convertDates(siang).reverse();
+	const labelMalam = convertDates(malam).reverse();
 
 	// console.log(labelPagi);
 
