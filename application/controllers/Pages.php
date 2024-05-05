@@ -49,11 +49,6 @@ class Pages extends CI_Controller {
 		$this->load->view('potency', $data);
 	}
 
-	public function space()
-	{
-		$this->load->view('space');
-	}
-
 	public function pue()
 	{
 		$data['pagi'] = $this->TabelModel->getPue('pagi')->result();
@@ -66,4 +61,5 @@ class Pages extends CI_Controller {
 		// print_r($data);
 		$this->load->view('pue', $data);
 	}
+
 }

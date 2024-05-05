@@ -73,6 +73,13 @@ class TabelModel extends CI_Model
       return $pue->order_by('average', $order)->limit(1)->get('pue');
    }
 
+   public function getLayout($table)
+   {
+      $layout = $this->load->database('layout', TRUE);
+
+      return $layout->get($table);
+   }
+
    public function inputSuhu($data, $table)
    {
       $this->db->insert($table, $data);
@@ -97,6 +104,13 @@ class TabelModel extends CI_Model
       $pue = $this->load->database('pue', TRUE);
 
       $pue->insert($table, $data);
+   }
+
+   public function inputLayout($data, $table)
+   {
+      $layout = $this->load->database('layout', TRUE);
+
+      $layout->insert($table, $data);
    }
 
    public function editPueById($id, $data)
