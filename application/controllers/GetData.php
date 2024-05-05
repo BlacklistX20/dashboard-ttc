@@ -20,17 +20,12 @@ class GetData extends CI_Controller
       $data['weekly'] = $this->TabelModel->getPueWeekly('pue')->result_array();
       $pue = $this->TabelModel->getPue('pue')->result_array();
 
-      function changeToMonth($data)
+      function getLastMonthData($data)
       {
          foreach ($data as &$item) {
             $item['bln'] = date('m', strtotime($item['tgl']));
-            unset($item['tgl']); // Remove the old 'tgl' key
+            // unset($item['tgl']); // Remove the old 'tgl' key
          }
-         return $data;
-      }
-
-      function getLastMonthData($data)
-      {
          // Find the highest 'bln' value
          $highestMonth = max(array_column($data, 'bln'));
 
@@ -70,14 +65,18 @@ class GetData extends CI_Controller
             $averages[$key] /= $count;
          }
 
+         $tgl = $data[($count)-1]['tgl'];
+
+         array_push($averages, $tgl);
+
          return $averages;
       }
 
-      $month = changeToMonth($pue);
-      $last = getLastMonthData($month);
-      $data['avgLastMonth'] = calculatePropertyAverages($last);
+      $month = getLastMonthData($pue);
+      // $last = getLastMonthData($month);
+      $data['avgLastMonth'] = calculatePropertyAverages($month);
 
-      // print_r($avg);
+      // print_r($data['avgLastMonth']);
       echo json_encode($data);
    }
 

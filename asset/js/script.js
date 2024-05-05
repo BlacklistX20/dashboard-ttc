@@ -42,6 +42,10 @@ async function getDataIndex() {
 	var lvmdpLastMonth = lastMonth.lvmdp;
 	var rectiLastMonth = lastMonth.recti;
 	var upsLastMonth = lastMonth.ups;
+	
+	var tgl = new Date(data['avgLastMonth'][0])
+	var month = tgl.toLocaleString("id-ID", { month: "long" });
+	var year = tgl.toLocaleString("id-ID", { year: "numeric" });
 
 	const dataPue = splitArrayData(pue, "average").reverse();
 	const dataLvmdp = splitArrayData(pue, "lvmdp").reverse();
@@ -53,8 +57,10 @@ async function getDataIndex() {
 	$("span[id=lvmdp]").text(lvmdpLastMonth.toFixed(2));
 	$("span[id=recti]").text(rectiLastMonth.toFixed(2));
 	$("span[id=ups]").text(upsLastMonth.toFixed(2));
+	$("span[id=month]").text(month);
+	$("span[id=year]").text(year);
 
-	console.log(lastMonth);
+	console.log(year);
 
 	var pueChart = document.getElementById("pueChart");
 	var myLineChart = new Chart(pueChart, {
