@@ -361,7 +361,7 @@
                            <small class="text-light">Last updated <span id="dateBatt4"></span></small>
                         </div>
                         <div class="col d-grid justify-content-end">
-                           <button class="btn btn-outline-light">Detail</button>
+                           <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#detailBatt4">Detail</button>
                         </div>
                      </div>
                   </div>
@@ -382,7 +382,7 @@
                            <small class="text-light">Last updated <span id="dateRecti4"></span></small>
                         </div>
                         <div class="col d-grid justify-content-end">
-                           <button class="btn btn-outline-light">Detail</button>
+                           <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#detailRecti4">Detail</button>
                         </div>
                      </div>
                   </div>
@@ -403,7 +403,7 @@
                            <small class="text-light">Last updated <span id="dateBss"></span></small>
                         </div>
                         <div class="col d-grid justify-content-end">
-                           <button class="btn btn-outline-light">Detail</button>
+                           <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#detailBss">Detail</button>
                         </div>
                      </div>
                   </div>
@@ -424,7 +424,7 @@
                            <small class="text-light">Last updated <span id="dateInter"></span></small>
                         </div>
                         <div class="col d-grid justify-content-end">
-                           <button class="btn btn-outline-light">Detail</button>
+                           <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#detailTrans">Detail</button>
                         </div>
                      </div>
                   </div>
@@ -445,7 +445,7 @@
                            <small class="text-light">Last updated <span id="dateTrans"></span></small>
                         </div>
                         <div class="col d-grid justify-content-end">
-                           <button class="btn btn-outline-light">Detail</button>
+                           <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#detailInter">Detail</button>
                         </div>
                      </div>
                   </div>
@@ -564,3 +564,111 @@
       </section>
    </div>
 </div>
+
+<!-- Modal Detail Lantai 1 -->
+
+<!-- Modal Detail Lantai 2 -->
+
+<!-- Modal Detail Lantai 3 -->
+
+<!-- Modal Detail Lantai 4 -->
+<div class="modal fade" id="detailBatt4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailBatt4" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="detailBatt4">Detail Sensor Ruang Battery</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <p>Sensor 1 :  <span id="sensor1Batt4"></span> &deg;C</p>
+            <p>Sensor 2 :  <span id="sensor2Batt4"></span> &deg;C</p>
+         </div>
+         <div class="modal-footer">
+            <small class="text-dark">Last updated <span id="detailDateBatt4"></span></small>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="detailRecti4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailRecti4" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="detailRecti4">Detail Sensor Ruang Recti</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <p>Sensor 1 :  <span id="sensor1Recti4"></span> &deg;C</p>
+            <p>Sensor 2 :  <span id="sensor2Recti4"></span> &deg;C</p>
+            <p>Sensor 3 :  <span id="sensor3Recti4"></span> &deg;C</p>
+         </div>
+         <div class="modal-footer">
+            <small class="text-dark">Last updated <span id="detailDateRecti4"></span></small>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="detailBss" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailBss" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="detailBss">Detail Sensor Ruang BSS</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <p>Sensor 1 :  <span id="sensor1Bss"></span> &deg;C</p>
+            <p>Sensor 2 :  <span id="sensor2Bss"></span> &deg;C</p>
+            <p>Sensor 3 :  <span id="sensor3Bss"></span> &deg;C</p>
+            <p>Sensor 4 :  <span id="sensor4Bss"></span> &deg;C</p>
+         </div>
+         <div class="modal-footer">
+            <small class="text-dark">Last updated <span id="detailDateBss"></span></small>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="detailTrans" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailTrans" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="detailTrans">Detail Sensor Ruang Transmisi</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <p>Sensor 1 :  <span id="sensor1Trans"></span> &deg;C</p>
+            <p>Sensor 2 :  <span id="sensor2Trans"></span> &deg;C</p>
+            <p>Sensor 3 :  <span id="sensor3Trans"></span> &deg;C</p>
+            <p>Sensor 4 :  <span id="sensor4Trans"></span> &deg;C</p>
+         </div>
+         <div class="modal-footer">
+            <small class="text-dark">Last updated <span id="detailDateTrans"></span></small>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="detailInter" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailInter" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="detailInter">Detail Sensor Ruang Interkoneksi</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <p>Sensor 1 :  <span id="sensor1Inter"></span> &deg;C</p>
+            <p>Sensor 2 :  <span id="sensor2Inter"></span> &deg;C</p>
+            <p>Sensor 3 :  <span id="sensor3Inter"></span> &deg;C</p>
+            <p>Sensor 4 :  <span id="sensor4Inter"></span> &deg;C</p>
+            <p>Sensor 5 :  <span id="sensor5Inter"></span> &deg;C</p>
+            <p>Sensor 6 :  <span id="sensor6Inter"></span> &deg;C</p>
+         </div>
+         <div class="modal-footer">
+            <small class="text-dark">Last updated <span id="detailDateInter"></span></small>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Modal Detail Lantai 5 -->
