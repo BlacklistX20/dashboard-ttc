@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2024 at 12:37 AM
+-- Generation Time: May 22, 2024 at 08:19 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -44,7 +44,21 @@ CREATE TABLE `cooling` (
 --
 
 INSERT INTO `cooling` (`id`, `lantai`, `ruang`, `merk`, `type`, `compressor`, `flow`, `jumlah`, `keterangan`) VALUES
-(1, 2, 'Rectifier', 'RC Group', 'Next DX O 035M', 'single', 'upflow', 2, '');
+(1, 2, 'Rectifier', 'RC Group', 'Next DX O 035M', 'single', 'upflow', 2, ''),
+(2, 2, 'MSC', 'RC Group', 'Next DX O 070M DC', 'dual', 'downflow', 8, ''),
+(3, 2, 'CSPS', 'Climaveneta', 'Cool Blade DAU060', 'dual', 'downflow', 2, ''),
+(4, 3, 'Rectifier', 'RC Group', 'Next DX O 035M', 'single', 'upflow', 2, ''),
+(5, 3, 'Mkios', 'RC Group', 'Next DX O 070M DC', 'dual', 'downflow', 2, ''),
+(6, 3, 'Core', 'RC Group', 'Next DX O 070M DC', 'dual', 'downflow', 2, ''),
+(7, 3, 'OCS', 'RC Group', 'Next DX O 070M DC', 'dual', 'downflow', 3, ''),
+(8, 3, 'Invas', 'RC Group', 'Next DX O 070M DC', 'dual', 'downflow', 4, ''),
+(9, 4, 'Rectifier', 'RC Group', 'Next DX O 035M', 'single', 'upflow', 2, ''),
+(10, 4, 'BSS/TRAU', 'RC Group', 'Next DX O 035M', 'single', 'upflow', 2, ''),
+(11, 4, 'Transmisi', 'RC Group', 'Next DX O 035M', 'single', 'upflow', 4, ''),
+(12, 5, 'Data Centre', 'Climaveneta', 'Cool Blade DAU060', 'dual', 'downflow', 6, ''),
+(13, 5, 'Utilitiy A', 'Climaveneta', 'Cool Blade DAU055', 'dual', 'upflow', 2, ''),
+(14, 5, 'Utilitiy B', 'Climaveneta', 'Cool Blade DAU055', 'dual', 'upflow', 2, ''),
+(15, 5, 'Containment', 'Climaveneta', 'Coolside DX 0151 IN', 'single', 'inrow', 4, '');
 
 -- --------------------------------------------------------
 
@@ -92,7 +106,10 @@ CREATE TABLE `fire` (
 --
 
 INSERT INTO `fire` (`id`, `lantai`, `ruang`, `nama`, `merk`, `type`, `jumlah`, `keterangan`) VALUES
-(1, 2, 'Rectifier', 'Panel Control', 'Kidde', 'Aries', 1, '');
+(1, 2, 'Rectifier', 'Panel Control', 'Kidde', 'Aries', 1, ''),
+(2, 2, 'Rectifier', 'Tabung FM 200', 'Siemens', '', 1, 'Height 134'),
+(3, 2, 'Rectifier', 'Dect. Photo', 'Fenwal', '', 2, ''),
+(4, 2, 'Rectifier', 'Dect. ION', 'Kidde', '', 2, '');
 
 -- --------------------------------------------------------
 
@@ -131,7 +148,19 @@ CREATE TABLE `recti` (
 --
 
 INSERT INTO `recti` (`id`, `nama`, `merk`, `type`, `merk_battery`, `type_battery`, `jumlah_battery`, `keterangan`) VALUES
-(1, 'Recti 2.01', 'Huawei', 'TP482000B', 'Shoto', 'GFMJ-2000', 48, '');
+(1, 'Recti 2.01', 'Huawei', 'TP482000B', 'SHOTO', 'GFMJ-2000', 48, 'OK'),
+(2, 'Recti 2.02', 'Huawei', 'TP482000B', 'SHOTO/HOPPECKE', 'GFMJ-2000/16OPzV2000', 48, 'OK'),
+(3, 'Recti 2.03', 'Huawei', 'TP482000B', 'SHOTO', 'GFMJ-2000', 24, 'OK'),
+(4, 'Recti 2.04', 'Huawei', 'TP482000B', 'HOPPECKE', '16OPzV2000', 48, 'OK'),
+(5, 'Recti 2.05', 'Huawei', 'TP482000B', 'SHOTO/HOPPECKE', 'GFMJ-2000/16OPzV2000', 48, 'OK'),
+(6, 'Recti 2.06', 'Huawei', 'TP482000B', 'SHOTO/HOPPECKE', 'GFMJ-2000', 48, 'OK'),
+(7, 'Recti 3.01', 'Huawei', 'TP482000B', 'SHOTO', 'GFMJ-2000', 48, 'OK'),
+(8, 'Recti 3.02', 'Huawei', 'TP482000B', 'SHOTO', 'GFMJ-2000', 48, 'OK'),
+(9, 'Recti 3.03', 'Huawei', 'TP482000B', 'FIAMMA', 'SMG2000', 48, 'OK'),
+(10, 'Recti 3.04', 'Huawei', 'TP482000B', 'SHOTO', 'GFMJ-2000', 48, 'OK'),
+(11, 'Recti 4.04', 'Huawei', 'TP482000B', 'SHOTO', 'GFMJ-2000', 24, 'OK'),
+(12, 'Recti 4.07', 'Huawei', 'TP482000B', 'SONNENSCHEIN', 'A602/2300', 48, 'OK'),
+(13, 'Recti 4.12', 'Huawei', 'TP482000B', 'SHOTO/HOPPECKE', 'GFMJ-2000/16OPzV2000', 24, 'OK');
 
 -- --------------------------------------------------------
 
@@ -170,7 +199,12 @@ CREATE TABLE `ups` (
 --
 
 INSERT INTO `ups` (`id`, `nama`, `merk`, `type`, `merk_battery`, `type_battery`, `jumlah_battery`, `keterangan`) VALUES
-(2, 'UPS 2.02', 'Liebert', 'Liebert APM 300', 'Vision', '12V 192Ah', 40, '2 Blok Baterai Rusak');
+(2, 'UPS 2.02', 'Liebert', 'Liebert APM 300', 'Vision', '12V 192Ah', 40, '2 Blok Baterai Rusak'),
+(3, 'UPS 2.03', 'Liebert', 'Liebert APM 300', 'Vision', '12V 192Ah', 40, 'OK'),
+(4, 'UPS 3.01', 'Eaton', 'EATON 93PR-200-BF', 'Leoch', '12V 200Ah', 48, 'OK'),
+(5, 'UPS 3.02', 'Eaton', 'EATON 93PR-200-BF', 'Leoch', '12V 200Ah', 48, 'OK'),
+(6, 'UPS 5A', 'Eaton', 'EATON 93PR-200-BF', 'Rocket', '12V 150Ah', 80, 'OK'),
+(7, 'UPS 5B', 'Eaton', 'EATON 93PR-200-BF', 'Rocket', '12V 150Ah', 80, 'OK');
 
 -- --------------------------------------------------------
 
@@ -247,7 +281,7 @@ ALTER TABLE `warning`
 -- AUTO_INCREMENT for table `cooling`
 --
 ALTER TABLE `cooling`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `electricity`
@@ -259,7 +293,7 @@ ALTER TABLE `electricity`
 -- AUTO_INCREMENT for table `fire`
 --
 ALTER TABLE `fire`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `penerangan`
@@ -271,7 +305,7 @@ ALTER TABLE `penerangan`
 -- AUTO_INCREMENT for table `recti`
 --
 ALTER TABLE `recti`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `support`
@@ -283,7 +317,7 @@ ALTER TABLE `support`
 -- AUTO_INCREMENT for table `ups`
 --
 ALTER TABLE `ups`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `warning`

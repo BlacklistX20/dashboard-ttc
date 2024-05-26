@@ -13,7 +13,7 @@
             </div>
             <div class="card-body py-0">
                <div class="row">
-                  <div class="col d-flex justify-content-center align-items-center" style="height: 15em;">
+                  <div class="col d-flex justify-content-center align-items-center" style="height: 10em;">
                      <p class="display-1 fw-bold" id="pue" style="font-size: 8em;"></p>
                   </div>
                   <div class="col d-flex justify-content-center align-items-center">
@@ -24,17 +24,17 @@
                            <col style="width: 45%;">
                         </colgroup>
                         <tbody>
-                           <tr style="height: 4em;">
+                           <tr style="height: 3em;">
                               <td><h4>LVMDP</h4></td>
                               <td><h4>:</h4></td>
                               <td><h4><span id="lvmdp"></span> KW</h4></td>
                            </tr>
-                           <tr style="height: 4em;">
+                           <tr style="height: 3em;">
                               <td><h4>Recti</h4></td>
                               <td><h4>:</h4></td>
                               <td><h4><span id="recti"></span> KW</h4></td>
                            </tr>
-                           <tr style="height: 4em;">
+                           <tr style="height: 3em;">
                               <td><h4>UPS</h4></td>
                               <td><h4>:</h4></td>
                               <td><h4><span id="ups"></span> KW</h4></td>
