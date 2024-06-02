@@ -114,10 +114,11 @@ class GetData extends CI_Controller
       $interKelem = sum($data['inter']['k1'], $data['inter']['k2'], $data['inter']['k3'], $data['inter']['k4']);
       $data['interT'] = ["st" => $interSuhu, "kt" => $interKelem];
 
-      $transSuhu = sum($data['trans']['s1'], $data['trans']['s2'], $data['trans']['s3'], $data['trans']['s4'], $data['trans']['s5'], $data['trans']['s6']);
-      $transKelem = sum($data['trans']['k1'], $data['trans']['k2'], $data['trans']['k3'], $data['trans']['k4'], $data['trans']['k5'], $data['trans']['k6']);
+      $transSuhu = sum($data['trans']['s1'], $data['trans']['s2'], $data['trans']['s4'], $data['trans']['s5'], $data['trans']['s6']);
+      $transKelem = sum($data['trans']['k1'], $data['trans']['k2'], $data['trans']['k4'], $data['trans']['k5'], $data['trans']['k6']);
       $data['transT'] = ["st" => $transSuhu, "kt" => $transKelem];
 
+      // print_r($data['recti4']);
       echo json_encode($data);
    }
 
