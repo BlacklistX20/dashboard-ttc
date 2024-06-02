@@ -113,6 +113,13 @@ class TabelModel extends CI_Model
       $layout->insert($table, $data);
    }
 
+   public function inputElectric($data, $table)
+   {
+      $electric = $this->load->database('electric', TRUE);
+
+      $electric->insert($table, $data);
+   }
+
    public function editPueById($id, $data)
    {
       $pue = $this->load->database('pue', TRUE);

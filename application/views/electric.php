@@ -4,7 +4,7 @@
   <div class="row my-2">
     <div class="col-6 text-start">
       <h2 class="fw-bold">Electricity</h2>
-      <h2 class="fw-bold">Ruangan</h2>
+      <!-- <h2 class="fw-bold">Ruangan</h2> -->
     </div>
     <div class="col-6 text-end">
       <h2 id="time" class="fw-bold"></h2>
