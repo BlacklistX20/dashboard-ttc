@@ -3,6 +3,13 @@
 class TabelModel extends CI_Model
 {
 
+   public function getElectric($table)
+   {
+      $electric = $this->load->database('electric', TRUE);
+
+      return $electric->get($table)->last_row('array');
+   }
+   
    public function getSuhu($table)
    {
       return $this->db->get($table)->last_row('array');

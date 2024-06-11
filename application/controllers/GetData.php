@@ -80,6 +80,14 @@ class GetData extends CI_Controller
       echo json_encode($data);
    }
 
+   public function electric()
+   {
+      $data['p429'] = $this->TabelModel->getElectric('p429');
+
+      // print_r($data);
+      echo json_encode($data);
+   }
+
    public function lt4()
    {
       $data['batt4'] = $this->TabelModel->getSuhu('battery4');
