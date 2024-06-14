@@ -82,7 +82,12 @@ class GetData extends CI_Controller
 
    public function electric()
    {
+      $data['p205'] = $this->TabelModel->getElectric('p205');
+      $data['p236'] = $this->TabelModel->getElectric('p236');
+      $data['p305'] = $this->TabelModel->getElectric('p305');
+      $data['p310'] = $this->TabelModel->getElectric('p310');
       $data['p429'] = $this->TabelModel->getElectric('p429');
+      $data['recti'] = $this->TabelModel->getElectric('recti');
 
       // print_r($data);
       echo json_encode($data);

@@ -11,8 +11,8 @@
 
   <div class="tab-panels">
     <section id="utama" class="tab-panel">
-      <div class="row">
-        <div class="col-lg-3 mb-3">
+      <div class="row mb-4">
+        <div class="col-lg-3">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title fw-bold">LVMDP</h3>
@@ -56,6 +56,11 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-9">
+          <canvas id="lvmdpElectric"></canvas>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-lg-3 mb-3">
           <div class="card">
             <div class="card-header">
@@ -100,6 +105,11 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-9">
+          <canvas id="rectiElectric"></canvas>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-lg-3 mb-3">
           <div class="card">
             <div class="card-header">
@@ -143,6 +153,9 @@
               </table>
             </div>
           </div>
+        </div>
+        <div class="col-lg-9">
+          <canvas id="upsElectric"></canvas>
         </div>
       </div>
     </section>
@@ -253,27 +266,27 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load205">0</span> kW
+                      <span id="load305">0</span> kW
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Voltage</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="voltage205">0</span> V
+                      <span id="voltage305">0</span> V
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Current</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="current205">0</span> A
+                      <span id="current305">0</span> A
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequency205">0</span> Hz</td>
+                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequency305">0</span> Hz</td>
                   </tr>
                 </tbody>
               </table>
