@@ -9,6 +9,13 @@ class TabelModel extends CI_Model
 
       return $electric->get($table)->last_row('array');
    }
+
+   public function getElectricRT($table)
+   {
+      $electric = $this->load->database('electric', TRUE);
+
+      return $electric->order_by('tgl', 'DESC')->limit(20)->get($table);
+   }
    
    public function getSuhu($table)
    {

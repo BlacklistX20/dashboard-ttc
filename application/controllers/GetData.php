@@ -80,16 +80,50 @@ class GetData extends CI_Controller
       echo json_encode($data);
    }
 
-   public function electric()
+   public function recti()
    {
       $data['p205'] = $this->TabelModel->getElectric('p205');
       $data['p236'] = $this->TabelModel->getElectric('p236');
       $data['p305'] = $this->TabelModel->getElectric('p305');
       $data['p310'] = $this->TabelModel->getElectric('p310');
       $data['p429'] = $this->TabelModel->getElectric('p429');
-      $data['recti'] = $this->TabelModel->getElectric('recti');
-
+   
       // print_r($data);
+      echo json_encode($data);
+   }
+
+   public function ups()
+   {
+      $data['ups202'] = $this->TabelModel->getElectric('ups202');
+      $data['ups203'] = $this->TabelModel->getElectric('ups203');
+      $data['ups301'] = $this->TabelModel->getElectric('ups301');
+      $data['ups302'] = $this->TabelModel->getElectric('ups302');
+      $data['ups501'] = $this->TabelModel->getElectric('ups501');
+      $data['ups502'] = $this->TabelModel->getElectric('ups502');
+   
+      // print_r($data);
+      echo json_encode($data);
+   }
+
+   public function electricRT()
+   {
+      $recti = $this->TabelModel->getElectricRT('recti')->result_array();
+      $ups = $this->TabelModel->getElectricRT('ups')->result_array();
+
+      function separateDateTime($data)
+      {
+         foreach ($data as &$item) {
+            $item['date'] = date('d-m-y', strtotime($item['tgl']));
+            $item['time'] = date('H:i', strtotime($item['tgl']));
+            unset($item['tgl']); // Remove the old 'tgl' key
+         };
+
+         return $data;
+      };
+
+      $data['recti'] = separateDateTime($recti);
+      $data['ups'] = separateDateTime($ups);
+
       echo json_encode($data);
    }
 

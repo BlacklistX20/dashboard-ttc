@@ -422,7 +422,9 @@
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequency202">0</span> Hz</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="frequency202">0</span> Hz
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -466,7 +468,9 @@
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequency203">0</span> Hz</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="frequency203">0</span> Hz
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -510,7 +514,9 @@
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequency301">0</span> Hz</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="frequency301">0</span> Hz
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -554,7 +560,9 @@
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequency302">0</span> Hz</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="frequency302">0</span> Hz
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -578,27 +586,29 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load5a">0</span> kW
+                      <span id="load501">0</span> kW
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Voltage</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="voltage5a">0</span> V
+                      <span id="voltage501">0</span> V
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Current</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="current5a">0</span> A
+                      <span id="current501">0</span> A
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequency5a">0</span> Hz</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="frequency501">0</span> Hz
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -622,27 +632,29 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load5b">0</span> kW
+                      <span id="load502">0</span> kW
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Voltage</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="voltage5b">0</span> V
+                      <span id="voltage502">0</span> V
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Current</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="current5b">0</span> A
+                      <span id="current502">0</span> A
                     </td>
                   </tr>
                   <tr>
                     <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequency5b">0</span> Hz</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="frequency502">0</span> Hz
+                    </td>
                   </tr>
                 </tbody>
               </table>
