@@ -23,7 +23,7 @@
 <?php $this->load->view('layout/footer'); ?>
 
 <!-- Custom JS -->
-<script src="<?= base_url(); ?>asset/js/scriptElec.js"></script>
+<script type="module" src="<?= base_url(); ?>asset/js/scriptElec.js"></script>
 
 </body>
 
