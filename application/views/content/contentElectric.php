@@ -14,6 +14,21 @@
       <div class="row mb-4">
         <div class="col-lg-3">
           <div class="card">
+            <div class="card-header text-center">
+              <h3 class="card-title fw-bold">PUE</h3>
+            </div>
+            <div class="card-body text-center">
+              <h2 class="display-1 fw-bold"><span id="pue">0</span></h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <canvas id="pueElectric"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 mb-3">
+          <div class="card">
             <div class="card-header">
               <h3 class="card-title fw-bold">LVMDP</h3>
             </div>
@@ -29,7 +44,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="loadLvmdp">0</span> kW
+                      <span id="loadLvmdp">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -64,6 +79,57 @@
         <div class="col-lg-3 mb-3">
           <div class="card">
             <div class="card-header">
+              <h3 class="card-title fw-bold">IT (Recti + UPS)</h3>
+            </div>
+            <div class="card-body">
+              <table style="width: 100%;">
+                <colgroup>
+                  <col style="width: 45%;">
+                  <col style="width: 10%;">
+                  <col style="width: 45%;">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td style="padding-bottom: 10px; font-size: large;">Load</td>
+                    <td style="padding-bottom: 10px; font-size: large;">:</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="loadIt">0</span> kVA
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 10px; font-size: large;">Voltage</td>
+                    <td style="padding-bottom: 10px; font-size: large;">:</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="voltageIt">0</span> V
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 10px; font-size: large;">Current</td>
+                    <td style="padding-bottom: 10px; font-size: large;">:</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="currentIt">0</span> A
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
+                    <td style="padding-bottom: 10px; font-size: large;">:</td>
+                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequencyIt">0</span> Hz</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <canvas id="itElectric"></canvas>
+        </div>
+      </div>
+    </section>
+    <section id="recti" class="tab-panel">
+      <div class="row mb-2">
+        <div class="col-lg-3 mb-3">
+          <div class="card">
+            <div class="card-header">
               <h3 class="card-title fw-bold">Rectifier</h3>
             </div>
             <div class="card-body">
@@ -78,7 +144,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="loadRecti">0</span> kW
+                      <span id="loadRecti">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -113,57 +179,6 @@
         <div class="col-lg-3 mb-3">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title fw-bold">UPS</h3>
-            </div>
-            <div class="card-body">
-              <table style="width: 100%;">
-                <colgroup>
-                  <col style="width: 45%;">
-                  <col style="width: 10%;">
-                  <col style="width: 45%;">
-                </colgroup>
-                <tbody>
-                  <tr>
-                    <td style="padding-bottom: 10px; font-size: large;">Load</td>
-                    <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="loadUps">0</span> kW
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding-bottom: 10px; font-size: large;">Voltage</td>
-                    <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="voltageUps">0</span> V
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding-bottom: 10px; font-size: large;">Current</td>
-                    <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="currentUps">0</span> A
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
-                    <td style="padding-bottom: 10px; font-size: large;">:</td>
-                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequencyUps">0</span> Hz</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-9">
-          <canvas id="upsElectric"></canvas>
-        </div>
-      </div>
-    </section>
-    <section id="recti" class="tab-panel">
-      <div class="row">
-        <div class="col-lg-3 mb-3">
-          <div class="card">
-            <div class="card-header">
               <h3 class="card-title fw-bold">Panel 2.05</h3>
             </div>
             <div class="card-body">
@@ -178,7 +193,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load205">0</span> kW
+                      <span id="load205">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -205,6 +220,9 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-9">
+          <canvas id="panelRecti"></canvas>
+        </div>
         <div class="col-lg-3 mb-3">
           <div class="card">
             <div class="card-header">
@@ -222,7 +240,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load236">0</span> kW
+                      <span id="load236">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -266,7 +284,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load305">0</span> kW
+                      <span id="load305">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -310,7 +328,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load310">0</span> kW
+                      <span id="load310">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -354,7 +372,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load429">0</span> kW
+                      <span id="load429">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -384,6 +402,55 @@
       </div>
     </section>
     <section id="ups" class="tab-panel">
+      <div class="row mb-2">
+        <div class="col-lg-3 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title fw-bold">UPS</h3>
+            </div>
+            <div class="card-body">
+              <table style="width: 100%;">
+                <colgroup>
+                  <col style="width: 45%;">
+                  <col style="width: 10%;">
+                  <col style="width: 45%;">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td style="padding-bottom: 10px; font-size: large;">Load</td>
+                    <td style="padding-bottom: 10px; font-size: large;">:</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="loadUps">0</span> kVA
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 10px; font-size: large;">Voltage</td>
+                    <td style="padding-bottom: 10px; font-size: large;">:</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="voltageUps">0</span> V
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 10px; font-size: large;">Current</td>
+                    <td style="padding-bottom: 10px; font-size: large;">:</td>
+                    <td style="padding-bottom: 10px; font-size: large;">
+                      <span id="currentUps">0</span> A
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 10px; font-size: large;">Frequency</td>
+                    <td style="padding-bottom: 10px; font-size: large;">:</td>
+                    <td style="padding-bottom: 10px; font-size: large;"><span id="frequencyUps">0</span> Hz</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <canvas id="upsElectric"></canvas>
+        </div>
+      </div>
       <div class="row">
         <div class="col-lg-3 mb-3">
           <div class="card">
@@ -402,7 +469,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load202">0</span> kW
+                      <span id="load202">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -448,7 +515,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load203">0</span> kW
+                      <span id="load203">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -494,7 +561,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load301">0</span> kW
+                      <span id="load301">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -540,7 +607,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load302">0</span> kW
+                      <span id="load302">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -586,7 +653,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load501">0</span> kW
+                      <span id="load501">0</span> kVA
                     </td>
                   </tr>
                   <tr>
@@ -632,7 +699,7 @@
                     <td style="padding-bottom: 10px; font-size: large;">Load</td>
                     <td style="padding-bottom: 10px; font-size: large;">:</td>
                     <td style="padding-bottom: 10px; font-size: large;">
-                      <span id="load502">0</span> kW
+                      <span id="load502">0</span> kVA
                     </td>
                   </tr>
                   <tr>
