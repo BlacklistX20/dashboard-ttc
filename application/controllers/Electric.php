@@ -17,6 +17,19 @@ class Electric extends CI_Controller
       $this->load->model('TabelModel');
    }
 
+   public function pue()
+   {
+      $tgl = date('Y-m-d H:i:s');
+      $p = $this->input->post('pue');
+      
+      $pue = array(
+         'tgl' => $tgl,
+         'pue' => $p,
+      );
+      
+      $this->TabelModel->inputElectric($pue, 'pue');
+   }
+
    public function lvmdp()
    {
       $tgl = date('Y-m-d H:i:s');

@@ -18,7 +18,7 @@
               <h3 class="card-title fw-bold">PUE</h3>
             </div>
             <div class="card-body text-center">
-              <h2 class="display-1 fw-bold"><span id="pue">0</span></h2>
+              <h2 class="display-1 fw-bold"><span id="pueRT">0</span></h2>
             </div>
           </div>
         </div>
@@ -497,6 +497,9 @@
               </table>
             </div>
           </div>
+        </div>
+        <div class="col-lg-9">
+          <canvas id="panelUps"></canvas>
         </div>
         <div class="col-lg-3 mb-3">
           <div class="card">

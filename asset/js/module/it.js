@@ -3,7 +3,6 @@ import { sum, avg } from "./calcFunc.js";
 let dataIt;
 
 async function getIt() {
-	try {
 		const response429 = await fetch("http://192.168.10.75/data"); // IP ESP Panel 4.29
 		const p429 = await response429.json();
 
@@ -25,6 +24,16 @@ async function getIt() {
 
 		const responseIo3 = await fetch("http://192.168.10.53/data"); // IP ESP Panel IO lt 3
 		const pIo3 = await responseIo3.json();
+		// const pIo3 = {
+		// 	pA: 0,
+		// 	vA: 0,
+		// 	iA: 0,
+		// 	fA: 0,
+		// 	pB: 0,
+		// 	vB: 0,
+		// 	iB: 0,
+		// 	fB: 0,
+		// };
 
 		const responseIo5 = await fetch("http://192.168.10.92/data"); // IP ESP Panel IO lt 5
 		const pIo5 = await responseIo5.json();
@@ -69,8 +78,8 @@ async function getIt() {
 
 		let pIt = sum(pRecti, pUps).toFixed(2);
       let iIt = sum(iRecti, iUps).toFixed(2);
-      let vIt = sum(vRecti, vUps).toFixed(2);
-      let fIt = sum(fRecti, fUps).toFixed(2);
+      let vIt = avg(vRecti, vUps).toFixed(2);
+      let fIt = avg(fRecti, fUps).toFixed(2);
 
 		dataIt = {
 			p: pIt,
@@ -78,9 +87,6 @@ async function getIt() {
 			i: iIt,
 			f: fIt
 		};
-	} catch (error) {
-		console.error("Error:", error);
-	}
 }
 
 function setIt() {
@@ -108,4 +114,4 @@ function saveIt() {
 	})
 }
 
-export { dataIt, setIt, saveIt }
+export { setIt, saveIt }

@@ -1,29 +1,17 @@
-let dataLvmdp;
+let result;
 
 async function getLvmdp() {
-	try {
-		const responseLvmdp = await fetch("http://192.168.10.13/data"); // IP ESP LVMDP
-		const resultLvmdp = await responseLvmdp.json();
-
-      dataLvmdp = {
-			p: parseFloat(resultLvmdp.p).toFixed(2),
-			v: parseFloat(resultLvmdp.v).toFixed(2),
-			i: parseFloat(resultLvmdp.i).toFixed(2),
-			f: parseFloat(resultLvmdp.f).toFixed(2)
-		};
-	} catch (error) {
-		console.log(error);
-	}
+	const response = await fetch("http://192.168.10.13/data"); // IP ESP Panel LVMDP
+	result = await response.json();
 }
 
 function setLvmdp() {
 	getLvmdp().then(() => {
-
-		$("#loadRecti").text(dataLvmdp.p);
-		$("#voltageRecti").text(dataLvmdp.v);
-		$("#currentRecti").text(dataLvmdp.i);
-		$("#frequencyRecti").text(dataLvmdp.f);
-	})
+		$("#loadLvmdp").text(result.p);
+		$("#voltageLvmdp").text(result.v);
+		$("#currentLvmdp").text(result.i);
+		$("#frequencyLvmdp").text(result.f);
+	});
 }
 
 function saveLvmdp() {
@@ -32,13 +20,13 @@ function saveLvmdp() {
 			url: baseUrl + "electric/lvmdp",
 			type: "post",
 			data: {
-				p: parseFloat(dataLvmdp.p),
-				v: parseFloat(dataLvmdp.v),
-				i: parseFloat(dataLvmdp.i),
-				f: parseFloat(dataLvmdp.f),
-			}
-		})
-	})
+				p: parseFloat(result.p),
+				v: parseFloat(result.v),
+				i: parseFloat(result.i),
+				f: parseFloat(result.f),
+			},
+		});
+	});
 }
 
-export { dataLvmdp, setLvmdp, saveLvmdp }
+export { result, getLvmdp, setLvmdp, saveLvmdp };
