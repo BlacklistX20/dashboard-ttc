@@ -1,4 +1,4 @@
-import { getBatt4, getBss, getInter, getRecti4, getTrans } from "./module/getDataTemp.js";
+import { setBatt4, setBss, setInter, setRecti4, setTrans } from "./module/tempLt4.js";
 
 $(document).ready(
 	function () {
@@ -9,11 +9,11 @@ $(document).ready(
 );
 
 function tempData() {
-	getBatt4();
-	getRecti4();
-	getBss();
-	getInter();
-	getTrans();
+	setBatt4();
+	setRecti4();
+	setBss();
+	setInter();
+	setTrans();
 }
 
 tempData();

@@ -1,4 +1,4 @@
-import { avg } from "./calcFunc.js";
+let result;
 
 function changeColor(a, b) {
 	if (a > 18) {
@@ -11,10 +11,32 @@ function changeColor(a, b) {
 }
 
 async function getBatt4() {
-	try {
-		const response = await fetch("http://192.168.10.72/data"); // IP ESP Suhu Ruang Battery
-		const result = await response.json();
+	const response = await fetch("http://192.168.10.72/data"); // IP ESP Suhu Ruang Battery
+	result = await response.json();
+}
 
+async function getRecti4() {
+	const response = await fetch("http://192.168.10.78/data"); // IP ESP Suhu Ruang Recti
+	result = await response.json();
+}
+
+async function getBss() {
+	const response = await fetch("http://192.168.10.73/data"); // IP ESP Suhu Ruang BSS
+	result = await response.json();
+}
+
+async function getInter() {
+	const response = await fetch("http://192.168.10.76/data"); // IP ESP Suhu Ruang Interkoneksi
+	result = await response.json();
+}
+
+async function getTrans() {
+	const response = await fetch("http://192.168.10.77/data"); // IP ESP Suhu Ruang Transmisi
+	result = await response.json();
+}
+
+function setBatt4() {
+	getBatt4().then(() => {
 		const date = hariIni.toLocaleString("id-ID", { dateStyle: "long" });
 		let s1 = parseFloat(result.s1);
 		let k1 = parseFloat(result.k1);
@@ -30,19 +52,11 @@ async function getBatt4() {
 
 		$("#sensor1Batt4").text(s1.toFixed(2));
 		$("#sensor2Batt4").text(s2.toFixed(2));
-
-		let batt4 = [temp.toFixed(2), hum.toFixed(2)];
-		return batt4;
-	} catch (error) {
-		console.error("Error:", error);
-	}
+	});
 }
 
-async function getRecti4() {
-	try {
-		const response = await fetch("http://192.168.10.78/data"); // IP ESP Suhu Ruang Recti
-		const result = await response.json();
-
+function setRecti4() {
+	getRecti4().then(() => {
 		const date = hariIni.toLocaleString("id-ID", { dateStyle: "long" });
 		let s1 = parseFloat(result.s1);
 		let k1 = parseFloat(result.k1);
@@ -61,16 +75,11 @@ async function getRecti4() {
 		$("#sensor1Recti4").text(s1.toFixed(2));
 		$("#sensor2Recti4").text(s2.toFixed(2));
 		$("#sensor3Recti4").text(s3.toFixed(2));
-	} catch (error) {
-		console.error("Error:", error);
-	}
+	});
 }
 
-async function getBss() {
-	try {
-		const response = await fetch("http://192.168.10.73/data"); // IP ESP Suhu Ruang BSS
-		const result = await response.json();
-
+function setBss() {
+	getBss().then(() => {
 		const date = hariIni.toLocaleString("id-ID", { dateStyle: "long" });
 		let s1 = parseFloat(result.s1);
 		let k1 = parseFloat(result.k1);
@@ -92,16 +101,11 @@ async function getBss() {
 		$("#sensor2Bss").text(s2.toFixed(2));
 		$("#sensor3Bss").text(s3.toFixed(2));
 		$("#sensor4Bss").text(s4.toFixed(2));
-	} catch (error) {
-		console.error("Error:", error);
-	}
+	});
 }
 
-async function getInter() {
-	try {
-		const response = await fetch("http://192.168.10.76/data"); // IP ESP Suhu Ruang Interkoneksi
-		const result = await response.json();
-
+function setInter() {
+	getInter().then(() => {
 		const date = hariIni.toLocaleString("id-ID", { dateStyle: "long" });
 		let s1 = parseFloat(result.s1);
 		let k1 = parseFloat(result.k1);
@@ -123,16 +127,11 @@ async function getInter() {
 		$("#sensor2Inter").text(s2.toFixed(2));
 		$("#sensor3Inter").text(s3.toFixed(2));
 		$("#sensor4Inter").text(s4.toFixed(2));
-	} catch (error) {
-		console.error("Error:", error);
-	}
+	});
 }
 
-async function getTrans() {
-	try {
-		const response = await fetch("http://192.168.10.77/data"); // IP ESP Suhu Ruang Transmisi
-		const result = await response.json();
-
+function setTrans() {
+	getTrans().then(() => {
 		const date = hariIni.toLocaleString("id-ID", { dateStyle: "long" });
 		let s1 = parseFloat(result.s1);
 		let k1 = parseFloat(result.k1);
@@ -160,9 +159,100 @@ async function getTrans() {
 		$("#sensor4Trans").text(s4.toFixed(2));
 		$("#sensor5Trans").text(s5.toFixed(2));
 		$("#sensor6Trans").text(s6.toFixed(2));
-	} catch (error) {
-		console.error("Error:", error);
-	}
+	});
 }
 
-export { getBatt4, getRecti4, getBss, getInter, getTrans };
+function saveBatt4() {
+	getBatt4().then(() => {
+		$.ajax({
+			url: baseUrl + "lt4/battery",
+			type: "post",
+			data: {
+				humidity1: result.s1,
+				temperature1: result.k1,
+				humidity2: result.s2,
+				temperature2: result.k2,
+			},
+		});
+	})
+}
+
+function saveRecti4() {
+	getRecti4().then(() => {
+		$.ajax({
+			url: baseUrl + "lt4/recti",
+			type: "post",
+			data: {
+				humidity1: result.s1,
+				temperature1: result.k1,
+				humidity2: result.s2,
+				temperature2: result.k2,
+				humidity3: result.s3,
+				temperature3: result.k3,
+			},
+		});
+	})
+}
+
+function saveBss() {
+	getBss().then(() => {
+		$.ajax({
+			url: baseUrl + "lt4/bss",
+			type: "post",
+			data: {
+				humidity1: result.s1,
+				temperature1: result.k1,
+				humidity2: result.s2,
+				temperature2: result.k2,
+				humidity3: result.s3,
+				temperature3: result.k3,
+				humidity4: result.s4,
+				temperature4: result.k4,
+			},
+		});
+	})
+}
+
+function saveInter() {
+	getInter().then(() => {
+		$.ajax({
+			url: baseUrl + "lt4/inter",
+			type: "post",
+			data: {
+				humidity1: result.s1,
+				temperature1: result.k1,
+				humidity2: result.s2,
+				temperature2: result.k2,
+				humidity3: result.s3,
+				temperature3: result.k3,
+				humidity4: result.s4,
+				temperature4: result.k4,
+			},
+		});
+	})
+}
+
+function saveTrans() {
+	getTrans().then(() => {
+		$.ajax({
+			url: baseUrl + "lt4/trans",
+			type: "post",
+			data: {
+				humidity1: result.s1,
+				temperature1: result.k1,
+				humidity2: result.s2,
+				temperature2: result.k2,
+				humidity3: result.s3,
+				temperature3: result.k3,
+				humidity4: result.s4,
+				temperature4: result.k4,
+				humidity5: result.s5,
+				temperature5: result.k5,
+				humidity6: result.s6,
+				temperature6: result.k6,
+			},
+		});
+	})
+}
+
+export { setBatt4, setRecti4, setBss, setInter, setTrans, saveBatt4, saveRecti4, saveBss, saveInter, saveTrans };
