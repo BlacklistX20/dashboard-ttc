@@ -21,12 +21,14 @@ class ChangeData extends CI_Controller
       $merk = $this->input->post("merk");
       $kapasitas = $this->input->post("kapasitas");
       $jumlah = $this->input->post("jumlah");
+      $sn = $this->input->post("sn");
 
       $data = array(
          'nama' => $nama,
          'merk' => $merk,
          'kapasitas' => $kapasitas,
-         'jumlah' => $jumlah
+         'jumlah' => $jumlah,
+         'sn' => $sn
       );
 
       $this->TabelModel->editPotencyById($id, $data, 'electricity');
@@ -115,6 +117,7 @@ class ChangeData extends CI_Controller
       $typeBatt = $this->input->post("type_battery");
       $jumlahBatt = $this->input->post("jumlah_battery");
       $keterangan = $this->input->post("keterangan");
+      $sn = $this->input->post("sn");
 
       $data = array(
          'nama' => $nama,
@@ -123,7 +126,8 @@ class ChangeData extends CI_Controller
          'merk_battery' => $merkBatt,
          'type_battery' => $typeBatt,
          'jumlah_battery' => $jumlahBatt,
-         'keterangan' => $keterangan
+         'keterangan' => $keterangan,
+         'sn' => $sn
       );
 
       $this->TabelModel->editPotencyById($id, $data, 'ups');
@@ -146,6 +150,7 @@ class ChangeData extends CI_Controller
       $typeBatt = $this->input->post("type_battery");
       $jumlahBatt = $this->input->post("jumlah_battery");
       $keterangan = $this->input->post("keterangan");
+      $sn = $this->input->post("sn");
 
       $data = array(
          'nama' => $nama,
@@ -154,7 +159,8 @@ class ChangeData extends CI_Controller
          'merk_battery' => $merkBatt,
          'type_battery' => $typeBatt,
          'jumlah_battery' => $jumlahBatt,
-         'keterangan' => $keterangan
+         'keterangan' => $keterangan,
+         'sn' => $sn
       );
 
       $this->TabelModel->editPotencyById($id, $data, 'recti');

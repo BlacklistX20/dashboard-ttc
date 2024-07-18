@@ -36,9 +36,10 @@
       <table class="table table-striped table-bordered">
         <colgroup>
           <col style="width: 3%;">
-          <col span="2">
-          <col style="width: 9%;">
-          <col span="2" style="width: 8%;">
+          <col span="2" style="width: 20%;">
+          <col span="2" style="width: 10%;">
+          <col>
+          <col style="width: 8%;">
         </colgroup>
         <thead>
           <tr class="table-dark text-center">
@@ -47,6 +48,7 @@
             <th>Merk</th>
             <th>Kapasitas</th>
             <th>Jumlah</th>
+            <th>Serial Number</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -58,6 +60,7 @@
               <td><?= $e->merk; ?></td>
               <td class="text-center"><?= $e->kapasitas; ?> <?= $e->satuan; ?></td>
               <td class="text-center"><?= $e->jumlah; ?></td>
+              <td class="text-center"><?= $e->sn; ?></td>
               <td class="text-center">
                 <button type="button" class="btn btn-primary btnEditElec" data-id="<?= $e->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                   <i class='bx bxs-edit'></i>
@@ -183,12 +186,12 @@
       </button>
       <table class="table table-striped table-bordered">
         <colgroup>
-          <col style="width: 3%;">
+        <col style="width: 3%;">
           <col span="2" style="width: 10%;">
           <col style="width: 15%;">
-          <col style="width: 10%;">
-          <col style="width: 15%;">
+          <col span="2" style="width: 10%;">
           <col style="width: 4%;">
+          <col style="width: 10%;">
           <col>
           <col style="width: 7%;">
         </colgroup>
@@ -202,6 +205,7 @@
             <th>Type Battery</th>
             <th>Jumlah Battery</th>
             <th>Keterangan</th>
+            <th>Serial Number</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -216,6 +220,7 @@
               <td><?= $u->type_battery; ?></td>
               <td class="text-center"><?= $u->jumlah_battery; ?></td>
               <td><?= $u->keterangan; ?></td>
+              <td><?= $u->sn; ?></td>
               <td class="text-center">
                 <button type="button" class="btn btn-primary btnEditUps" data-id="<?= $u->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
                 <button type="button" class="btn btn-danger btnDeleteUps" data-id="<?= $u->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
@@ -237,9 +242,9 @@
           <col style="width: 3%;">
           <col span="2" style="width: 10%;">
           <col style="width: 15%;">
-          <col style="width: 10%;">
-          <col style="width: 15%;">
+          <col span="2" style="width: 10%;">
           <col style="width: 4%;">
+          <col style="width: 10%;">
           <col>
           <col style="width: 7%;">
         </colgroup>
@@ -253,6 +258,7 @@
             <th>Type Battery</th>
             <th>Jumlah Battery</th>
             <th>Keterangan</th>
+            <th>Serial Number</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -267,6 +273,7 @@
               <td><?= $r->type_battery; ?></td>
               <td class="text-center"><?= $r->jumlah_battery; ?></td>
               <td><?= $r->keterangan; ?></td>
+              <td><?= $r->sn; ?></td>
               <td class="text-center">
                 <button type="button" class="btn btn-primary btnEditRect" data-id="<?= $r->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bxs-edit'></i></button>
                 <button type="button" class="btn btn-danger btnDeleteRect" data-id="<?= $r->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class='bx bxs-trash'></i></button>
@@ -457,6 +464,13 @@
                 Masukkan Jumlah
               </div>
             </div>
+            <div class="mb-3">
+              <label for="validationCustom06" class="form-label">Serial Number</label>
+              <input type="text" class="form-control" id="validationCustom06" name="sn" required>
+              <div class="invalid-feedback">
+                Masukkan Serial Number
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-success">Tambah</button>
@@ -503,6 +517,13 @@
               <input type="number" class="form-control" id="editJumlahEl" name="jumlah" required>
               <div class="invalid-feedback">
                 Masukkan Jumlah
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="editSnEl" class="form-label">Serial Number</label>
+              <input type="text" class="form-control" id="editSnEl" name="sn" required>
+              <div class="invalid-feedback">
+                Masukkan Serial Number
               </div>
             </div>
           </div>
@@ -965,6 +986,13 @@
                 Masukkan Keterangan
               </div>
             </div>
+            <div class="mb-3">
+              <label for="validationCustom08" class="form-label">Serial Number</label>
+              <input type="text" class="form-control" id="validationCustom08" name="sn">
+              <div class="invalid-feedback">
+                Masukkan Serial Number
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-success">Tambah</button>
@@ -1030,6 +1058,13 @@
               <input type="text" class="form-control" id="editKetUps" name="keterangan">
               <div class="invalid-feedback">
                 Masukkan Keterangan
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="editSnUps" class="form-label">Serial Number</label>
+              <input type="text" class="form-control" id="editSnUps" name="sn">
+              <div class="invalid-feedback">
+                Masukkan Serial Number
               </div>
             </div>
           </div>
@@ -1118,6 +1153,13 @@
                 Masukkan Keterangan
               </div>
             </div>
+            <div class="mb-3">
+              <label for="validationCustom08" class="form-label">Serial Number</label>
+              <input type="text" class="form-control" id="validationCustom08" name="sn">
+              <div class="invalid-feedback">
+                Masukkan Serial Number
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-success">Tambah</button>
@@ -1183,6 +1225,13 @@
               <input type="text" class="form-control" id="editKetRect" name="keterangan">
               <div class="invalid-feedback">
                 Masukkan Keterangan
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="editSnRecti" class="form-label">Serial Number</label>
+              <input type="text" class="form-control" id="editSnRecti" name="sn">
+              <div class="invalid-feedback">
+                Masukkan Serial Number
               </div>
             </div>
           </div>

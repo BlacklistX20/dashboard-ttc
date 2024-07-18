@@ -336,13 +336,15 @@ class InputData extends CI_Controller
       $kapasitas = $this->input->post("kapasitas");
       $satuan = $this->input->post("satuan");
       $jumlah = $this->input->post("jumlah");
+      $sn = $this->input->post("sn");
 
       $data = array(
          'nama' => $nama,
          'merk' => $merk,
          'kapasitas' => $kapasitas,
          'satuan' => $satuan,
-         'jumlah' => $jumlah
+         'jumlah' => $jumlah,
+         'sn' => $sn
       );
 
       // print_r($data);
@@ -414,6 +416,7 @@ class InputData extends CI_Controller
       $typeBatt = $this->input->post("type_battery");
       $jumlahBatt = $this->input->post("jumlah_battery");
       $keterangan = $this->input->post("keterangan");
+      $sn = $this->input->post("sn");
 
       $data = array(
          'nama' => $nama,
@@ -422,7 +425,8 @@ class InputData extends CI_Controller
          'merk_battery' => $merkBatt,
          'type_battery' => $typeBatt,
          'jumlah_battery' => $jumlahBatt,
-         'keterangan' => $keterangan
+         'keterangan' => $keterangan,
+         'sn' => $sn
       );
 
       // print_r($data);
@@ -440,6 +444,7 @@ class InputData extends CI_Controller
       $typeBatt = $this->input->post("type_battery");
       $jumlahBatt = $this->input->post("jumlah_battery");
       $keterangan = $this->input->post("keterangan");
+      $sn = $this->input->post("sn");
 
       $data = array(
          'nama' => $nama,
@@ -448,7 +453,8 @@ class InputData extends CI_Controller
          'merk_battery' => $merkBatt,
          'type_battery' => $typeBatt,
          'jumlah_battery' => $jumlahBatt,
-         'keterangan' => $keterangan
+         'keterangan' => $keterangan,
+         'sn' => $sn
       );
 
       // print_r($data);
