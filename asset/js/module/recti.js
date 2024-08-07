@@ -22,29 +22,29 @@ async function getRecti() {
 
 		let pRecti = sum(
 			parseFloat(result429.p),
-			parseFloat(result305.p),
-			parseFloat(result310.p),
+			parseFloat(result305.p305),
+			parseFloat(result305.p310),
 			parseFloat(result205.p),
 			parseFloat(result236.p)
 		);
 		let iRecti = sum(
 			parseFloat(result429.i),
-			parseFloat(result305.i),
-			parseFloat(result310.i),
+			parseFloat(result305.i305),
+			parseFloat(result305.i310),
 			parseFloat(result205.i),
 			parseFloat(result236.i)
 		);
 		let vRecti = avg(
 			parseFloat(result429.v),
-			parseFloat(result305.v),
-			parseFloat(result310.v),
+			parseFloat(result305.v305),
+			parseFloat(result305.v310),
 			parseFloat(result205.v),
 			parseFloat(result236.v)
 		);
 		let fRecti = avg(
 			parseFloat(result429.f),
-			parseFloat(result305.f),
-			parseFloat(result310.f),
+			parseFloat(result305.f305),
+			parseFloat(result305.f310),
 			parseFloat(result205.f),
 			parseFloat(result236.f)
 		);
@@ -92,21 +92,21 @@ async function setPanel305() {
 	const response = await fetch("http://192.168.10.52/data"); // IP ESP Panel 3.05
 	const result = await response.json();
 
-	$("#load305").text(result.p);
-	$("#voltage305").text(result.v);
-	$("#current305").text(result.i);
-	$("#frequency305").text(result.f);
+	$("#load305").text(result.p305);
+	$("#voltage305").text(result.v305);
+	$("#current305").text(result.i305);
+	$("#frequency305").text(result.f305);
 }
 
-// async function setPanel310() {
-// 	const response = await fetch("http://192.168.10.52/data"); // IP ESP Panel 3.10
-// 	const result = await response.json();
+async function setPanel310() {
+	const response = await fetch("http://192.168.10.52/data"); // sementara data dari esp panel 3.05
+	const result = await response.json();
 
-// 	$("#load310").text(result.p);
-// 	$("#voltage310").text(result.v);
-// 	$("#current310").text(result.i);
-// 	$("#frequency310").text(result.f);
-// }
+	$("#load310").text(result.p310);
+	$("#voltage310").text(result.v310);
+	$("#current310").text(result.i310);
+	$("#frequency310").text(result.f310);
+}
 
 async function setPanel429() {
 	const response = await fetch("http://192.168.10.75/data"); // IP ESP Panel 4.29
@@ -168,29 +168,29 @@ function saveP305() {
 			url: baseUrl + "electric/p305",
 			type: "post",
 			data: {
-				p: result.p,
-				v: result.v,
-				i: result.i,
-				f: result.f,
+				p: result.p305,
+				v: result.v305,
+				i: result.i305,
+				f: result.f305,
 			},
 		});
 	});
 }
 
-// function saveP310() {
-// 	setPanel310().then(() => {
-// 		$.ajax({
-// 			url: baseUrl + "electric/p310",
-// 			type: "post",
-// 			data: {
-// 				p: result.p,
-// 				v: result.v,
-// 				i: result.i,
-// 				f: result.f,
-// 			},
-// 		});
-// 	});
-// }
+function saveP310() {
+	setPanel310().then(() => {
+		$.ajax({
+			url: baseUrl + "electric/p310",
+			type: "post",
+			data: {
+				p: result.p310,
+				v: result.v310,
+				i: result.i310,
+				f: result.f310,
+			},
+		});
+	});
+}
 
 function saveP429() {
 	setPanel429().then(() => {
@@ -226,4 +226,4 @@ function saveRecti() {
 	});
 }
 
-export { setPanel205, setPanel236, setPanel305, setPanel429, setRecti, saveP205, saveP236, saveP305, saveP429, saveRecti };
+export { setPanel205, setPanel236, setPanel305, setPanel429, setRecti, saveP205, saveP236, saveP305, saveP310, saveP429, saveRecti };

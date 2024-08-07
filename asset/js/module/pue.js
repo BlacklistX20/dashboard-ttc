@@ -43,8 +43,8 @@ async function getPue() {
 
 	let pRecti = sum(
 		parseFloat(p429.p),
-		parseFloat(p305.p),
-		parseFloat(p310.p),
+		parseFloat(p305.p305),
+		parseFloat(p305.p310),
 		parseFloat(p205.p),
 		parseFloat(p236.p)
 	);

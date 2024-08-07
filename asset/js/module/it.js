@@ -38,10 +38,10 @@ async function getIt() {
 		const responseIo5 = await fetch("http://192.168.10.92/data"); // IP ESP Panel IO lt 5
 		const pIo5 = await responseIo5.json();
 	
-		let pRecti = sum(parseFloat(p429.p), parseFloat(p305.p), parseFloat(p310.p), parseFloat(p205.p), parseFloat(p236.p));
-		let iRecti = sum(parseFloat(p429.i), parseFloat(p305.i), parseFloat(p310.i), parseFloat(p205.i), parseFloat(p236.i));
-		let vRecti = avg(parseFloat(p429.v), parseFloat(p305.v), parseFloat(p310.v), parseFloat(p205.v), parseFloat(p236.v));
-		let fRecti = avg(parseFloat(p429.f), parseFloat(p305.f), parseFloat(p310.f), parseFloat(p205.f), parseFloat(p236.f));
+		let pRecti = sum(parseFloat(p429.p), parseFloat(p305.p305), parseFloat(p305.p310), parseFloat(p205.p), parseFloat(p236.p));
+		let iRecti = sum(parseFloat(p429.i), parseFloat(p305.i305), parseFloat(p305.i310), parseFloat(p205.i), parseFloat(p236.i));
+		let vRecti = avg(parseFloat(p429.v), parseFloat(p305.v305), parseFloat(p305.v310), parseFloat(p205.v), parseFloat(p236.v));
+		let fRecti = avg(parseFloat(p429.f), parseFloat(p305.f305), parseFloat(p305.f310), parseFloat(p205.f), parseFloat(p236.f));
 
 		let pUps = sum(
 			parseFloat(pIo2.p242),
