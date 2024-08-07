@@ -81,7 +81,7 @@ function savePue() {
 				pue: pue
 			},
 		});
-		console.log(pue);
+		// console.log(pue);
    })
 }
 

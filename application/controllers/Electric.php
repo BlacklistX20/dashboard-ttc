@@ -172,6 +172,7 @@ class Electric extends CI_Controller
       );
       
       $this->TabelModel->inputElectric($p305, 'p305');
+      // echo "Ini test";
    }
 
    public function p429()

@@ -226,4 +226,4 @@ function saveRecti() {
 	});
 }
 
-export { setPanel205, setPanel236, setPanel305, setPanel429, setRecti, saveP205, saveP236, saveP305, saveP310, saveP429, saveRecti };
+export { setPanel205, setPanel236, setPanel305, setPanel310, setPanel429, setRecti, saveP205, saveP236, saveP305, saveP310, saveP429, saveRecti };

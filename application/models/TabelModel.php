@@ -66,7 +66,7 @@ class TabelModel extends CI_Model
    {
       $electric = $this->load->database('electric', TRUE);
 
-      return $electric->get('pue');
+      return $electric->limit(50)->get('pue');
    }
 
    public function getPueByDate($start, $end)

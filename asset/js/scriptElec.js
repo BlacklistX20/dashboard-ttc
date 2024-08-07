@@ -5,12 +5,20 @@ import {
 	setPanel205,
 	setPanel236,
 	setPanel305,
+	setPanel310,
 	setPanel429,
 	setRecti,
 } from "./module/recti.js";
 import { setPanelIo2, setPanelIo3, setPanelIo5, setUps } from "./module/ups.js";
 
 // let pue;
+function formatTimestamps(data) {
+	return data.map((entry) => {
+		// Extract the time portion from the 'tgl' property
+		const time = entry.tgl.split(" ")[1];
+		return time;
+	});
+}
 
 $(document).ready(function () {
 	$("a[id=electric]").addClass("active");
@@ -131,6 +139,19 @@ const startingDataUps = {
 		},
 	],
 };
+
+async function setChart() {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/pueChart",
+		dataType: "json",
+	});
+
+	const label = formatTimestamps(data);
+
+	console.log(label);
+}
+
+setChart();
 
 var pueElectric = document.getElementById("pueElectric");
 var pueChart = new Chart(pueElectric, {
@@ -363,7 +384,7 @@ function updateChartPue() {
 		labelPue.push(time);
 		labelPue.shift();
 
-		console.log(dataPue);
+		// console.log(dataPue);
 
 		// pueChart.data.labels = labelPue;
 		// pueChart.data.datasets[0].data = dataPue;
@@ -452,6 +473,7 @@ async function getDataElectric() {
 	await setPanel205();
 	await setPanel236();
 	await setPanel305();
+	await setPanel310();
 	await setPanel429();
 	await setRecti();
 	await setPanelIo2();

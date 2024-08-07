@@ -271,14 +271,12 @@ class GetData extends CI_Controller
       echo json_encode($data);
    }
 
-   // public function pueDaily()
-   // {
-   //    $data['morning'] = $this->TabelModel->getPueMorning()->result_array();
-   //    $data['noon'] = $this->TabelModel->getPueNoon()->result_array();
-   //    $data['night'] = $this->TabelModel->getPueNight()->result_array();
+   public function pueChart()
+   {
+      $data = $this->TabelModel->getPue()->result_array();
 
-   //    echo json_encode($data);
-   // }
+      echo json_encode($data);
+   }
 
    public function export()
    {
