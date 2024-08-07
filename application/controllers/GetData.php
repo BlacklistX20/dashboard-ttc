@@ -5,6 +5,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *  @property TabelModel $TabelModel 
  */
 
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
 class GetData extends CI_Controller
 {
 
@@ -13,70 +17,103 @@ class GetData extends CI_Controller
       parent::__construct();
 
       $this->load->model('TabelModel');
+      $this->load->dbutil();
+      $this->load->helper('download');
    }
 
    public function main()
    {
-      $data['weekly'] = $this->TabelModel->getPueWeekly('pue')->result_array();
-      $pue = $this->TabelModel->getPue('pue')->result_array();
+      $data['avg'] = $this->TabelModel->getPueAvg()->result('array');
+      $data['min'] = $this->TabelModel->getPueMinMax('ASC')->result('array');
+      $data['max'] = $this->TabelModel->getPueMinMax('DESC')->result('array');
 
-      function getLastMonthData($data)
-      {
-         foreach ($data as &$item) {
-            $item['bln'] = date('m', strtotime($item['tgl']));
-            // unset($item['tgl']); // Remove the old 'tgl' key
-         }
-         // Find the highest 'bln' value
-         $highestMonth = max(array_column($data, 'bln'));
+      $today = strtotime("today");
+      $startdate = strtotime("-1 weeks", $today);
+      $enddate = strtotime("yesterday");
+      $first = date("Y-m-d", $startdate);
+      $last = date("Y-m-d", $enddate);
 
-         // Find the second-highest 'bln' value
-         $secondHighestMonth = max(array_diff(array_column($data, 'bln'), [$highestMonth]));
+      $pueWeek = $this->TabelModel->getPueByDate($first, $last)->result_array();
 
-         // Collect items with the second-highest 'bln' value
-         $secondHighestMonthData = array_filter($data, function ($item) use ($secondHighestMonth) {
-            return $item['bln'] == $secondHighestMonth;
-         });
-
-         return $secondHighestMonthData;
-      }
-
-      function calculatePropertyAverages($data)
-      {
-         $averages = array(
-            'lvmdp' => 0,
-            'recti' => 0,
-            'ups' => 0,
-            'pagi' => 0,
-            'siang' => 0,
-            'malam' => 0,
-            'average' => 0,
-            'bln' => 0
-         );
-
+      function calculateAveragePUE($data) {
+         $totalPUE = 0;
          $count = count($data);
+     
+         foreach ($data as $entry) {
+             $totalPUE += $entry['pue'];
+         }
+     
+         if ($count == 0) {
+             return 0; // To avoid division by zero
+         }
+     
+         $averagePUE = $totalPUE / $count;
+     
+         return $averagePUE;
+     }
 
-         foreach ($data as $item) {
-            foreach ($averages as $key => $value) {
-               $averages[$key] += $item[$key];
+     $data['avgPueWeekly'] = [
+         'startDate' => $first,
+         'endDate' => $last,
+         'pue' => round(calculateAveragePUE($pueWeek))
+      ];
+
+      // print_r($test);
+      echo json_encode($data);
+   }
+
+   public function mainChart()
+   {
+      $data['morning'] = $this->TabelModel->getPueMorning()->result_array();
+      $data['noon'] = $this->TabelModel->getPueNoon()->result_array();
+      $data['night'] = $this->TabelModel->getPueNight()->result_array();
+
+      $today = strtotime("today");
+      $startdate = strtotime("-1 weeks", $today);
+      $enddate = strtotime("yesterday");
+      $first = date("Y-m-d", $startdate);
+      $last = date("Y-m-d", $enddate);
+
+      $pueWeek = $this->TabelModel->getPueByDate($first, $last)->result_array();
+
+      function filterFirstDataPoints($data)
+      {
+         $filteredData = [];
+
+         // Array to keep track of the first data point for each minute range 0-30 in each hour
+         $firstDataPoints = [];
+
+         foreach ($data as $entry) {
+            $date = $entry['date'];
+            $time = $entry['time'];
+            $minute = (int) date('i', strtotime($time));
+            $hour = date('H', strtotime($time));
+
+            // Only consider the minute range 0-30
+            if ($minute < 30) {
+               // Use the date and hour as a unique key to store the first data point for the minute range 0-30
+               $key = $date . ' ' . $hour;
+
+               if (!isset($firstDataPoints[$key])) {
+                  $firstDataPoints[$key] = $entry;
+               }
             }
          }
 
-         foreach ($averages as $key => $value) {
-            $averages[$key] /= $count;
-         }
+         // Convert the associative array to a sequential array
+         $filteredData = array_values($firstDataPoints);
 
-         $tgl = $data[($count)-1]['tgl'];
+         // Sort data by date and time
+         usort($filteredData, function ($a, $b) {
+            return strcmp($a['date'] . ' ' . $a['time'], $b['date'] . ' ' . $b['time']);
+         });
 
-         array_push($averages, $tgl);
-
-         return $averages;
+         return $filteredData;
       }
 
-      $month = getLastMonthData($pue);
-      // $last = getLastMonthData($month);
-      $data['avgLastMonth'] = calculatePropertyAverages($month);
+      $data['pueWeek'] = filterFirstDataPoints($pueWeek);
 
-      // print_r($data['avgLastMonth']);
+      // echo $data;
       echo json_encode($data);
    }
 
@@ -87,7 +124,7 @@ class GetData extends CI_Controller
       $data['p305'] = $this->TabelModel->getElectric('p305');
       $data['p310'] = $this->TabelModel->getElectric('p310');
       $data['p429'] = $this->TabelModel->getElectric('p429');
-   
+
       // print_r($data);
       echo json_encode($data);
    }
@@ -100,7 +137,7 @@ class GetData extends CI_Controller
       $data['ups302'] = $this->TabelModel->getElectric('ups302');
       $data['ups501'] = $this->TabelModel->getElectric('ups501');
       $data['ups502'] = $this->TabelModel->getElectric('ups502');
-   
+
       // print_r($data);
       echo json_encode($data);
    }
@@ -116,10 +153,12 @@ class GetData extends CI_Controller
             $item['date'] = date('d-m-y', strtotime($item['tgl']));
             $item['time'] = date('H:i', strtotime($item['tgl']));
             unset($item['tgl']); // Remove the old 'tgl' key
-         };
+         }
+         ;
 
          return $data;
-      };
+      }
+      ;
 
       $data['recti'] = separateDateTime($recti);
       $data['ups'] = separateDateTime($ups);
@@ -142,7 +181,7 @@ class GetData extends CI_Controller
             $sum += $n;
          }
          $avg = $sum / count($numbers);
-         return (float)$avg;
+         return (float) $avg;
       }
 
       $batt4Suhu = sum($data['batt4']['s1'], $data['batt4']['s2']);
@@ -232,12 +271,174 @@ class GetData extends CI_Controller
       echo json_encode($data);
    }
 
-   public function pueWeekly()
-   {
-      $data['pagi'] = $this->TabelModel->getPueWeekly('pagi')->result_array();
-      $data['siang'] = $this->TabelModel->getPueWeekly('siang')->result_array();
-      $data['malam'] = $this->TabelModel->getPueWeekly('malam')->result_array();
+   // public function pueDaily()
+   // {
+   //    $data['morning'] = $this->TabelModel->getPueMorning()->result_array();
+   //    $data['noon'] = $this->TabelModel->getPueNoon()->result_array();
+   //    $data['night'] = $this->TabelModel->getPueNight()->result_array();
 
-      echo json_encode($data);
+   //    echo json_encode($data);
+   // }
+
+   public function export()
+   {
+      $start = $this->input->post("datemin");
+      $end = $this->input->post("datemax");
+
+      // Query the database
+      $data = $this->TabelModel->getPueByDate($start, $end);
+
+      // Generate CSV data from query result
+      $delimiter = ",";
+      $newline = "\r\n";
+      $enclosure = '"';
+      $csv_data = $this->dbutil->csv_from_result($data, $delimiter, $newline, $enclosure);
+
+      // Set the file name
+      $filename = 'PueWeekly_' . date('Ymd_His') . '.csv';
+
+      // Force download the CSV file
+      force_download($filename, $csv_data);
+
+      // print_r($data);
+      // var_dump($start);
+   }
+
+   function export_excel()
+   {
+      $start = $this->input->post("datemin");
+      $end = $this->input->post("datemax");
+
+      /* Data */
+      $data = $this->TabelModel->getPueByDate($start, $end)->result_array();
+
+      /* Spreadsheet Init */
+      $spreadsheet = new Spreadsheet();
+      $sheet = $spreadsheet->getActiveSheet();
+
+      /* Excel Header */
+      $sheet->setCellValue('A1', 'Tanggal');
+      $sheet->setCellValue('B1', 'Waktu');
+      $sheet->setCellValue('C1', 'PUE');
+
+      /* Excel Data */
+      $row_number = 2;
+      foreach ($data as $row) {
+         $sheet->setCellValue('A' . $row_number, $row['date']);
+         $sheet->setCellValue('B' . $row_number, $row['time']);
+         $sheet->setCellValue('C' . $row_number, $row['pue']);
+
+         $row_number++;
+      }
+
+      /* Excel File Format */
+      $writer = new Xlsx($spreadsheet);
+      $filename = 'PueWeekly_' . date('Ymd_His');
+
+      header('Content-Type: application/vnd.ms-excel');
+      header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+      header('Cache-Control: max-age=0');
+
+      $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+      $writer->save('php://output');
+   }
+
+   public function test()
+   {
+      $today = strtotime("today");
+      $startdate = strtotime("-1 weeks", $today);
+      $enddate = strtotime("yesterday");
+      $first = date("Y-m-d", $startdate);
+      $last = date("Y-m-d", $enddate);
+
+      $data = $this->TabelModel->getPueByDate($first, $last)->result_array();
+
+      function findPreviousMonthAveragePue($data)
+      {
+         // Langkah 1: Ekstrak bulan dan tahun dan simpan dalam array
+         $months = [];
+
+         foreach ($data as $entry) {
+            $date = new DateTime($entry['tgl']);
+            $monthYear = $date->format('Y-m'); // Format sebagai Tahun-Bulan
+
+            // Simpan bulan dan tahun dalam array
+            $months[] = $monthYear;
+         }
+
+         // Langkah 2: Temukan bulan terbaru
+         $lastMonth = max($months);
+
+         // Buat DateTime untuk bulan terbaru dan tambahkan satu bulan
+         $lastMonthDate = new DateTime($lastMonth . '-01');
+         $lastMonthDate->modify('-1 month');
+
+         // Format bulan sebelumnya
+         $previousMonth = $lastMonthDate->format('Y-m');
+
+         // Langkah 3: Filter data untuk bulan sebelumnya
+         $previousMonthData = array_filter($data, function ($entry) use ($previousMonth) {
+            $date = new DateTime($entry['tgl']);
+            $monthYear = $date->format('Y-m');
+            return $monthYear === $previousMonth;
+         });
+
+         // Langkah 4: Hitung rata-rata pue untuk bulan sebelumnya
+         if (count($previousMonthData) === 0) {
+            $lastMonthData = array_filter($data, function ($entry) use ($lastMonth) {
+               $date = new DateTime($entry['tgl']);
+               $monthYear = $date->format('Y-m');
+               return $monthYear === $lastMonth;
+            });
+            $totalPue = array_sum(array_column($lastMonthData, 'pue'));
+            $count = count($lastMonthData);
+            $averagePue = $totalPue / $count;
+            return [
+               'average_pue' => round($averagePue, 2),
+               'bulan' => $lastMonth
+            ];
+         }
+
+         $totalPue = array_sum(array_column($previousMonthData, 'pue'));
+         $count = count($previousMonthData);
+         $averagePue = $totalPue / $count;
+
+         return [
+            'average_pue' => round($averagePue, 2),
+            'bulan' => $previousMonth
+         ];
+      }
+
+      // Example data
+      // $data = [
+      //    ['date' => '2024-07-29', 'time' => '05:01:00', 'pue' => 1.52],
+      //    ['date' => '2024-07-29', 'time' => '05:16:00', 'pue' => 1.51],
+      //    ['date' => '2024-07-29', 'time' => '05:31:00', 'pue' => 1.49],
+      //    ['date' => '2024-07-29', 'time' => '05:46:00', 'pue' => 1.53],
+      //    ['date' => '2024-07-29', 'time' => '06:01:00', 'pue' => 1.59],
+      //    ['date' => '2024-07-29', 'time' => '06:16:00', 'pue' => 1.52],
+      //    ['date' => '2024-07-29', 'time' => '06:31:00', 'pue' => 1.57],
+      //    ['date' => '2024-07-29', 'time' => '06:46:00', 'pue' => 1.59],
+      //    ['date' => '2024-07-29', 'time' => '07:01:00', 'pue' => 1.56],
+      //    ['date' => '2024-07-29', 'time' => '07:31:00', 'pue' => 1.59],
+      //    ['date' => '2024-07-29', 'time' => '07:46:00', 'pue' => 1.56],
+      //    ['date' => '2024-07-30', 'time' => '05:01:00', 'pue' => 1.52],
+      //    ['date' => '2024-07-30', 'time' => '05:16:00', 'pue' => 1.51],
+      //    ['date' => '2024-07-30', 'time' => '05:31:00', 'pue' => 1.49],
+      //    ['date' => '2024-07-30', 'time' => '05:46:00', 'pue' => 1.53],
+      //    ['date' => '2024-07-30', 'time' => '06:01:00', 'pue' => 1.59],
+      //    ['date' => '2024-07-30', 'time' => '06:16:00', 'pue' => 1.52],
+      //    ['date' => '2024-07-30', 'time' => '06:31:00', 'pue' => 1.57],
+      //    ['date' => '2024-07-30', 'time' => '06:46:00', 'pue' => 1.59],
+      //    ['date' => '2024-07-30', 'time' => '07:01:00', 'pue' => 1.56],
+      //    ['date' => '2024-07-30', 'time' => '07:31:00', 'pue' => 1.59],
+      //    ['date' => '2024-07-30', 'time' => '07:46:00', 'pue' => 1.56]
+      // ];
+
+      // $filtered = filterFirstDataPoints($data);
+      $avg = calculateAveragePUE($data);
+
+      // print_r($data);
+      echo $avg;
    }
 }

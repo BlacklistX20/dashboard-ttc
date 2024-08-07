@@ -16,7 +16,7 @@ class TabelModel extends CI_Model
 
       return $electric->order_by('tgl', 'DESC')->limit(20)->get($table);
    }
-   
+
    public function getSuhu($table)
    {
       return $this->db->get($table)->last_row('array');
@@ -43,48 +43,139 @@ class TabelModel extends CI_Model
       return $fuel->get($table)->last_row('array');
    }
 
-   public function getDataForPue($where, $table)
-   {
-      $pue = $this->load->database('pue', TRUE);
+   // public function getPueWeekly($startdate, $enddate)
+   // {
+   //    $electric = $this->load->database('electric', TRUE);
+      
+   //    $first = date("Y-m-d", $startdate);
+   //    $last = date("Y-m-d", $enddate);
+   //    $pueWeek = "
+   //    SELECT
+   //        DATE(tgl) AS date,
+   //        TIME(tgl) AS time,
+   //        pue
+   //    FROM
+   //        pue
+   //    WHERE
+   //        DATE(tgl) BETWEEN '$first' AND '$last' ";
+   //    return $electric->query($pueWeek);
+   //    // return $electric->last_query();
+   // }
 
-      $pue->select('tgl, lvmdp, recti, ups');
-      $pue->where('tgl', $where);
-      return $pue->get($table)->row_array();
+   public function getPue()
+   {
+      $electric = $this->load->database('electric', TRUE);
+
+      return $electric->get('pue');
    }
 
-   public function getPue($table)
+   public function getPueByDate($start, $end)
    {
-      $pue = $this->load->database('pue', TRUE);
+      $electric = $this->load->database('electric', TRUE);
 
-      return $pue->get($table);
+      $startDate = "'$start'";
+      $endDate = "'$end'";
+      $pueByDate = "
+      SELECT
+          DATE(tgl) AS date,
+          TIME(tgl) AS time,
+          pue
+      FROM
+          pue
+      WHERE
+          DATE(tgl) BETWEEN $startDate AND $endDate ";
+      return $electric->query($pueByDate);
+      // return $electric->last_query();
    }
 
-   public function getPueById($where, $table)
-   {
-      $pue = $this->load->database('pue', TRUE);
+   // public function getPueWeekly($table)
+   // {
+   //    $pue = $this->load->database('pue', TRUE);
 
-      return $pue->get_where($table, $where)->row_array();
-   }
-
-   public function getPueWeekly($table)
-   {
-      $pue = $this->load->database('pue', TRUE);
-
-      return $pue->order_by('tgl', 'DESC')->limit(7)->get($table);
-   }
+   //    return $pue->order_by('tgl', 'DESC')->limit(7)->get($table);
+   // }
 
    public function getPueAvg()
    {
-      $pue = $this->load->database('pue', TRUE);
+      $electric = $this->load->database('electric', TRUE);
 
-      return $pue->select_avg('average')->get('pue');
+      return $electric->select_avg('pue')->get('pue');
    }
 
    public function getPueMinMax($order)
    {
-      $pue = $this->load->database('pue', TRUE);
+      $electric = $this->load->database('electric', TRUE);
 
-      return $pue->order_by('average', $order)->limit(1)->get('pue');
+      return $electric->order_by('pue', $order)->limit(1)->get('pue');
+   }
+
+   public function getPueMorning()
+   {
+      $electric = $this->load->database('electric', TRUE);
+      $pagi = "
+      SELECT
+          DATE(tgl) AS date,
+          pue
+      FROM
+          pue AS t1
+      WHERE
+          TIME(tgl) BETWEEN '07:00:00' AND '08:00:00'
+          AND t1.id = (
+              SELECT MIN(t2.id)
+              FROM pue AS t2
+              WHERE DATE(t2.tgl) = DATE(t1.tgl)
+                AND TIME(t2.tgl) BETWEEN '07:00:00' AND '08:00:00'
+          )
+          ORDER BY t1.id DESC
+          LIMIT 7";
+
+      return $electric->query($pagi);
+   }
+
+   public function getPueNoon()
+   {
+      $electric = $this->load->database('electric', TRUE);
+      $noon = "
+      SELECT
+          DATE(tgl) AS date,
+          pue
+      FROM
+          pue AS t1
+      WHERE
+          TIME(tgl) BETWEEN '14:00:00' AND '15:00:00'
+          AND t1.id = (
+              SELECT MIN(t2.id)
+              FROM pue AS t2
+              WHERE DATE(t2.tgl) = DATE(t1.tgl)
+                AND TIME(t2.tgl) BETWEEN '14:00:00' AND '15:00:00'
+          )
+          ORDER BY t1.id DESC
+          LIMIT 7";
+
+      return $electric->query($noon);
+   }
+
+   public function getPueNight()
+   {
+      $electric = $this->load->database('electric', TRUE);
+      $night = "
+      SELECT
+          DATE(tgl) AS date,
+          pue
+      FROM
+          pue AS t1
+      WHERE
+          TIME(tgl) BETWEEN '20:00:00' AND '21:00:00'
+          AND t1.id = (
+              SELECT MIN(t2.id)
+              FROM pue AS t2
+              WHERE DATE(t2.tgl) = DATE(t1.tgl)
+                AND TIME(t2.tgl) BETWEEN '20:00:00' AND '21:00:00'
+          )
+          ORDER BY t1.id DESC
+          LIMIT 7";
+
+      return $electric->query($night);
    }
 
    public function getLayout($table)
@@ -155,5 +246,5 @@ class TabelModel extends CI_Model
       $potency = $this->load->database('potensi', TRUE);
 
       $potency->delete($table, array('id' => $id));
-  }
+   }
 }

@@ -16,7 +16,11 @@ class Pages extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('index');
+		$data['avg'] = $this->TabelModel->getPueAvg()->result('array');
+		$data['min'] = $this->TabelModel->getPueMinMax('ASC')->result('array');
+		$data['max'] = $this->TabelModel->getPueMinMax('DESC')->result('array');
+
+		$this->load->view('index', $data);
 	}
 
 	public function temp()
@@ -51,15 +55,15 @@ class Pages extends CI_Controller {
 
 	public function pue()
 	{
-		$data['pagi'] = $this->TabelModel->getPue('pagi')->result();
-		$data['siang'] = $this->TabelModel->getPue('siang')->result();
-		$data['malam'] = $this->TabelModel->getPue('malam')->result();
+		$data['morning'] = $this->TabelModel->getPueMorning()->result_array();
+      $data['noon'] = $this->TabelModel->getPueNoon()->result_array();
+      $data['night'] = $this->TabelModel->getPueNight()->result_array();
 		$data['avg'] = $this->TabelModel->getPueAvg()->result('array');
 		$data['min'] = $this->TabelModel->getPueMinMax('ASC')->result('array');
 		$data['max'] = $this->TabelModel->getPueMinMax('DESC')->result('array');
 
-		// print_r($data);
-		$this->load->view('pue', $data);
+		print_r($data);
+		// $this->load->view('pue', $data);
 	}
 
 }

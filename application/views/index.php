@@ -6,119 +6,73 @@
       <h2>TTC Sudiang Makassar</h2>
    </div>
    <div>
-      <div class="flexBox">
-         <div class="card box-33 p-0">
-            <div class="card-header">
-               <h4 class="card-title fw-bold">PUE (Power Usage Effectiveness)</h4>
-            </div>
-            <div class="card-body py-0">
-               <div class="row">
-                  <div class="col d-flex justify-content-center align-items-center" style="height: 10em;">
-                     <p class="display-1 fw-bold" id="pue" style="font-size: 8em;"></p>
-                  </div>
-                  <div class="col d-flex justify-content-center align-items-center">
-                     <table class="" style="width: 100%;">
-                        <colgroup>
-                           <col style="width: 45%;">
-                           <col style="width: 10%;">
-                           <col style="width: 45%;">
-                        </colgroup>
-                        <tbody>
-                           <tr style="height: 3em;">
-                              <td><h4>LVMDP</h4></td>
-                              <td><h4>:</h4></td>
-                              <td><h4><span id="lvmdp"></span> KW</h4></td>
-                           </tr>
-                           <tr style="height: 3em;">
-                              <td><h4>Recti</h4></td>
-                              <td><h4>:</h4></td>
-                              <td><h4><span id="recti"></span> KW</h4></td>
-                           </tr>
-                           <tr style="height: 3em;">
-                              <td><h4>UPS</h4></td>
-                              <td><h4>:</h4></td>
-                              <td><h4><span id="ups"></span> KW</h4></td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
+      <div class="row my-5">
+         <div class="col-lg-3">
+            <div class="card">
+               <div class="card-header text-center">
+                  <h3 class="card-title fw-bold">PUE <span id="weekDay"></span></h3>
+               </div>
+               <div class="card-body text-center">
+                  <h2 class="display-1 fw-bold"><span id="pueWeekly">0</span></h2>
                </div>
             </div>
-            <div class="card-footer">
-               <h4><span id="month"></span> <span id="year"></span></h4>
+         </div>
+         <div class="col-lg-3">
+            <div class="card">
+               <div class="card-header text-center">
+                  <h3 class="card-title fw-bold">PUE Minimum</h3>
+               </div>
+               <div class="card-body text-center">
+                  <h2 class="display-1 fw-bold"><span id="pueMin">0</span></h2>
+               </div>
             </div>
          </div>
-         <!-- <div class="box-33 border">
-            <table class="table table-borderless">
-               <colgroup>
-                  <col style="width: 45%;">
-                  <col style="width: 10%;">
-                  <col style="width: 45%;">
-               </colgroup>
-               <tbody>
-                  <tr>
-                     <td>
-                        <h3 class="fw-bold">PUE</h3>
-                     </td>
-                     <td><h3 class="fw-bold">:</h3></td>
-                     <td>
-                        <h3 id="pue" class="fw-bold"></h3>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <h5>Load LVMDP</h5>
-                     </td>
-                     <td>
-                        <h5>:</h5>
-                     </td>
-                     <td><h5><span id="lvmdp"></span> kW</h5></td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <h5>Load Rectifier</h5>
-                     </td>
-                     <td><h5>:</h5></td>
-                     <td>
-                        <h5><span id="recti"></span> kW</h5>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <h5>Load UPS</h5>
-                     </td>
-                     <td><h5>:</h5></td>
-                     <td>
-                        <h5><span id="ups"></span> kW</h5>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </div> -->
-         <div class="box-66 border">
-            <canvas id="pueChart"></canvas>
+         <div class="col-lg-3">
+            <div class="card">
+               <div class="card-header text-center">
+                  <h3 class="card-title fw-bold">PUE Average</h3>
+               </div>
+               <div class="card-body text-center">
+                  <h2 class="display-1 fw-bold"><span id="pueAvg">0</span></h2>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-3">
+            <div class="card">
+               <div class="card-header text-center">
+                  <h3 class="card-title fw-bold">PUE Maximum</h3>
+               </div>
+               <div class="card-body text-center">
+                  <h2 class="display-1 fw-bold"><span id="pueMax">0</span></h2>
+               </div>
+            </div>
          </div>
       </div>
-      <div class="flexBox">
-         <div class="box-33 border" style="height: 25vh;">
-            <canvas id="lvmdpChart"></canvas>
-         </div>
-         <div class="box-33 border" style="height: 25vh;">
-            <canvas id="rectiChart"></canvas>
-         </div>
-         <div class="box-33 border" style="height: 25vh;">
-            <canvas id="upsChart"></canvas>
+      <div class="row mb-4">
+         <div class="col">
+            <canvas id="pueMonth" style="height: 20vh;"></canvas>
          </div>
       </div>
-      <div class="flexBox">
-         <div class="box-33 border" style="height: 25vh;">
-            <canvas id="dailyFuelChart"></canvas>
+      <div class="row mb-4">
+         <div class="col-lg-4">
+            <canvas id="pueMorning" style="height: 20vh;"></canvas>
          </div>
-         <div class="box-33 border" style="height: 25vh;">
-            <canvas id="monthlyFuelChart"></canvas>
+         <div class="col-lg-4">
+            <canvas id="pueNoon" style="height: 20vh;"></canvas>
          </div>
-         <div class="box-33 border" style="height: 25vh;">
-            <canvas id="dcTempChart"></canvas>
+         <div class="col-lg-4">
+            <canvas id="pueNight" style="height: 20vh;"></canvas>
+         </div>
+      </div>
+      <div class="row mb-4">
+         <div class="col-lg-4">
+            <canvas id="dailyFuelChart" style="height: 20vh;"></canvas>
+         </div>
+         <div class="col-lg-4">
+            <canvas id="monthlyFuelChart" style="height: 20vh;"></canvas>
+         </div>
+         <div class="col-lg-4">
+            <canvas id="dcTempChart" style="height: 20vh;"></canvas>
          </div>
       </div>
    </div>

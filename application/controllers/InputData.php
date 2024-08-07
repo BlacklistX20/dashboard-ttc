@@ -17,52 +17,6 @@ class InputData extends CI_Controller
       $this->load->model('TabelModel');
    }
 
-   public function test()
-   {
-      // $date = date_create("2024-04-04");
-      // $tgl = date_format($date, "Y-m-d");;
-      // function getIdByDate($array, $date)
-      // {
-      //    foreach ($array as $day) {
-      //       if ($day['tgl'] === $date) {
-      //          return $day['id']; // Return the id if date is found
-      //       }
-      //    }
-      //    return null; // Return null if date is not found
-      // }
-      // function calculateAndAdd(&$data, $pagi, $siang, $malam)
-      // {
-      //    // Check if pagi, siang, and malam are not null
-      //    if (isset($data['pagi']) && isset($data['siang']) && isset($data['malam'])) {
-      //       // Calculate the average
-      //       $average = ($data['pagi'] + $data['siang'] + $data['malam']) / 3;
-      //       $lvmdp = ($pagi['lvmdp'] + $siang['lvmdp'] + $malam['lvmdp']) / 3;
-      //       $recti = ($pagi['recti'] + $siang['recti'] + $malam['recti']) / 3;
-      //       $ups = ($pagi['ups'] + $siang['ups'] + $malam['ups']) / 3;
-
-      //       // Update the 'average' key in the array
-      //       $data['lvmdp'] = $lvmdp;
-      //       $data['recti'] = $recti;
-      //       $data['ups'] = $ups;
-      //       $data['average'] = $average;
-      //    }
-      // }
-      // $tablePue = $this->TabelModel->getPue('pue')->result_array();
-      // $idByDate = getIdByDate($tablePue, $tgl);
-
-      // $tablePueByID = $this->TabelModel->getPueById("id = $idByDate", 'pue');
-      // $pagi = $this->TabelModel->getDataForPue($tgl, 'pagi');
-      // $siang = $this->TabelModel->getDataForPue($tgl, 'siang');
-      // $malam = $this->TabelModel->getDataForPue($tgl, 'malam');
-
-      // calculateAndAdd($tablePueByID, $pagi, $siang, $malam);
-
-      $pue = $this->TabelModel->getPue('pue')->result_array();
-
-      print_r($pue);
-      // echo $tablePueByID['tgl'];
-   }
-
    public function pue()
    {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -167,7 +121,8 @@ class InputData extends CI_Controller
             $this->TabelModel->editPueById($idByDate, $dataPue2);
          } else {
             $this->TabelModel->inputPue($dataPue1, 'pue');
-         };
+         }
+         ;
 
          $tablePueByID = $this->TabelModel->getPueById("id = $idByDate", 'pue');
          $pagi = $this->TabelModel->getDataForPue($tgl, 'pagi');
@@ -182,7 +137,7 @@ class InputData extends CI_Controller
             $rectiAvg = ($pagi['recti'] + $siang['recti'] + $malam['recti']) / 3;
             $upsAvg = ($pagi['ups'] + $siang['ups'] + $malam['ups']) / 3;
 
-            $dataPue3 = array (
+            $dataPue3 = array(
                'lvmdp' => $lvmdpAvg,
                'recti' => $rectiAvg,
                'ups' => $upsAvg,
@@ -195,7 +150,7 @@ class InputData extends CI_Controller
             redirect('pages/pue');
          }
 
-         
+
       }
    }
 

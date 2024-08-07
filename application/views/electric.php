@@ -25,6 +25,12 @@
 <!-- Custom JS -->
 <script type="module" src="<?= base_url(); ?>asset/js/scriptElec.js"></script>
 
+<script>
+  $('.btnNotWorking').click(function () {
+    $('#notWorking').modal('show');
+  });
+</script>
+
 </body>
 
 </html>

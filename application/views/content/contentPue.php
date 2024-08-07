@@ -22,7 +22,8 @@
             <h4 class="card-title fw-bold">Minimum</h4>
          </div>
          <div class="card-body">
-            <h6 class="display-1 fw-bold"><?= $min[0]['average']; ?></h6>
+            <h6 class="display-1 fw-bold"><?= $min[0]['pue']; ?></h6>
+            <!--  -->
          </div>
       </div>
    </div>
@@ -32,7 +33,8 @@
             <h4 class="card-title fw-bold">Average</h4>
          </div>
          <div class="card-body">
-            <h6 class="display-1 fw-bold"><?= round($avg[0]['average'], 2); ?></h6>
+            <h6 class="display-1 fw-bold"><?= round($avg[0]['pue'], 2); ?></h6>
+            <!--  -->
          </div>
       </div>
    </div>
@@ -42,7 +44,7 @@
             <h4 class="card-title fw-bold">Maximum</h4>
          </div>
          <div class="card-body">
-            <h6 class="display-1 fw-bold"><?= $max[0]['average']; ?></h6>
+            <h6 class="display-1 fw-bold"><?= $max[0]['pue']; ?></h6>
          </div>
       </div>
    </div>

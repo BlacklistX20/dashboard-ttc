@@ -8,6 +8,9 @@
   <!-- Tab 3 -->
   <input type="radio" name="tabset" id="tab3" aria-controls="ups">
   <label for="tab3">UPS</label>
+  <!-- Tab 4 -->
+  <input type="radio" name="tabset" id="tab4" aria-controls="download">
+  <label for="tab4">Download</label>
 
   <div class="tab-panels">
     <section id="utama" class="tab-panel">
@@ -733,6 +736,39 @@
         </div>
       </div>
     </section>
+    <section id="download" class="tab-panel">
+      <form action="<?= base_url() ?>getdata/export_excel" method="post" class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col">
+            <label for="validationCustom01" class="form-label">Enter Start Date:</label>
+            <input type="date" id="validationCustom01" name="datemin" min="2024-07-09" class="form-control" required>
+          </div>
+          <div class="col">
+            <label for="validationCustom02" class="form-label">Enter End Date:</label>
+            <input type="date" id="validationCustom02" name="datemax" class="form-control" required>
+          </div>
+        </div>
+        <input class="btn btn-success mt-4" type="submit" value="Download">
+        <!-- <button type="button" class="btn btn-success btnNotWorking mt-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Download data PUE">Download</button> -->
+      </form>
+    </section>
   </div>
+
+  <!-- <div class="modal fade" id="notWorking" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="notWorking">Selamat Anda Kena Prank</h5>
+        </div>
+        <div class="modal-body">
+          <p>Tombol ini belum berfungsi</p>
+          <i class='bx bx-wink-tongue bx-lg'></i>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Kembali</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
 
 </div>

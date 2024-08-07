@@ -50,10 +50,10 @@ class Upload extends CI_Controller
     public function lt2()
     {
         $config['upload_path']   = './asset/layout/';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg    |jpeg';
         $config['max_size']      = 2048;
         $config['overwrite']     = true;
-        $config['file_name']     = 'layout_lt2'; // Set the file name here
+        $config['file_name']     = 'layout_lt2.jpg'; // Set the file name here
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -78,10 +78,10 @@ class Upload extends CI_Controller
     public function lt3()
     {
         $config['upload_path']   = './asset/layout/';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg    ';
         $config['max_size']      = 2048;
         $config['overwrite']     = true;
-        $config['file_name']     = 'layout_lt3'; // Set the file name here
+        $config['file_name']     = 'layout_lt3.jpg'; // Set the file name here
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -106,10 +106,10 @@ class Upload extends CI_Controller
     public function lt4()
     {
         $config['upload_path']   = './asset/layout/';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg    ';
         $config['max_size']      = 2048;
         $config['overwrite']     = true;
-        $config['file_name']     = 'layout_lt4'; // Set the file name here
+        $config['file_name']     = 'layout_lt4.jpg'; // Set the file name here
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -134,10 +134,10 @@ class Upload extends CI_Controller
     public function lt5()
     {
         $config['upload_path']   = './asset/layout/';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg    ';
         $config['max_size']      = 2048;
         $config['overwrite']     = true;
-        $config['file_name']     = 'layout_lt5'; // Set the file name here
+        $config['file_name']     = 'layout_lt5.jpg'; // Set the file name here
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
