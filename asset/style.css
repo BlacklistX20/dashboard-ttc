@@ -1,3 +1,10 @@
+.chart-box {
+  position: relative;
+  margin: auto;
+  height: 40vh;
+  width: 40vw;
+}
+
 .flexBox {
   display: flex;
   flex-direction: row;

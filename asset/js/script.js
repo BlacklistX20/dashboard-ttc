@@ -42,6 +42,16 @@ function formatDateTime(data) {
 	});
 }
 
+function changeColor(a, b) {
+	if (a > 18) {
+		$("#" + b).removeClass("text-bg-danger");
+		$("#" + b).addClass("text-bg-success");
+	} else {
+		$("#" + b).removeClass("text-bg-success");
+		$("#" + b).addClass("text-bg-danger");
+	}
+}
+
 async function setPue() {
 	var pue = await $.ajax({
 		url: baseUrl + "getdata/main",
@@ -64,7 +74,17 @@ async function setPue() {
 	$("#pueMin").text(pue.min[0].pue);
 	$("#pueAvg").text(parseFloat(pue.avg[0].pue).toFixed(2));
 	$("#pueMax").text(pue.max[0].pue);
-	// console.log(startDate + " sampai " + endDate);
+	$("#pueRealTime").text(pue.pue[0].loads);
+	$("#lvmdp").text(pue.lvmdp[0].loads);
+	$("#recti").text(pue.recti[0].loads);
+	$("#ups").text(pue.ups[0].loads);
+
+	let temp = pue.temp4.temp;
+	changeColor(temp, "cardFloor4");
+	$("#tempFloor4").text(pue.temp4.temp);
+	$("#humFloor4").text(pue.temp4.hum);
+	$("#dateFloor4").text(pue.temp4.tgl);
+	// console.log();
 }
 
 async function setPueChart() {
@@ -83,7 +103,7 @@ async function setPueChart() {
 	const dataNight = splitArrayData(pue.night, "pue").reverse();
 	const dataPueWeek = splitArrayData(pue.pueWeek, "pue");
 
-	console.log(dataPueWeek);
+	// console.log(dataPueWeek);
 
 	var pueMonth = document.getElementById("pueMonth");
 	var pueMonthChart = new Chart(pueMonth, {
@@ -223,6 +243,79 @@ async function setPueChart() {
 
 setInterval(setPue, 1000);
 setPueChart();
+
+var occupancy = document.getElementById("occupancy");
+var myDoughnutChart = new Chart(occupancy, {
+	type: "doughnut",
+	data: {
+		labels: ["PLN", "Trafo", "Genset"],
+		datasets: [
+			{
+				label: "Occupancy",
+				data: [50, 25, 25],
+			},
+		],
+	},
+	plugins: [ChartDataLabels],
+	options: {
+		maintainAspectRatio: false,
+		responsive: true,
+		layout: {
+			padding: 5,
+		},
+		cutout: "40%",
+		radius: "80%",
+		plugins: {
+			legend: {
+				position: "top",
+				labels: {
+					font: {
+						size: 20,
+					},
+				},
+			},
+			title: {
+				display: true,
+				text: "Occupancy",
+				font: {
+					size: 25,
+				},
+			},
+			datalabels: {
+				formatter: (value) => {
+					return value + "%";
+				},
+				color: 'black',
+			},
+		},
+	},
+});
+
+async function updateDataChart() {
+	var data = await $.ajax({
+		url: baseUrl + "getdata/main",
+		dataType: "json",
+	});
+
+	let lvmdp = parseFloat(data.lvmdp[0].loads);
+	let genset = ((lvmdp / 2500) * 100).toFixed(2);
+	let trafo = ((lvmdp / 2000) * 100).toFixed(2);
+	let pln = ((lvmdp / 1385) * 100).toFixed(2);
+
+	myDoughnutChart.data.datasets[0].data.shift();
+	myDoughnutChart.data.datasets[0].data.push(pln);
+	myDoughnutChart.data.datasets[0].data.shift();
+	myDoughnutChart.data.datasets[0].data.push(trafo);
+	myDoughnutChart.data.datasets[0].data.shift();
+	myDoughnutChart.data.datasets[0].data.push(genset);
+
+	myDoughnutChart.update("none");
+
+	// console.log(myDoughnutChart.data.datasets[0].data);
+}
+
+setInterval(updateDataChart, 1000);
+// updateDataChart();
 
 var dailyFuel = document.getElementById("dailyFuelChart");
 var myBarChart = new Chart(dailyFuel, {

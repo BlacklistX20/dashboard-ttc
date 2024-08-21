@@ -62,11 +62,18 @@ class TabelModel extends CI_Model
    //    // return $electric->last_query();
    // }
 
-   public function getPue()
+   public function getDataElectric($table)
    {
       $electric = $this->load->database('electric', TRUE);
 
-      return $electric->limit(50)->get('pue');
+      return $electric->order_by('id', 'desc')->limit(50)->get($table);
+   }
+
+   public function getUpdatedDataElectric($table)
+   {
+      $electric = $this->load->database('electric', TRUE);
+
+      return $electric->get($table)->last_row('array');
    }
 
    public function getPueByDate($start, $end)
@@ -176,6 +183,18 @@ class TabelModel extends CI_Model
           LIMIT 7";
 
       return $electric->query($night);
+   }
+
+   public function getElectricData($id)
+   {
+      $pue = $this->load->database('pue', TRUE);
+      return $pue->get_where('real_time', "id = $id");
+   }
+
+   public function getTempData($table)
+   {
+      $temp = $this->load->database('temp', TRUE);
+      return $temp->get_where($table, "id = 1");
    }
 
    public function getLayout($table)

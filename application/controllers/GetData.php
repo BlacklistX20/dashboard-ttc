@@ -26,6 +26,10 @@ class GetData extends CI_Controller
       $data['avg'] = $this->TabelModel->getPueAvg()->result('array');
       $data['min'] = $this->TabelModel->getPueMinMax('ASC')->result('array');
       $data['max'] = $this->TabelModel->getPueMinMax('DESC')->result('array');
+      $data['pue'] = $this->TabelModel->getElectricData('1')->result('array');
+      $data['lvmdp'] = $this->TabelModel->getElectricData('2')->result('array');
+      $data['recti'] = $this->TabelModel->getElectricData('4')->result('array');
+      $data['ups'] = $this->TabelModel->getElectricData('5')->result('array');
 
       $today = strtotime("today");
       $startdate = strtotime("-1 weeks", $today);
@@ -58,7 +62,31 @@ class GetData extends CI_Controller
          'pue' => round(calculateAveragePUE($pueWeek))
       ];
 
-      // print_r($test);
+      function avg(...$numbers)
+      {
+         $sum = 0;
+         foreach ($numbers as $n) {
+            $sum += $n;
+         }
+         $avg = $sum / count($numbers);
+         return round($avg,2);
+      }
+
+      $batt4 = $this->TabelModel->getTempData('battery4')->result('array');
+      $recti4 = $this->TabelModel->getTempData('recti4')->result('array');
+      $bss = $this->TabelModel->getTempData('bss')->result('array');
+      $inter = $this->TabelModel->getTempData('inter')->result('array');
+      $trans = $this->TabelModel->getTempData('trans')->result('array');
+      $lt4Temp = avg($batt4[0]['t_avg'], $recti4[0]['t_avg'], $bss[0]['t_avg'], $inter[0]['t_avg'], $trans[0]['t_avg']);
+      $lt4Hum = avg($batt4[0]['h_avg'], $recti4[0]['h_avg'], $bss[0]['h_avg'], $inter[0]['h_avg'], $trans[0]['h_avg']);
+      $data['temp4'] = [
+         'tgl' => $batt4[0]['updated_at'],
+         'temp' => $lt4Temp,
+         'hum' => $lt4Hum
+      ];
+
+      // print_r();
+      // echo $lt4;
       echo json_encode($data);
    }
 
@@ -273,7 +301,31 @@ class GetData extends CI_Controller
 
    public function pueChart()
    {
-      $data = $this->TabelModel->getPue()->result_array();
+      $data['pue'] = $this->TabelModel->getDataElectric('pue')->result_array();
+      $data['lvmdp'] = $this->TabelModel->getDataElectric('lvmdp')->result_array();
+      $data['it'] = $this->TabelModel->getDataElectric('it')->result_array();
+      $data['recti'] = $this->TabelModel->getDataElectric('recti')->result_array();
+      $data['ups'] = $this->TabelModel->getDataElectric('ups')->result_array();
+      $data['p205'] = $this->TabelModel->getDataElectric('p205')->result_array();
+      $data['p236'] = $this->TabelModel->getDataElectric('p236')->result_array();
+      $data['p305'] = $this->TabelModel->getDataElectric('p305')->result_array();
+      $data['p310'] = $this->TabelModel->getDataElectric('p310')->result_array();
+      $data['p429'] = $this->TabelModel->getDataElectric('p429')->result_array();
+      $data['ups202'] = $this->TabelModel->getDataElectric('ups202')->result_array();
+      $data['ups203'] = $this->TabelModel->getDataElectric('ups203')->result_array();
+      $data['ups301'] = $this->TabelModel->getDataElectric('ups301')->result_array();
+      $data['ups302'] = $this->TabelModel->getDataElectric('ups302')->result_array();
+      $data['ups501'] = $this->TabelModel->getDataElectric('ups501')->result_array();
+      $data['ups502'] = $this->TabelModel->getDataElectric('ups502')->result_array();
+
+      echo json_encode($data);
+   }
+
+   public function pueChartUpdate()
+   {
+      $data['pue'] = $this->TabelModel->getUpdatedDataElectric('pue');
+      $data['lvmdp'] = $this->TabelModel->getUpdatedDataElectric('lvmdp');
+      $data['it'] = $this->TabelModel->getUpdatedDataElectric('it');
 
       echo json_encode($data);
    }
