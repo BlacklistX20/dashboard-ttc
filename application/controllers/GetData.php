@@ -36,31 +36,7 @@ class GetData extends CI_Controller
       $enddate = strtotime("yesterday");
       $first = date("Y-m-d", $startdate);
       $last = date("Y-m-d", $enddate);
-
-      $pueWeek = $this->TabelModel->getPueByDate($first, $last)->result_array();
-
-      function calculateAveragePUE($data) {
-         $totalPUE = 0;
-         $count = count($data);
-     
-         foreach ($data as $entry) {
-             $totalPUE += $entry['pue'];
-         }
-     
-         if ($count == 0) {
-             return 0; // To avoid division by zero
-         }
-     
-         $averagePUE = $totalPUE / $count;
-     
-         return $averagePUE;
-     }
-
-     $data['avgPueWeekly'] = [
-         'startDate' => $first,
-         'endDate' => $last,
-         'pue' => round(calculateAveragePUE($pueWeek))
-      ];
+      $data['avgPueWeekly'] = $this->TabelModel->getAvgPueWeekly($first, $last)->result('array');
 
       function avg(...$numbers)
       {
@@ -69,7 +45,7 @@ class GetData extends CI_Controller
             $sum += $n;
          }
          $avg = $sum / count($numbers);
-         return round($avg,2);
+         return round($avg, 2);
       }
 
       $batt4 = $this->TabelModel->getTempData('battery4')->result('array');

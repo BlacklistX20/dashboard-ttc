@@ -70,7 +70,7 @@ async function setPue() {
 	});
 
 	$("#weekDay").text(startDate + " sampai " + endDate);
-	$("#pueWeekly").text(pue.avgPueWeekly.pue);
+	$("#pueWeekly").text(parseFloat(pue.avgPueWeekly[0].average).toFixed(2));
 	$("#pueMin").text(pue.min[0].pue);
 	$("#pueAvg").text(parseFloat(pue.avg[0].pue).toFixed(2));
 	$("#pueMax").text(pue.max[0].pue);
@@ -125,8 +125,8 @@ async function setPueChart() {
 			responsive: true,
 			scales: {
 				y: {
-					min: 1.2,
-					max: 2.2,
+					suggestedMin: 1.4,
+					suggestedMax: 2.4,
 					ticks: {
 						font: {
 							size: 12,

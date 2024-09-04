@@ -76,6 +76,23 @@ class TabelModel extends CI_Model
       return $electric->get($table)->last_row('array');
    }
 
+   public function getAvgPueWeekly($start, $end)
+   {
+      $electric = $this->load->database('electric', TRUE);
+
+      $startDate = "'$start'";
+      $endDate = "'$end'";
+      $pueByDate = "
+      SELECT
+          AVG(pue) as average
+      FROM
+          pue
+      WHERE
+          DATE(tgl) BETWEEN $startDate AND $endDate ";
+      return $electric->query($pueByDate);
+      // return $electric->last_query();
+   }
+
    public function getPueByDate($start, $end)
    {
       $electric = $this->load->database('electric', TRUE);
