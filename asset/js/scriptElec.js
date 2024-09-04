@@ -11,7 +11,6 @@ import {
 } from "./module/recti.js";
 import { setPanelIo2, setPanelIo3, setPanelIo5, setUps } from "./module/ups.js";
 
-// let pue;
 function formatTimestamps(data) {
 	return data.map((entry) => {
 		// Extract the time portion from the 'tgl' property

@@ -334,32 +334,56 @@ class GetData extends CI_Controller
    {
       $start = $this->input->post("datemin");
       $end = $this->input->post("datemax");
+      $table = $this->input->post("table");
 
       /* Data */
-      $data = $this->TabelModel->getPueByDate($start, $end)->result_array();
+      $d = $this->TabelModel->getDataByDate($start, $end, $table)->result_array();
 
       /* Spreadsheet Init */
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
 
-      /* Excel Header */
-      $sheet->setCellValue('A1', 'Tanggal');
-      $sheet->setCellValue('B1', 'Waktu');
-      $sheet->setCellValue('C1', 'PUE');
+      if ($table = "pue") {
+         /* Excel Header */
+         $sheet->setCellValue('A1', 'Tanggal');
+         $sheet->setCellValue('B1', 'Waktu');
+         $sheet->setCellValue('C1', 'PUE');
 
-      /* Excel Data */
-      $row_number = 2;
-      foreach ($data as $row) {
-         $sheet->setCellValue('A' . $row_number, $row['date']);
-         $sheet->setCellValue('B' . $row_number, $row['time']);
-         $sheet->setCellValue('C' . $row_number, $row['pue']);
+         /* Excel Data */
+         $row_number = 2;
+         foreach ($d as $row) {
+            $sheet->setCellValue('A' . $row_number, $row['date']);
+            $sheet->setCellValue('B' . $row_number, $row['time']);
+            $sheet->setCellValue('C' . $row_number, $row['pue']);
 
-         $row_number++;
+            $row_number++;
+         }
+      } else {
+         /* Excel Header */
+         $sheet->setCellValue('A1', 'Tanggal');
+         $sheet->setCellValue('B1', 'Waktu');
+         $sheet->setCellValue('C1', 'Loads');
+         $sheet->setCellValue('D1', 'Voltage');
+         $sheet->setCellValue('E1', 'Current');
+         $sheet->setCellValue('F1', 'Frequency');
+
+         /* Excel Data */
+         $row_number = 2;
+         foreach ($d as $row) {
+            $sheet->setCellValue('A' . $row_number, $row['date']);
+            $sheet->setCellValue('B' . $row_number, $row['time']);
+            $sheet->setCellValue('C' . $row_number, $row['loads']);
+            $sheet->setCellValue('D' . $row_number, $row['voltage']);
+            $sheet->setCellValue('E' . $row_number, $row['current']);
+            $sheet->setCellValue('F' . $row_number, $row['frequency']);
+
+            $row_number++;
+         }
       }
 
       /* Excel File Format */
       $writer = new Xlsx($spreadsheet);
-      $filename = 'PueWeekly_' . date('Ymd_His');
+      $filename = $table . '_' . date('Ymd_His');
 
       header('Content-Type: application/vnd.ms-excel');
       header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
