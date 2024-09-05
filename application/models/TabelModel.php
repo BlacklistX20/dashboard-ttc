@@ -62,11 +62,11 @@ class TabelModel extends CI_Model
    //    // return $electric->last_query();
    // }
 
-   public function getDataElectric($table)
+   public function getDataElectric($table, $limit)
    {
       $electric = $this->load->database('electric', TRUE);
 
-      return $electric->order_by('id', 'desc')->limit(50)->get($table);
+      return $electric->order_by('id', 'desc')->limit($limit)->get($table);
    }
 
    public function getUpdatedDataElectric($table)

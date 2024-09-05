@@ -34,17 +34,235 @@ $(document).ready(function () {
 	$("#date").text(namaHari + ", " + tgl);
 }, startTime());
 
+const label = ["00:00","00:00","00:00","00:00","00:00","00:00","00:00","00:00","00:00","00:00","00:00","00:00"];
+const data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const pueConfig = {
+	maintainAspectRatio: false,
+	responsive: true,
+	scales: {
+		y: {
+			min: 1.5,
+			suggestedMax: 1.9,
+			ticks: {
+				font: {
+					size: 12,
+				},
+			},
+		},
+		x: {
+			ticks: {
+				font: {
+					size: 10,
+				},
+			},
+		},
+	},
+	plugins: {
+		legend: {
+			display: false,
+		},
+		title: {
+			display: true,
+			padding: 3,
+			text: "PUE (1 Jam)",
+			font: {
+				size: 18,
+			},
+		},
+	},
+};
+const config = {
+	maintainAspectRatio: false,
+	responsive: true,
+	scales: {
+		y: {	
+			ticks: {
+				callback: function (value, index, ticks) {
+					return value + " kVA";
+				},
+				font: {
+					size: 12,
+				},
+			},
+		},
+		x: {
+			ticks: {
+				font: {
+					size: 10,
+				},
+			},
+		},
+	},
+	plugins: {
+		legend: {
+			display: false,
+		},
+		title: {
+			display: true,
+			padding: 3,
+			font: {
+				size: 18,
+			},
+		},
+	},
+};
+
 var pueElectric = document.getElementById("pueElectric");
+var pueChart = new Chart(pueElectric, {
+	type: "line",
+	data: {
+		labels: label,
+		datasets: [
+			{
+				borderColor: "rgba(245, 37, 37, 1)",
+				data: data,
+			}
+		],
+	},
+	options: pueConfig,
+});
+
 var lvmdpElectric = document.getElementById("lvmdpElectric");
+var lvmdpChart = new Chart(lvmdpElectric, {
+	type: "line",
+	data: {
+		labels: label,
+		datasets: [
+			{
+				borderColor: "rgba(245, 37, 37, 1)",
+				data: data,
+			},
+		],
+	},
+	options: config,
+});
+
 var itElectric = document.getElementById("itElectric");
+var itChart = new Chart(itElectric, {
+	type: "line",
+	data: {
+		labels: label,
+		datasets: [
+			{
+				borderColor: "rgba(245, 37, 37, 1)",
+				data: data,
+			},
+		],
+	},
+	options: config,
+});
+
 var rectiElectric = document.getElementById("rectiElectric");
+var rectiChart = new Chart(rectiElectric, {
+	type: "line",
+	data: {
+		labels: label,
+		datasets: [
+			{
+				borderColor: "rgba(245, 37, 37, 1)",
+				data: data,
+			},
+		],
+	},
+	options: config,
+});
+
 var panelRecti = document.getElementById("panelRecti");
+var panelRectiChart = new Chart(panelRecti, {
+	type: "line",
+	data: {
+		labels: label,
+		datasets: [
+			{
+				label: "Panel 2.05",
+				borderColor: "rgba(231, 101, 0, 1)",
+				data: data,
+			},
+			{
+				label: "Panel 2.36",
+				borderColor: "rgba(54, 164, 29, 1)",
+				data: data,
+			},
+			{
+				label: "Panel 3.05",
+				borderColor: "rgba(4, 159, 154, 1)",
+				data: data,
+			},
+			// {
+			// 	label: "Panel 3.10",
+			// 	borderColor: "rgba(119, 88, 255, 1)",
+			// 	data: data,
+			// },
+			{
+				label: "Panel 4.29",
+				borderColor: "rgba(27, 145, 255, 1)",
+				data: data,
+			},
+		],
+	},
+	options: config,
+});
+
 var upsElectric = document.getElementById("upsElectric");
+var upsChart = new Chart(upsElectric, {
+	type: "line",
+	data: {
+		labels: label,
+		datasets: [
+			{
+				borderColor: "rgba(245, 37, 37, 1)",
+				data: data,
+			},
+		],
+	},
+	options: config,
+});
+
 var panelUps = document.getElementById("panelUps");
+var panelUpsChart = new Chart(panelUps, {
+	type: "line",
+	data: {
+		labels: label,
+		datasets: [
+			{
+				label: "UPS 2.02",
+				borderColor: "rgba(231, 101, 0, 1)",
+				data: data,
+			},
+			{
+				label: "UPS 2.03",
+				borderColor: "rgba(54, 164, 29, 1)",
+				data: data,
+			},
+			{
+				label: "UPS 3.01",
+				borderColor: "rgba(4, 159, 154, 1)",
+				data: data,
+			},
+			{
+				label: "UPS 3.02",
+				borderColor: "rgba(119, 88, 255, 1)",
+				data: data,
+			},
+			{
+				label: "UPS 5.01",
+				borderColor: "rgba(247, 37, 223, 1)",
+				data: data,
+			},
+			{
+				label: "UPS 5.02",
+				backgroundColor: "rgba(27, 145, 255, 0.5)",
+				borderColor: "rgba(27, 145, 255, 1)",
+				data: data,
+			},
+		],
+	},
+	options: config,
+});
 
 async function setChart() {
 	let data = await $.ajax({
-		url: baseUrl + "getdata/pueChart",
+		url: baseUrl + "getdata/electricChartHour",
 		dataType: "json",
 	});
 
@@ -66,10 +284,13 @@ async function setChart() {
 	const dataP305 = splitLoadData(data.p305).reverse();
 	const dataP310 = splitLoadData(data.p310).reverse();
 	const dataP429 = splitLoadData(data.p429).reverse();
+	const dataPanelRecti = dataP205.concat(dataP236, dataP305, dataP429);
+	const rectiMin = Math.min(...dataPanelRecti);
+	const rectiMax = Math.max(...dataPanelRecti);
 
 	const labelUps = formatTimestamps(data.ups).reverse();
 	const dataUps = splitLoadData(data.ups).reverse();
-	
+
 	const labelPanelUps = formatTimestamps(data.ups202).reverse();
 	const dataUps201 = splitLoadData(data.ups202).reverse();
 	const dataUps202 = splitLoadData(data.ups203).reverse();
@@ -78,405 +299,55 @@ async function setChart() {
 	const dataUps501 = splitLoadData(data.ups501).reverse();
 	const dataUps502 = splitLoadData(data.ups502).reverse();
 
-	// console.log(data.ups201);
+	// console.log(pueChart.options.scales.y);
 
-	var pueChart = new Chart(pueElectric, {
-		type: "line",
-		data: {
-			labels: labelPue,
-			datasets: [
-				{
-					borderColor: "rgba(245, 37, 37, 1)",
-					data: dataPue,
-				},
-			],
-		},
-		options: {
-			maintainAspectRatio: false,
-			responsive: true,
-			scales: {
-				y: {
-					min: 1.5,
-					suggestedMax: 1.9,
-					ticks: {
-						font: {
-							size: 12,
-						},
-					},
-				},
-				x: {
-					ticks: {
-						font: {
-							size: 10,
-						},
-					},
-				},
-			},
-			plugins: {
-				legend: {
-					display: false,
-				},
-				title: {
-					display: true,
-					padding: 3,
-					text: "PUE",
-					font: {
-						size: 18,
-					},
-				},
-			},
-		},
-	});
+	pueChart.data.labels = labelPue;
+	pueChart.data.datasets[0].data = dataPue;
+	pueChart.options.plugins.title.text = "PUE (1 Jam)";
+	pueChart.update();
 
-	var lvmdpChart = new Chart(lvmdpElectric, {
-		type: "line",
-		data: {
-			labels: labelLvmdp,
-			datasets: [
-				{
-					borderColor: "rgba(245, 37, 37, 1)",
-					data: dataLvmdp,
-				},
-			],
-		},
-		options: {
-			maintainAspectRatio: false,
-			responsive: true,
-			scales: {
-				y: {
-					min: 580,
-					max: 780,
-					ticks: {
-						callback: function (value, index, ticks) {
-							return value + " kVA";
-						},
-						font: {
-							size: 12,
-						},
-					},
-				},
-				x: {
-					ticks: {
-						font: {
-							size: 10,
-						},
-					},
-				},
-			},
-			plugins: {
-				legend: {
-					display: false,
-				},
-				title: {
-					display: true,
-					padding: 3,
-					text: "LVMDP (Load)",
-					font: {
-						size: 18,
-					},
-				},
-			},
-		},
-	});
+	lvmdpChart.data.labels = labelLvmdp;
+	lvmdpChart.data.datasets[0].data = dataLvmdp;
+	lvmdpChart.options.plugins.title.text = "LVMDP (1 Jam)";
+	lvmdpChart.update();
 
-	var itChart = new Chart(itElectric, {
-		type: "line",
-		data: {
-			labels: labelIt,
-			datasets: [
-				{
-					borderColor: "rgba(245, 37, 37, 1)",
-					data: dataIt,
-				},
-			],
-		},
-		options: {
-			maintainAspectRatio: false,
-			responsive: true,
-			scales: {
-				y: {
-					min: 350,
-					max: 360,
-					ticks: {
-						callback: function (value, index, ticks) {
-							return value + " kVA";
-						},
-						font: {
-							size: 12,
-						},
-					},
-				},
-				x: {
-					ticks: {
-						font: {
-							size: 10,
-						},
-					},
-				},
-			},
-			plugins: {
-				legend: {
-					display: false,
-				},
-				title: {
-					display: true,
-					padding: 3,
-					text: "IT (Load)",
-					font: {
-						size: 18,
-					},
-				},
-			},
-		},
-	});
+	itChart.data.labels = labelIt;
+	itChart.data.datasets[0].data = dataIt;
+	itChart.options.plugins.title.text = "IT (1 Jam)"
+	itChart.update();
 
-	var rectiChart = new Chart(rectiElectric, {
-		type: "line",
-		data: {
-			labels: labelRecti,
-			datasets: [
-				{
-					borderColor: "rgba(245, 37, 37, 1)",
-					data: dataRecti,
-				},
-			],
-		},
-		options: {
-			maintainAspectRatio: false,
-			responsive: true,
-			scales: {
-				y: {
-					min: 240,
-					max: 250,
-					ticks: {
-						callback: function (value, index, ticks) {
-							return value + " kVA";
-						},
-						font: {
-							size: 12,
-						},
-					},
-				},
-				x: {
-					ticks: {
-						font: {
-							size: 10,
-						},
-					},
-				},
-			},
-			plugins: {
-				legend: {
-					display: false,
-				},
-				title: {
-					display: true,
-					padding: 3,
-					text: "Recti (Load)",
-					font: {
-						size: 18,
-					},
-				},
-			},
-		},
-	});
-	
-	
-	var panelRectiChart = new Chart(panelRecti, {
-		type: "line",
-		data: {
-			labels: labelPanelRecti,
-			datasets: [
-				{
-					label: "Panel 2.05",
-					borderColor: "rgba(231, 101, 0, 1)",
-					data: dataP205,
-				},
-				{
-					label: "Panel 2.36",
-					borderColor: "rgba(54, 164, 29, 1)",
-					data: dataP236,
-				},
-				{
-					label: "Panel 3.05",
-					borderColor: "rgba(4, 159, 154, 1)",
-					data: dataP305,
-				},
-				// {
-				// 	label: "Panel 3.10",
-				// 	borderColor: "rgba(119, 88, 255, 1)",
-				// 	data: dataP310,
-				// },
-				{
-					label: "Panel 4.29",
-					borderColor: "rgba(27, 145, 255, 1)",
-					data: dataP429,
-				},
-			],
-		},
-		options: {
-			maintainAspectRatio: false,
-			responsive: true,
-			scales: {
-				y: {
-					min: 60,
-					max: 70,
-					ticks: {
-						callback: function (value, index, ticks) {
-							return value + " kVA";
-						},
-						font: {
-							size: 12,
-						},
-					},
-				},
-				x: {
-					ticks: {
-						font: {
-							size: 10,
-						},
-					},
-				},
-			},
-			plugins: {
-				title: {
-					display: true,
-					padding: 3,
-					text: "Recti (Load)",
-					font: {
-						size: 18,
-					},
-				},
-			},
-		},
-	});
-	
-	
-	var upsChart = new Chart(upsElectric, {
-		type: "line",
-		data: {
-			labels: labelUps,
-			datasets: [
-				{
-					borderColor: "rgba(245, 37, 37, 1)",
-					data: dataUps,
-				},
-			],
-		},
-		options: {
-			maintainAspectRatio: false,
-			responsive: true,
-			scales: {
-				y: {
-					min: 106,
-					max: 112,
-					ticks: {
-						callback: function (value, index, ticks) {
-							return value + " kVA";
-						},
-						font: {
-							size: 12,
-						},
-					},
-				},
-				x: {
-					ticks: {
-						font: {
-							size: 10,
-						},
-					},
-				},
-			},
-			plugins: {
-				legend: {
-					display: false,
-				},
-				title: {
-					display: true,
-					padding: 3,
-					text: "UPS (Load)",
-					font: {
-						size: 18,
-					},
-				},
-			},
-		},
-	});
-	
-	var panelUpsChart = new Chart(panelUps, {
-		type: "line",
-		data: {
-			labels: labelPanelRecti,
-			datasets: [
-				{
-					label: "UPS 2.02",
-					borderColor: "rgba(231, 101, 0, 1)",
-					data: dataUps201,
-				},
-				{
-					label: "UPS 2.03",
-					borderColor: "rgba(54, 164, 29, 1)",
-					data: dataUps202,
-				},
-				{
-					label: "UPS 3.01",
-					borderColor: "rgba(4, 159, 154, 1)",
-					data: dataUps301,
-				},
-				{
-					label: "UPS 3.02",
-					borderColor: "rgba(119, 88, 255, 1)",
-					data: dataUps302,
-				},
-				{
-					label: "UPS 5.01",
-					borderColor: "rgba(247, 37, 223, 1)",
-					data: dataUps501,
-				},
-				{
-					label: "UPS 5.02",
-					backgroundColor: "rgba(27, 145, 255, 0.5)",
-					borderColor: "rgba(27, 145, 255, 1)",
-					data: dataUps502,
-				},
-			],
-		},
-		options: {
-			maintainAspectRatio: false,
-			responsive: true,
-			scales: {
-				y: {
-					min: 10,
-					max: 30,
-					ticks: {
-						callback: function (value, index, ticks) {
-							return value + " kVA";
-						},
-						font: {
-							size: 12,
-						},
-					},
-				},
-				x: {
-					ticks: {
-						font: {
-							size: 10,
-						},
-					},
-				},
-			},
-			plugins: {
-				title: {
-					display: true,
-					padding: 3,
-					text: "Recti (Load)",
-					font: {
-						size: 18,
-					},
-				},
-			},
-		},
-	});
+	rectiChart.data.labels = labelRecti;
+	rectiChart.data.datasets[0].data = dataRecti;
+	rectiChart.options.plugins.title.text = "Recti (1 Jam)"
+	rectiChart.update();
+
+	upsChart.data.labels = labelUps;
+	upsChart.data.datasets[0].data = dataUps;
+	upsChart.options.plugins.title.text = "UPS (1 Jam)"
+	upsChart.update();
+
+	panelRectiChart.data.labels = labelPanelRecti;
+	panelRectiChart.data.datasets[0].data = dataP205;
+	panelRectiChart.data.datasets[1].data = dataP236;
+	panelRectiChart.data.datasets[2].data = dataP305;
+	panelRectiChart.data.datasets[3].data = dataP429;
+	panelRectiChart.options.plugins.title.text = "Panel Recti (1 Jam)";
+	panelRectiChart.options.plugins.legend.display = true;
+	panelRectiChart.scales[0] = {
+		min: rectiMin,
+		max: rectiMax
+	};
+	panelRectiChart.update();
+
+	panelUpsChart.data.labels = labelPanelUps;
+	panelUpsChart.data.datasets[0].data = dataUps201;
+	panelUpsChart.data.datasets[1].data = dataUps202;
+	panelUpsChart.data.datasets[2].data = dataUps301
+	panelUpsChart.data.datasets[3].data = dataUps302;
+	panelUpsChart.data.datasets[4].data = dataUps501;
+	panelUpsChart.data.datasets[5].data = dataUps502;
+	panelUpsChart.options.plugins.title.text = "Panel UPS (1 Jam)"
+	panelUpsChart.update();
 }
 
 setChart();
@@ -498,30 +369,26 @@ async function updateChart() {
 
 	pueChart.data.labels.push(labelPue);
 	pueChart.data.labels.shift();
-
-	pueChart.data.dataset.data.push(dataPue);
-	pueChart.data.dataset.data.shift();
+	pueChart.data.datasets[0].data.push(dataPue);
+	pueChart.data.datasets[0].data.shift();
+	pueChart.update();
 
 	lvmdpChart.data.labels.push(labelLvmdp);
 	lvmdpChart.data.labels.shift();
-
-	lvmdpChart.data.dataset.data.push(dataLvmdp);
-	lvmdpChart.data.dataset.data.shift();
+	lvmdpChart.data.datasets[0].data.push(dataLvmdp);
+	lvmdpChart.data.datasets[0].data.shift();
+	lvmdpChart.update();
 
 	itChart.data.labels.push(labelIt);
 	itChart.data.labels.shift();
-
-	itChart.data.dataset.data.push(dataIt);
-	itChart.data.dataset.data.shift();
-
-	pueChart.update();
-	lvmdpChart.update();
+	itChart.data.datasets[0].data.push(dataIt);
+	itChart.data.datasets[0].data.shift();
 	itChart.update();
 
 	// console.log(data.it);
-};
+}
 
-// setInterval(updateChart, 5000)
+setInterval(updateChart, 300000)
 
 async function getDataElectric() {
 	await setPue();
@@ -541,4 +408,3 @@ async function getDataElectric() {
 
 getDataElectric();
 setInterval(getDataElectric, 1000);
-setInterval(updateChartPue, 3000);

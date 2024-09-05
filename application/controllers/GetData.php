@@ -275,24 +275,24 @@ class GetData extends CI_Controller
       echo json_encode($data);
    }
 
-   public function pueChart()
+   public function electricChartHour()
    {
-      $data['pue'] = $this->TabelModel->getDataElectric('pue')->result_array();
-      $data['lvmdp'] = $this->TabelModel->getDataElectric('lvmdp')->result_array();
-      $data['it'] = $this->TabelModel->getDataElectric('it')->result_array();
-      $data['recti'] = $this->TabelModel->getDataElectric('recti')->result_array();
-      $data['ups'] = $this->TabelModel->getDataElectric('ups')->result_array();
-      $data['p205'] = $this->TabelModel->getDataElectric('p205')->result_array();
-      $data['p236'] = $this->TabelModel->getDataElectric('p236')->result_array();
-      $data['p305'] = $this->TabelModel->getDataElectric('p305')->result_array();
-      $data['p310'] = $this->TabelModel->getDataElectric('p310')->result_array();
-      $data['p429'] = $this->TabelModel->getDataElectric('p429')->result_array();
-      $data['ups202'] = $this->TabelModel->getDataElectric('ups202')->result_array();
-      $data['ups203'] = $this->TabelModel->getDataElectric('ups203')->result_array();
-      $data['ups301'] = $this->TabelModel->getDataElectric('ups301')->result_array();
-      $data['ups302'] = $this->TabelModel->getDataElectric('ups302')->result_array();
-      $data['ups501'] = $this->TabelModel->getDataElectric('ups501')->result_array();
-      $data['ups502'] = $this->TabelModel->getDataElectric('ups502')->result_array();
+      $data['pue'] = $this->TabelModel->getDataElectric('pue', 12)->result_array();
+      $data['lvmdp'] = $this->TabelModel->getDataElectric('lvmdp', 12)->result_array();
+      $data['it'] = $this->TabelModel->getDataElectric('it', 12)->result_array();
+      $data['recti'] = $this->TabelModel->getDataElectric('recti', 12)->result_array();
+      $data['ups'] = $this->TabelModel->getDataElectric('ups', 12)->result_array();
+      $data['p205'] = $this->TabelModel->getDataElectric('p205', 12)->result_array();
+      $data['p236'] = $this->TabelModel->getDataElectric('p236', 12)->result_array();
+      $data['p305'] = $this->TabelModel->getDataElectric('p305', 12)->result_array();
+      $data['p310'] = $this->TabelModel->getDataElectric('p310', 12)->result_array();
+      $data['p429'] = $this->TabelModel->getDataElectric('p429', 12)->result_array();
+      $data['ups202'] = $this->TabelModel->getDataElectric('ups202', 12)->result_array();
+      $data['ups203'] = $this->TabelModel->getDataElectric('ups203', 12)->result_array();
+      $data['ups301'] = $this->TabelModel->getDataElectric('ups301', 12)->result_array();
+      $data['ups302'] = $this->TabelModel->getDataElectric('ups302', 12)->result_array();
+      $data['ups501'] = $this->TabelModel->getDataElectric('ups501', 12)->result_array();
+      $data['ups502'] = $this->TabelModel->getDataElectric('ups502', 12)->result_array();
 
       echo json_encode($data);
    }
@@ -302,6 +302,19 @@ class GetData extends CI_Controller
       $data['pue'] = $this->TabelModel->getUpdatedDataElectric('pue');
       $data['lvmdp'] = $this->TabelModel->getUpdatedDataElectric('lvmdp');
       $data['it'] = $this->TabelModel->getUpdatedDataElectric('it');
+      $data['recti'] = $this->TabelModel->getUpdatedDataElectric('recti');
+      $data['ups'] = $this->TabelModel->getUpdatedDataElectric('ups');
+      $data['p205'] = $this->TabelModel->getUpdatedDataElectric('p205');
+      $data['p236'] = $this->TabelModel->getUpdatedDataElectric('p236');
+      $data['p305'] = $this->TabelModel->getUpdatedDataElectric('p305');
+      $data['p310'] = $this->TabelModel->getUpdatedDataElectric('p310');
+      $data['p429'] = $this->TabelModel->getUpdatedDataElectric('p429');
+      $data['ups202'] = $this->TabelModel->getUpdatedDataElectric('ups202');
+      $data['ups203'] = $this->TabelModel->getUpdatedDataElectric('ups203');
+      $data['ups301'] = $this->TabelModel->getUpdatedDataElectric('ups301');
+      $data['ups302'] = $this->TabelModel->getUpdatedDataElectric('ups302');
+      $data['ups501'] = $this->TabelModel->getUpdatedDataElectric('ups501');
+      $data['ups502'] = $this->TabelModel->getUpdatedDataElectric('it');
 
       echo json_encode($data);
    }
