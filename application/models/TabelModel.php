@@ -93,6 +93,24 @@ class TabelModel extends CI_Model
       // return $electric->last_query();
    }
 
+   public function getPueByDate($start, $end)
+   {
+      $electric = $this->load->database('electric', TRUE);
+
+      $startDate = "'$start'";
+      $endDate = "'$end'";
+      $dataByDate = "
+            SELECT
+               DATE(tgl) AS date,
+               TIME(tgl) AS time,
+               pue
+            FROM
+               pue
+            WHERE
+               DATE(tgl) BETWEEN $startDate AND $endDate ";
+      return $electric->query($dataByDate);
+   }
+
    public function getDataByDate($start, $end, $table)
    {
       $electric = $this->load->database('electric', TRUE);
