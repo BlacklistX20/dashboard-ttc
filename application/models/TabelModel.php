@@ -117,7 +117,7 @@ class TabelModel extends CI_Model
 
       $startDate = "'$start'";
       $endDate = "'$end'";
-      if ($table = "pue") {
+      if ($table == "pue") {
          $dataByDate = "
             SELECT
                DATE(tgl) AS date,

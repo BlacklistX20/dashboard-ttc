@@ -13,7 +13,7 @@
     <section id="utama" class="tab-panel">
       <button type="button" class="btn btn-success btnDownload mb-3 btn-lg" data-bs-toggle="modal"
         data-bs-target="#modalDownload">Download</button>
-      <div class="row mb-4">
+      <div class="row">
         <div class="col-lg-3">
           <div class="card">
             <div class="card-header text-center">
@@ -26,6 +26,16 @@
         </div>
         <div class="col-lg-9">
           <canvas id="pueElectric"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9">
+          <div class="btn-group" role="group" aria-label="Chart Control">
+            <button type="button" class="btn btn-outline-danger active" id="pueHour">1 Jam</button>
+            <button type="button" class="btn btn-outline-danger" id="pueDay">1 Hari</button>
+            <button type="button" class="btn btn-outline-danger" id="pueWeek">1 Minggu</button>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -78,6 +88,16 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9">
+          <div class="btn-group" role="group" aria-label="Chart Control">
+            <button type="button" class="btn btn-outline-danger active" id="lvmdpHour">1 Jam</button>
+            <button type="button" class="btn btn-outline-danger" id="lvmdpDay">1 Hari</button>
+            <button type="button" class="btn btn-outline-danger" id="lvmdpWeek">1 Minggu</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-lg-3 mb-3">
           <div class="card">
             <div class="card-header">
@@ -124,6 +144,16 @@
         </div>
         <div class="col-lg-9">
           <canvas id="itElectric"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9">
+          <div class="btn-group" role="group" aria-label="Chart Control">
+            <button type="button" class="btn btn-outline-danger active" id="itHour">1 Jam</button>
+            <button type="button" class="btn btn-outline-danger" id="itDay">1 Hari</button>
+            <button type="button" class="btn btn-outline-danger" id="itWeek">1 Minggu</button>
+          </div>
         </div>
       </div>
     </section>

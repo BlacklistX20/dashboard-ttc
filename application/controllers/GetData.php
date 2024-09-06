@@ -297,6 +297,50 @@ class GetData extends CI_Controller
       echo json_encode($data);
    }
 
+   public function electricChartDay()
+   {
+      $data['pue'] = $this->TabelModel->getDataElectric('pue', 288)->result_array();
+      $data['lvmdp'] = $this->TabelModel->getDataElectric('lvmdp', 288)->result_array();
+      $data['it'] = $this->TabelModel->getDataElectric('it', 288)->result_array();
+      $data['recti'] = $this->TabelModel->getDataElectric('recti', 288)->result_array();
+      $data['ups'] = $this->TabelModel->getDataElectric('ups', 288)->result_array();
+      $data['p205'] = $this->TabelModel->getDataElectric('p205', 288)->result_array();
+      $data['p236'] = $this->TabelModel->getDataElectric('p236', 288)->result_array();
+      $data['p305'] = $this->TabelModel->getDataElectric('p305', 288)->result_array();
+      $data['p310'] = $this->TabelModel->getDataElectric('p310', 288)->result_array();
+      $data['p429'] = $this->TabelModel->getDataElectric('p429', 288)->result_array();
+      $data['ups202'] = $this->TabelModel->getDataElectric('ups202', 288)->result_array();
+      $data['ups203'] = $this->TabelModel->getDataElectric('ups203', 288)->result_array();
+      $data['ups301'] = $this->TabelModel->getDataElectric('ups301', 288)->result_array();
+      $data['ups302'] = $this->TabelModel->getDataElectric('ups302', 288)->result_array();
+      $data['ups501'] = $this->TabelModel->getDataElectric('ups501', 288)->result_array();
+      $data['ups502'] = $this->TabelModel->getDataElectric('ups502', 288)->result_array();
+
+      echo json_encode($data);
+   }
+
+   public function electricChartWeek()
+   {
+      $data['pue'] = $this->TabelModel->getDataElectric('pue', 2016)->result_array();
+      $data['lvmdp'] = $this->TabelModel->getDataElectric('lvmdp', 2016)->result_array();
+      $data['it'] = $this->TabelModel->getDataElectric('it', 2016)->result_array();
+      $data['recti'] = $this->TabelModel->getDataElectric('recti', 2016)->result_array();
+      $data['ups'] = $this->TabelModel->getDataElectric('ups', 2016)->result_array();
+      $data['p205'] = $this->TabelModel->getDataElectric('p205', 2016)->result_array();
+      $data['p236'] = $this->TabelModel->getDataElectric('p236', 2016)->result_array();
+      $data['p305'] = $this->TabelModel->getDataElectric('p305', 2016)->result_array();
+      $data['p310'] = $this->TabelModel->getDataElectric('p310', 2016)->result_array();
+      $data['p429'] = $this->TabelModel->getDataElectric('p429', 2016)->result_array();
+      $data['ups202'] = $this->TabelModel->getDataElectric('ups202', 2016)->result_array();
+      $data['ups203'] = $this->TabelModel->getDataElectric('ups203', 2016)->result_array();
+      $data['ups301'] = $this->TabelModel->getDataElectric('ups301', 2016)->result_array();
+      $data['ups302'] = $this->TabelModel->getDataElectric('ups302', 2016)->result_array();
+      $data['ups501'] = $this->TabelModel->getDataElectric('ups501', 2016)->result_array();
+      $data['ups502'] = $this->TabelModel->getDataElectric('ups502', 2016)->result_array();
+
+      echo json_encode($data);
+   }
+
    public function pueChartUpdate()
    {
       $data['pue'] = $this->TabelModel->getUpdatedDataElectric('pue');

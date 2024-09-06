@@ -388,6 +388,196 @@ async function updateChart() {
 	// console.log(data.it);
 }
 
+let pueChartToHour = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartHour",
+		dataType: "json",
+	});
+
+	const labelPue = formatTimestamps(data.pue).reverse();
+	const dataPue = splitPUEData(data.pue).reverse();
+
+	pueChart.data.labels = labelPue;
+	pueChart.data.datasets[0].data = dataPue;
+	pueChart.options.plugins.title.text = "PUE (1 Jam)";
+	pueChart.update();
+}
+
+let pueChartToDay = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartDay",
+		dataType: "json",
+	});
+
+	const labelPue = formatTimestamps(data.pue).reverse();
+	const dataPue = splitPUEData(data.pue).reverse();
+
+	pueChart.data.labels = labelPue;
+	pueChart.data.datasets[0].data = dataPue;
+	pueChart.options.plugins.title.text = "PUE (1 Hari)";
+	pueChart.update();
+};
+
+let pueChartToWeek = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartWeek",
+		dataType: "json",
+	});
+
+	const labelPue = formatTimestamps(data.pue).reverse();
+	const dataPue = splitPUEData(data.pue).reverse();
+
+	pueChart.data.labels = labelPue;
+	pueChart.data.datasets[0].data = dataPue;
+	pueChart.options.plugins.title.text = "PUE (1 Minggu)";
+	pueChart.update();
+};
+
+let lvmdpChartToHour = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartHour",
+		dataType: "json",
+	});
+
+	const labelLvmdp = formatTimestamps(data.lvmdp).reverse();
+	const dataLvmdp = splitLoadData(data.lvmdp).reverse();
+
+	lvmdpChart.data.labels = labelLvmdp;
+	lvmdpChart.data.datasets[0].data = dataLvmdp;
+	lvmdpChart.options.plugins.title.text = "LVMDP (1 Jam)";
+	lvmdpChart.update();
+}
+let lvmdpChartToDay = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartDay",
+		dataType: "json",
+	});
+
+	const labelLvmdp = formatTimestamps(data.lvmdp).reverse();
+	const dataLvmdp = splitLoadData(data.lvmdp).reverse();
+
+	lvmdpChart.data.labels = labelLvmdp;
+	lvmdpChart.data.datasets[0].data = dataLvmdp;
+	lvmdpChart.options.plugins.title.text = "LVMDP (1 Hari)";
+	lvmdpChart.update();
+};
+
+let lvmdpChartToWeek = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartWeek",
+		dataType: "json",
+	});
+
+	const labelLvmdp = formatTimestamps(data.lvmdp).reverse();
+	const dataLvmdp = splitLoadData(data.lvmdp).reverse();
+
+	lvmdpChart.data.labels = labelLvmdp;
+	lvmdpChart.data.datasets[0].data = dataLvmdp;
+	lvmdpChart.options.plugins.title.text = "LVMDP (1 Minggu)";
+	lvmdpChart.update();
+};
+
+let itChartToHour = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartHour",
+		dataType: "json",
+	});
+
+	const labelIt = formatTimestamps(data.it).reverse();
+	const dataIt = splitLoadData(data.it).reverse();
+
+	itChart.data.labels = labelIt;
+	itChart.data.datasets[0].data = dataIt;
+	itChart.options.plugins.title.text = "IT (1 Jam)"
+	itChart.update();
+}
+let itChartToDay = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartDay",
+		dataType: "json",
+	});
+
+	const labelIt = formatTimestamps(data.it).reverse();
+	const dataIt = splitLoadData(data.it).reverse();
+
+	itChart.data.labels = labelIt;
+	itChart.data.datasets[0].data = dataIt;
+	itChart.options.plugins.title.text = "IT (1 Hari)"
+	itChart.update();
+};
+
+let itChartToWeek = async () => {
+	let data = await $.ajax({
+		url: baseUrl + "getdata/electricChartWeek",
+		dataType: "json",
+	});
+
+	const labelIt = formatTimestamps(data.it).reverse();
+	const dataIt = splitLoadData(data.it).reverse();
+
+	itChart.data.labels = labelIt;
+	itChart.data.datasets[0].data = dataIt;
+	itChart.options.plugins.title.text = "IT (1 Minggu)"
+	itChart.update();
+};
+
+$("#pueDay").click(() => {
+	$("#pueHour").removeClass("active");
+	$("#pueWeek").removeClass("active");
+	$("#pueDay").addClass("active");
+	pueChartToDay();
+});
+$("#pueWeek").click(() => {
+	$("#pueHour").removeClass("active");
+	$("#pueDay").removeClass("active");
+	$("#pueWeek").addClass("active");
+	pueChartToWeek();
+});
+$("#pueHour").click(() => {
+	$("#pueDay").removeClass("active");
+	$("#pueWeek").removeClass("active");
+	$("#pueHour").addClass("active");
+	pueChartToHour();
+});
+
+$("#lvmdpDay").click(() => {
+	$("#lvmdpHour").removeClass("active");
+	$("#lvmdpWeek").removeClass("active");
+	$("#lvmdpDay").addClass("active");
+	lvmdpChartToDay();
+});
+$("#lvmdpWeek").click(() => {
+	$("#lvmdpHour").removeClass("active");
+	$("#lvmdpDay").removeClass("active");
+	$("#lvmdpWeek").addClass("active");
+	lvmdpChartToWeek();
+});
+$("#lvmdpHour").click(() => {
+	$("#lvmdpDay").removeClass("active");
+	$("#lvmdpWeek").removeClass("active");
+	$("#lvmdpHour").addClass("active");
+	lvmdpChartToHour();
+});
+
+$("itDay").click(() => {
+	$("itHour").removeClass("active");
+	$("itWeek").removeClass("active");
+	$("itDay").addClass("active");
+	itChartToDay();
+});
+$("itWeek").click(() => {
+	$("itHour").removeClass("active");
+	$("itDay").removeClass("active");
+	$("itWeek").addClass("active");
+	itChartToWeek();
+});
+$("itHour").click(() => {
+	$("itDay").removeClass("active");
+	$("itWeek").removeClass("active");
+	$("itHour").addClass("active");
+	itChartToHour();
+});
+
 setInterval(updateChart, 300000)
 
 async function getDataElectric() {
