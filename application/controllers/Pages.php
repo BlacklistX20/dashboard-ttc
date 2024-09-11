@@ -55,15 +55,15 @@ class Pages extends CI_Controller {
 
 	public function pue()
 	{
-		$data['morning'] = $this->TabelModel->getPueMorning()->result_array();
-      $data['noon'] = $this->TabelModel->getPueNoon()->result_array();
-      $data['night'] = $this->TabelModel->getPueNight()->result_array();
-		$data['avg'] = $this->TabelModel->getPueAvg()->result('array');
-		$data['min'] = $this->TabelModel->getPueMinMax('ASC')->result('array');
-		$data['max'] = $this->TabelModel->getPueMinMax('DESC')->result('array');
+		// $data['morning'] = $this->TabelModel->getPueMorning()->result_array();
+      // $data['noon'] = $this->TabelModel->getPueNoon()->result_array();
+      // $data['night'] = $this->TabelModel->getPueNight()->result_array();
+		// $data['avg'] = $this->TabelModel->getPueAvg()->result('array');
+		// $data['min'] = $this->TabelModel->getPueMinMax('ASC')->result('array');
+		// $data['max'] = $this->TabelModel->getPueMinMax('DESC')->result('array');
 
-		print_r($data);
-		// $this->load->view('pue', $data);
+		// print_r($data);
+		$this->load->view('fm200');
 	}
 
 }
