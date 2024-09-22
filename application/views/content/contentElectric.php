@@ -776,14 +776,14 @@
             <h5 class="modal-title">Download Data</h5>
           </div>
           <div class="modal-body">
-            <select class="form-select" id="validationCustom01" name="table" required>
+            <!-- <select class="form-select" id="validationCustom01" name="table" required>
               <option selected disabled value="">Pilih Tabel</option>
               <option value="pue">PUE</option>
               <option value="lvmdp">LVMDP</option>
               <option value="it">IT</option>
               <option value="recti">Rectifier</option>
               <option value="ups">UPS</option>
-            </select>
+            </select> -->
             <div class="row">
               <div class="col">
                 <label for="validationCustom02" class="form-label">Enter Start Date:</label>

@@ -304,27 +304,26 @@ async function setChart() {
 	pueChart.data.labels = labelPue;
 	pueChart.data.datasets[0].data = dataPue;
 	pueChart.options.plugins.title.text = "PUE (1 Jam)";
+	pueChart.options.plugins.legend.display = false;
 	pueChart.update();
 
 	lvmdpChart.data.labels = labelLvmdp;
 	lvmdpChart.data.datasets[0].data = dataLvmdp;
 	lvmdpChart.options.plugins.title.text = "LVMDP (1 Jam)";
+	lvmdpChart.options.plugins.legend.display = false;
 	lvmdpChart.update();
 
 	itChart.data.labels = labelIt;
 	itChart.data.datasets[0].data = dataIt;
 	itChart.options.plugins.title.text = "IT (1 Jam)"
+	itChart.options.plugins.legend.display = false;
 	itChart.update();
 
 	rectiChart.data.labels = labelRecti;
 	rectiChart.data.datasets[0].data = dataRecti;
 	rectiChart.options.plugins.title.text = "Recti (1 Jam)"
+	rectiChart.options.plugins.legend.display = false;
 	rectiChart.update();
-
-	upsChart.data.labels = labelUps;
-	upsChart.data.datasets[0].data = dataUps;
-	upsChart.options.plugins.title.text = "UPS (1 Jam)"
-	upsChart.update();
 
 	panelRectiChart.data.labels = labelPanelRecti;
 	panelRectiChart.data.datasets[0].data = dataP205;
@@ -339,6 +338,12 @@ async function setChart() {
 	};
 	panelRectiChart.update();
 
+	upsChart.data.labels = labelUps;
+	upsChart.data.datasets[0].data = dataUps;
+	upsChart.options.plugins.title.text = "UPS (1 Jam)"
+	upsChart.options.plugins.legend.display = false;
+	upsChart.update();
+
 	panelUpsChart.data.labels = labelPanelUps;
 	panelUpsChart.data.datasets[0].data = dataUps201;
 	panelUpsChart.data.datasets[1].data = dataUps202;
@@ -346,7 +351,8 @@ async function setChart() {
 	panelUpsChart.data.datasets[3].data = dataUps302;
 	panelUpsChart.data.datasets[4].data = dataUps501;
 	panelUpsChart.data.datasets[5].data = dataUps502;
-	panelUpsChart.options.plugins.title.text = "Panel UPS (1 Jam)"
+	panelUpsChart.options.plugins.title.text = "Panel UPS (1 Jam)";
+	panelUpsChart.options.plugins.legend.display = true;
 	panelUpsChart.update();
 }
 
