@@ -245,47 +245,83 @@ setInterval(setPue, 1000);
 setPueChart();
 
 var occupancy = document.getElementById("occupancy");
-var myDoughnutChart = new Chart(occupancy, {
-	type: "doughnut",
+var myPieChart = new Chart(occupancy, {
+	type: "pie",
 	data: {
-		labels: ["PLN", "Trafo", "Genset"],
+		labels: [
+			"PLN Other",
+			"Occupancy PLN",
+			"Trafo Other",
+			"Occupancy Trafo",
+			"Genset Other",
+			"Occupancy Genset",
+		],
 		datasets: [
 			{
-				label: "Occupancy",
-				data: [50, 25, 25],
+				label: "PLN",
+				data: [20, 80],
+				backgroundColor: ["grey", "#36A2EB"],
+				hoverOffset: 4,
+			},
+			{
+				label: "Trafo",
+				data: [50, 50],
+				backgroundColor: ["grey", "#FFCE56"],
+				hoverOffset: 4,
+			},
+			{
+				label: "Genset",
+				data: [25, 75],
+				backgroundColor: ["grey", "#9966FF"],
+				hoverOffset: 4,
 			},
 		],
 	},
-	plugins: [ChartDataLabels],
+	plugins: [ChartDataLabels], // Add ChartDataLabels plugin
 	options: {
 		maintainAspectRatio: false,
 		responsive: true,
 		layout: {
-			padding: 5,
+			padding: 2,
 		},
-		cutout: "40%",
-		radius: "80%",
+		radius: "90%",
 		plugins: {
+			tooltip: {
+				enabled: false, // Disable tooltips
+			},
 			legend: {
+				display: true,
 				position: "top",
 				labels: {
-					font: {
-						size: 20,
+					generateLabels: function (chart) {
+						const original =
+							Chart.overrides.pie.plugins.legend.labels.generateLabels;
+						const labelsOriginal = original.call(this, chart);
+
+						// Create custom labels for each dataset
+						labelsOriginal.forEach((label, index) => {
+							const datasetIndex = Math.floor(index / 2); // Determine the dataset index
+							label.text = chart.data.labels[index]; // Assign the custom label
+							label.fillStyle =
+								chart.data.datasets[datasetIndex].backgroundColor[index % 2]; // Set corresponding color
+							label.hidden = !chart.isDatasetVisible(datasetIndex); // Set hidden state
+						});
+
+						// Filter to show only occupancy labels
+						return labelsOriginal.filter((label) =>
+							label.text.includes("Occupancy")
+						);
 					},
 				},
 			},
-			title: {
-				display: true,
-				text: "Occupancy",
-				font: {
-					size: 25,
-				},
-			},
 			datalabels: {
-				formatter: (value) => {
-					return value + "%";
+				formatter: function (value, context) {
+					return value + "%"; // Show data values
 				},
-				color: 'black',
+				color: "white", // Color of the labels
+				font: {
+					size: 18,
+				},
 			},
 		},
 	},
@@ -299,19 +335,28 @@ async function updateDataChart() {
 
 	let lvmdp = parseFloat(data.lvmdp[0].loads);
 	let genset = ((lvmdp / 2500) * 100).toFixed(2);
+	let genset2 = (100 - genset).toFixed(2);
 	let trafo = ((lvmdp / 2000) * 100).toFixed(2);
+	let trafo2 = (100 - trafo).toFixed(2);
 	let pln = ((lvmdp / 1385) * 100).toFixed(2);
+	let pln2 = (100 - pln).toFixed(2);
 
-	myDoughnutChart.data.datasets[0].data.shift();
-	myDoughnutChart.data.datasets[0].data.push(pln);
-	myDoughnutChart.data.datasets[0].data.shift();
-	myDoughnutChart.data.datasets[0].data.push(trafo);
-	myDoughnutChart.data.datasets[0].data.shift();
-	myDoughnutChart.data.datasets[0].data.push(genset);
+	myPieChart.data.datasets[0].data.shift();
+	myPieChart.data.datasets[0].data.push(pln2);
+	myPieChart.data.datasets[0].data.shift();
+	myPieChart.data.datasets[0].data.push(pln);
+	myPieChart.data.datasets[1].data.shift();
+	myPieChart.data.datasets[1].data.push(trafo2);
+	myPieChart.data.datasets[1].data.shift();
+	myPieChart.data.datasets[1].data.push(trafo);
+	myPieChart.data.datasets[2].data.shift();
+	myPieChart.data.datasets[2].data.push(genset2);
+	myPieChart.data.datasets[2].data.shift();
+	myPieChart.data.datasets[2].data.push(genset);
 
-	myDoughnutChart.update("none");
+	myPieChart.update("none");
 
-	// console.log(myDoughnutChart.data.datasets[0].data);
+	// console.log(pln + " " + trafo + " " + genset);
 }
 
 setInterval(updateDataChart, 1000);
