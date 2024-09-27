@@ -111,13 +111,13 @@ class TabelModel extends CI_Model
       return $electric->query($dataByDate);
    }
 
-   public function getDataByDate($start, $end, $table)
+   public function getDataByDate($start, $end)
    {
       $electric = $this->load->database('electric', TRUE);
 
       $startDate = "'$start'";
       $endDate = "'$end'";
-      if ($table == "pue") {
+      // if ($table == "pue") {
          $dataByDate = "
             SELECT
                DATE(tgl) AS date,
@@ -128,21 +128,21 @@ class TabelModel extends CI_Model
             WHERE
                DATE(tgl) BETWEEN $startDate AND $endDate ";
          return $electric->query($dataByDate);
-      } else {
-         $dataByDate = "
-            SELECT
-               DATE(tgl) AS date,
-               TIME(tgl) AS time,
-               loads,
-               voltage,
-               current,
-               frequency
-            FROM
-               $table
-            WHERE
-               DATE(tgl) BETWEEN $startDate AND $endDate ";
-         return $electric->query($dataByDate);
-      }
+      // } else {
+      //    $dataByDate = "
+      //       SELECT
+      //          DATE(tgl) AS date,
+      //          TIME(tgl) AS time,
+      //          loads,
+      //          voltage,
+      //          current,
+      //          frequency
+      //       FROM
+      //          $table
+      //       WHERE
+      //          DATE(tgl) BETWEEN $startDate AND $endDate ";
+      //    return $electric->query($dataByDate);
+      // }
       // return $electric->last_query();
    }
 
