@@ -214,7 +214,7 @@ class GetData extends CI_Controller
 
    public function tangki()
    {
-      $data = $this->TabelModel->getFuel('harian');
+      $data = $this->TabelModel->getFuel('daily_tank');
 
       echo json_encode($data);
    }
