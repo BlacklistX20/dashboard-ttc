@@ -5,7 +5,7 @@
    <h4>TTC Sudiang Makassar</h2>
 </div>
 
-<?php $this->load->view('content/contentPotency'); ?>
+<?php $this->load->view('content/potency'); ?>
 
 </div>
 <!--Container Main end-->

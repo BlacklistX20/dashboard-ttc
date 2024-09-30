@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <?php $this->load->view('content/contentElectric'); ?>
+  <?php $this->load->view('content/electric'); ?>
 
 </div>
 </div>

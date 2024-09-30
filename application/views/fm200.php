@@ -11,7 +11,7 @@
    </div>
 </div> -->
 
-<?php $this->load->view('content/contentFm200') ?>
+<?php $this->load->view('content/fm200') ?>
 </div>
 <!--Container Main end-->
 

@@ -5,7 +5,7 @@
    <h4>TTC Sudiang Makassar</h2>
 </div>
 
-<?php $this->load->view('content/contentSpace'); ?>
+<?php $this->load->view('content/spaceManagement'); ?>
 
 </div>
 <!--Container Main end-->

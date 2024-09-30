@@ -12,7 +12,7 @@
       </div>
    </div>
 
-   <?php $this->load->view('content/contentTemp'); ?>
+   <?php $this->load->view('content/temperature'); ?>
 
 </div>
 </div>
