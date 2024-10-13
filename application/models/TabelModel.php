@@ -113,26 +113,28 @@ class TabelModel extends CI_Model
 
    public function getDataByDate($start, $end)
    {
-      $electric = $this->load->database('electric', TRUE);
+      $pue = $this->load->database('pue', TRUE);
 
       $startDate = "'$start'";
       $endDate = "'$end'";
       // if ($table == "pue") {
          $dataByDate = "
             SELECT
-               DATE(tgl) AS date,
-               TIME(tgl) AS time,
-               pue
+               DATE(updated_at) AS date,
+               TIME(updated_at) AS time,
+               pue,
+               it,
+               facility
             FROM
                pue
             WHERE
-               DATE(tgl) BETWEEN $startDate AND $endDate ";
-         return $electric->query($dataByDate);
+               DATE(updated_at) BETWEEN $startDate AND $endDate ";
+         return $pue->query($dataByDate);
       // } else {
       //    $dataByDate = "
       //       SELECT
-      //          DATE(tgl) AS date,
-      //          TIME(tgl) AS time,
+      //          DATE(updated_at) AS date,
+      //          TIME(updated_at) AS time,
       //          loads,
       //          voltage,
       //          current,
@@ -141,9 +143,9 @@ class TabelModel extends CI_Model
       //          $table
       //       WHERE
       //          DATE(tgl) BETWEEN $startDate AND $endDate ";
-      //    return $electric->query($dataByDate);
+      //    return $pue->query($dataByDate);
       // }
-      // return $electric->last_query();
+      // return $pue->last_query();
    }
 
    // public function getPueWeekly($table)

@@ -395,6 +395,8 @@ class GetData extends CI_Controller
 
       /* Data */
       $d = $this->TabelModel->getDataByDate($start, $end, $table)->result_array();
+      
+      // print_r($d);
 
       /* Spreadsheet Init */
       $spreadsheet = new Spreadsheet();
@@ -405,6 +407,8 @@ class GetData extends CI_Controller
          $sheet->setCellValue('A1', 'Tanggal');
          $sheet->setCellValue('B1', 'Waktu');
          $sheet->setCellValue('C1', 'PUE');
+         $sheet->setCellValue('D1', 'IT');
+         $sheet->setCellValue('E1', 'Facility');
 
          /* Excel Data */
          $row_number = 2;
@@ -412,13 +416,15 @@ class GetData extends CI_Controller
             $sheet->setCellValue('A' . $row_number, $row['date']);
             $sheet->setCellValue('B' . $row_number, $row['time']);
             $sheet->setCellValue('C' . $row_number, $row['pue']);
+            $sheet->setCellValue('D' . $row_number, $row['it']);
+            $sheet->setCellValue('E' . $row_number, $row['facility']);
 
             $row_number++;
          }
 
          /* Excel File Format */
          $writer = new Xlsx($spreadsheet);
-         $filename = $table . '_' . date('Ymd_His');
+         $filename = "pue" . '_' . date('Ymd_His');
 
          header('Content-Type: application/vnd.ms-excel');
          header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
