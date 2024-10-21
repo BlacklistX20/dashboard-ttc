@@ -120,7 +120,7 @@ class TabelModel extends CI_Model
       // if ($table == "pue") {
          $dataByDate = "
             SELECT
-               DATE(updated_at) AS date,
+               DATE_FORMAT(updated_at, '%d-%m-%Y') AS date,
                TIME(updated_at) AS time,
                pue,
                it,
