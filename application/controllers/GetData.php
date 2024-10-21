@@ -1,10 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- *  @property TabelModel $TabelModel 
- */
-
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
@@ -559,9 +555,9 @@ class GetData extends CI_Controller
       // ];
 
       // $filtered = filterFirstDataPoints($data);
-      $avg = calculateAveragePUE($data);
+      // $avg = calculateAveragePUE($data);
 
       // print_r($data);
-      echo $avg;
+      // echo $avg;
    }
 }

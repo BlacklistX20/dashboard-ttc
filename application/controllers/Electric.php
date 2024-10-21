@@ -1,13 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- *
- * @property  TabelModel  $TabelModel
- * @property  input $input
- *
- */
-
 class Electric extends CI_Controller
 {
 

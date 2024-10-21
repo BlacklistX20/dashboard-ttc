@@ -1,15 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- *
- * @property  TabelModel  $TabelModel
- * @property  input $input
- * @property  session $session
- * @property  upload $upload
- *
- */
-
 class Upload extends CI_Controller
 {
 

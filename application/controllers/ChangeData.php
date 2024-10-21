@@ -1,11 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- *  @property input $input
- *  @property TabelModel $TabelModel 
- */
-
 class ChangeData extends CI_Controller
 {
    public function __construct()

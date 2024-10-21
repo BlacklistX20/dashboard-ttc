@@ -1,12 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- *  @property input $input
- *  @property TabelModel $TabelModel 
- *  @property session   $session
- */
-
 class InputData extends CI_Controller
 {
 
