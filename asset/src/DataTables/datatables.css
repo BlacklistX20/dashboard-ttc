@@ -4,10 +4,10 @@
  *
  * To rebuild or modify this file with the latest versions of the included
  * software please visit:
- *   https://datatables.net/download/#bs5/jszip-3.10.1/pdfmake-0.2.7/dt-2.1.7/b-3.1.2/b-colvis-3.1.2/b-html5-3.1.2/b-print-3.1.2/date-1.5.4/fh-4.0.1/r-3.0.3/rg-1.5.0/sc-2.4.3/sb-1.8.0/sp-2.3.2/sl-2.1.0
+ *   https://datatables.net/download/#bs5/jszip-3.10.1/pdfmake-0.2.7/dt-2.1.8/b-3.1.2/b-colvis-3.1.2/b-html5-3.1.2/b-print-3.1.2/date-1.5.4/fh-4.0.1/r-3.0.3/sb-1.8.1/sp-2.3.3
  *
  * Included libraries:
- *   JSZip 3.10.1, pdfmake 0.2.7, DataTables 2.1.7, Buttons 3.1.2, Column visibility 3.1.2, HTML5 export 3.1.2, Print view 3.1.2, DateTime 1.5.4, FixedHeader 4.0.1, Responsive 3.0.3, RowGroup 1.5.0, Scroller 2.4.3, SearchBuilder 1.8.0, SearchPanes 2.3.2, Select 2.1.0
+ *   JSZip 3.10.1, pdfmake 0.2.7, DataTables 2.1.8, Buttons 3.1.2, Column visibility 3.1.2, HTML5 export 3.1.2, Print view 3.1.2, DateTime 1.5.4, FixedHeader 4.0.1, Responsive 3.0.3, SearchBuilder 1.8.1, SearchPanes 2.3.3
  */
 
 @charset "UTF-8";
@@ -1446,146 +1446,12 @@ table.dataTable.table-bordered td.dtr-control.dtr-hidden + * {
 }
 
 
-table.dataTable tr.dtrg-group th {
-  background-color: rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
-
-table.dataTable tr.dtrg-group.dtrg-level-0 th {
-  font-weight: bold;
-}
-
-table.dataTable tr.dtrg-group.dtrg-level-1 th,
-table.dataTable tr.dtrg-group.dtrg-level-2 th,
-table.dataTable tr.dtrg-group.dtrg-level-3 th,
-table.dataTable tr.dtrg-group.dtrg-level-4 th,
-table.dataTable tr.dtrg-group.dtrg-level-5 th {
-  background-color: rgba(0, 0, 0, 0.05);
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
-  padding-left: 2em;
-  font-size: 0.9em;
-}
-
-table.dataTable tr.dtrg-group.dtrg-level-2 th {
-  background-color: rgba(0, 0, 0, 0.01);
-  padding-left: 2.5em;
-}
-
-table.dataTable tr.dtrg-group.dtrg-level-3 th {
-  background-color: rgba(0, 0, 0, 0.01);
-  padding-left: 3em;
-}
-
-table.dataTable tr.dtrg-group.dtrg-level-4 th {
-  background-color: rgba(0, 0, 0, 0.01);
-  padding-left: 3.5em;
-}
-
-table.dataTable tr.dtrg-group.dtrg-level-5 th {
-  background-color: rgba(0, 0, 0, 0.01);
-  padding-left: 4em;
-}
-
-html.dark table.dataTable tr.dtrg-group th {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-html.dark table.dataTable tr.dtrg-group.dtrg-level-1 th {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-html.dark table.dataTable tr.dtrg-group.dtrg-level-2 th,
-html.dark table.dataTable tr.dtrg-group.dtrg-level-3 th,
-html.dark table.dataTable tr.dtrg-group.dtrg-level-4 th,
-html.dark table.dataTable tr.dtrg-group.dtrg-level-5 th {
-  background-color: rgba(255, 255, 255, 0.01);
-}
-
-table.dataTable.table-striped tr.dtrg-level-0 {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-table.dataTable.table-striped tr.dtrg-level-1 {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-table.dataTable.table-striped tr.dtrg-level-2,
-table.dataTable.table-striped tr.dtrg-level-3,
-table.dataTable.table-striped tr.dtrg-level-4,
-table.dataTable.table-striped tr.dtrg-level-5 {
-  background-color: rgba(0, 0, 0, 0.01);
-}
-table.dataTable.table-striped tr.dtrg-level-1 tr.dtrg-level-2 th,
-table.dataTable.table-striped tr.dtrg-level-3 th,
-table.dataTable.table-striped tr.dtrg-level-4 th,
-table.dataTable.table-striped tr.dtrg-level-5 th {
-  background-color: transparent;
-}
-
-
-div.dts {
-  display: block !important;
-}
-div.dts tbody th,
-div.dts tbody td {
-  white-space: nowrap;
-}
-div.dts div.dts_loading {
-  z-index: 1;
-}
-div.dts div.dts_label {
-  position: absolute;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-  text-align: right;
-  border-radius: 3px;
-  padding: 0.4em;
-  z-index: 2;
-  display: none;
-}
-div.dts div.dt-scroll-body,
-div.dts div.dataTables_scrollBody {
-  background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.025), rgba(0, 0, 0, 0.025) 10px, rgba(0, 0, 0, 0) 10px, rgba(0, 0, 0, 0) 20px);
-}
-div.dts div.dt-scroll-body table,
-div.dts div.dataTables_scrollBody table {
-  background-color: white;
-  z-index: 2;
-}
-div.dts div.dt-length,
-div.dts div.dt-paging,
-div.dts div.dataTables_paginate,
-div.dts div.dataTables_length {
-  display: none;
-}
-
-html.dark div.dts div.dts_label {
-  background: rgba(255, 255, 255, 0.8);
-  color: black;
-}
-html.dark div.dts div.dt-scroll-body,
-html.dark div.dts div.dataTables_scrollBody {
-  background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.025) 10px, rgba(255, 255, 255, 0) 10px, rgba(255, 255, 255, 0) 20px);
-}
-html.dark div.dts div.dt-scroll-body table,
-html.dark div.dts div.dataTables_scrollBody table {
-  background-color: var(--dt-html-background);
-  z-index: 2;
-}
-
-div.DTS div.dataTables_scrollBody table {
-  background-color: white;
-}
-
-html[data-bs-theme=dark] div.DTS div.dataTables_scrollBody table {
-  background-color: var(--bs-body-bg);
-}
-
-
 div.dt-button-collection {
   overflow: visible !important;
   z-index: 2002 !important;
 }
 div.dt-button-collection div.dtsb-searchBuilder {
+  box-sizing: border-box;
   padding-left: 1em !important;
   padding-right: 1em !important;
 }
@@ -1989,6 +1855,10 @@ div.dtsp-searchPane div.dt-container div.dataTables_layout_cell,
 div.dtsp-searchPane div.dataTables_wrapper div.dataTables_layout_cell {
   padding: 0;
 }
+div.dtsp-searchPane div.dt-container div.dt-layout-row:not(.dt-layout-table),
+div.dtsp-searchPane div.dataTables_wrapper div.dt-layout-row:not(.dt-layout-table) {
+  margin: 0;
+}
 div.dtsp-searchPane div.dt-container div.dt-scroll-head,
 div.dtsp-searchPane div.dt-container div.dataTables_scrollHead,
 div.dtsp-searchPane div.dataTables_wrapper div.dt-scroll-head,
@@ -2265,108 +2135,6 @@ html[data-bs-theme=dark] div.dtsp-panesContainer div.dtsp-searchPane div.dataTab
 html[data-bs-theme=dark] div.dtsp-panesContainer div.dtsp-searchPane div.dataTables_wrapper div.dataTables_scrollBody div.dtsp-nameCont span.dtsp-pill {
   background-color: rgb(33, 37, 41);
   color: inherit;
-}
-
-
-table.dataTable > tbody > tr > .selected {
-  background-color: rgb(13, 110, 253);
-  color: white;
-}
-table.dataTable > tbody > tr > .dt-select {
-  text-align: center;
-  vertical-align: middle;
-}
-table.dataTable > thead > tr > .dt-select {
-  text-align: center;
-}
-table.dataTable input.dt-select-checkbox {
-  appearance: none;
-  position: relative;
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border: 1px solid;
-  border-radius: 3px;
-  vertical-align: middle;
-  margin-top: 1px;
-  color: inherit;
-  font-size: 20px;
-  line-height: 1em;
-}
-table.dataTable input.dt-select-checkbox:checked:after {
-  display: block;
-  content: "✓";
-  margin-top: -8px;
-}
-table.dataTable input.dt-select-checkbox:indeterminate:after {
-  display: block;
-  position: absolute;
-  content: " ";
-  top: 3px;
-  left: 3px;
-  height: 4px;
-  width: 4px;
-  background-color: black;
-  border-radius: 2px;
-}
-table.dataTable > tbody > tr.selected input.dt-select-checkbox:checked {
-  border: 1px solid;
-}
-table.dataTable > tbody > tr > td.select-checkbox,
-table.dataTable > tbody > tr > th.select-checkbox {
-  position: relative;
-}
-table.dataTable > tbody > tr > td.select-checkbox:before,
-table.dataTable > tbody > tr > th.select-checkbox:before {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 12px;
-  height: 12px;
-  box-sizing: border-box;
-  content: " ";
-  margin-top: -6px;
-  margin-left: -6px;
-  border: 1px solid;
-  border-radius: 3px;
-}
-table.dataTable > tbody > tr.selected > td.select-checkbox:before,
-table.dataTable > tbody > tr.selected > th.select-checkbox:before {
-  border: 1px solid;
-  content: "✓";
-  font-size: 20px;
-  line-height: 4px;
-  text-align: center;
-}
-table.dataTable.compact > tbody > tr > td.select-checkbox:before,
-table.dataTable.compact > tbody > tr > th.select-checkbox:before {
-  margin-top: -12px;
-}
-table.dataTable.compact > tbody > tr.selected > td.select-checkbox:after,
-table.dataTable.compact > tbody > tr.selected > th.select-checkbox:after {
-  margin-top: -16px;
-}
-
-div.dt-container span.select-info,
-div.dt-container span.select-item {
-  margin-left: 0.5em;
-}
-
-html.dark table.dataTable input.dt-select-checkbox:indeterminate:after,
-html[data-bs-theme=dark] table.dataTable input.dt-select-checkbox:indeterminate:after {
-  background-color: white;
-}
-
-@media screen and (max-width: 640px) {
-  div.dt-container span.select-info,
-  div.dt-container span.select-item {
-    margin-left: 0;
-    display: block;
-  }
-}
-table.dataTable.table-sm tbody td.select-checkbox::before {
-  margin-top: -9px;
 }
 
 
