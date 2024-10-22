@@ -36,7 +36,7 @@ class Potency extends CI_Controller
          'source_b' => $this->input->post("source_b"),
          'kondisi' => $this->input->post("kondisi"),
          'status' => $this->input->post("status"),
-         'keterangan' => $this->input->post("keterangan"),
+         'ket' => $this->input->post("ket"),
          'install' => $this->input->post("install"),
          'maintanance' => $this->input->post("maintanance"),
          'updated_at' => date('Y-m-d H:i:s'),

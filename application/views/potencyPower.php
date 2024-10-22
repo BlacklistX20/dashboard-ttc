@@ -155,7 +155,7 @@
                   </div>
                   <div class="mb-3 col-md-4">
                      <label for="validationCustom12" class="form-label">Kapasitas Modul (Kva)</label>
-                     <input type="number" class="form-control" id="validationCustom12" name="modul_capacity" required />
+                     <input type="number" class="form-control" id="validationCustom12" name="modul_capacity" step="0.01" required />
                      <div class="invalid-feedback">Masukkan Kapasitas Modul</div>
                   </div>
                   <div class="mb-3 col-md-4">
@@ -198,18 +198,17 @@
                   </div>
                   <div class="mb-3 col-md-4">
                      <label for="validationCustom19" class="form-label">Keterangan</label>
-                     <textarea class="form-control" name="keterangan" id="validationCustom19" rows="3" required></textarea>
+                     <textarea class="form-control" name="ket" id="validationCustom19" rows="3" required></textarea>
                      <div class="invalid-feedback">Masukkan Keterangan (Jika tidak ada isi dengan -)</div>
                   </div>
                   <div class="mb-3 col-md-4">
                      <label for="validationCustom20" class="form-label">Tanggal Instalasi</label>
-                     <input type="date" class="form-control" id="validationCustom20" name="install" required />
+                     <input type="date" class="form-control" id="validationCustom20" name="install" require />
                      <div class="invalid-feedback">Masukkan Tanggal Instalasi</div>
                   </div>
                   <div class="mb-3 col-md-4">
-                     <label for="validationCustom21" class="form-label">Tanggal Maintanance Terakhir</label>
-                     <input type="date" class="form-control" id="validationCustom21" name="maintanance" required />
-                     <div class="invalid-feedback">Masukkan Tanggal Maintanance Terakhir</div>
+                     <label for="maintanance" class="form-label">Tanggal Maintanance Terakhir</label>
+                     <input type="date" class="form-control" id="maintanance" name="maintanance" value="-" />
                   </div>
                </div>
                <div class="modal-footer">
