@@ -9,7 +9,7 @@ class Potency extends CI_Controller
       $this->load->model('PotencyModel');
    }
 
-   function pages() {
+   function power() {
       $data['power'] = $this->PotencyModel->get('power')->result();
       // print_r($data);
 
@@ -32,6 +32,8 @@ class Potency extends CI_Controller
          'modul_capacity' => $this->input->post("modul_capacity"),
          'occupancy' => $this->input->post("occupancy"),
          'system' => $this->input->post("system"),
+         'aging' => $this->input->post("aging"),
+         'battery' => $this->input->post("battery"),
          'source_a' => $this->input->post("source_a"),
          'source_b' => $this->input->post("source_b"),
          'kondisi' => $this->input->post("kondisi"),

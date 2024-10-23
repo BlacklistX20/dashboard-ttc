@@ -2,7 +2,7 @@
 <h1 class="text-center fw-bold mb-4">TTC SUDIANG</h1>
 <div class="row row-cols-xxl-6 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 mx-1">
   <div class="card-custom col">
-    <a href="">
+    <a href="<?= base_url() ?>potency/power">
       <div class="card bg-danger text-white text-center p-3 mb-3 d-flex align-items-center justify-content-center"
         style="height: 40vh;">
         <i class='bx bxs-zap mb-3' style="font-size: 128px;"></i>

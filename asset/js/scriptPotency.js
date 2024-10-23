@@ -6,18 +6,34 @@ new DataTable('#power', {
 	 buttons: {
 		buttons: [
 		  {
-			 text: '<span class="icon text-white-50"><i class="bx bx-plus" style="color:#ffffff"></i></span><span class="text p-1 border-start">Tambah</span>',
-			 className: 'btn-primary',
+			 text: '<span class="icon text-white-50 px-1"><i class="bx bx-chevron-left" style="color:#ffffff"></i></span><span>Kembali</span>',
+			 className: 'btn-success px-1',
 			 attr: {
 				type: 'button',
-				'data-bs-toggle': 'modal',
-				'data-bs-target': '#addPower',
 			 },
+			 action: function (e, dt, node, config) {
+				if (document.referrer) {
+				  // Go back to the previous page if available
+				  window.history.back();
+				} else {
+				  // If no referrer, redirect to a default page
+				  window.location.href = '<?= base_url() ?>Pages/potency';
+				}
+			 }
 		  },
+		  {
+			text: '<span class="icon text-white-50 px-1"><i class="bx bx-plus" style="color:#ffffff"></i></span><span>Tambah</span>',
+			className: 'btn-primary px-1',
+			attr: {
+			  type: 'button',
+			  'data-bs-toggle': 'modal',
+			  'data-bs-target': '#addPower',
+			},
+		 },
 		],
 		dom: {
 		  button: {
-			 className: 'btn',
+			 className: 'btn mx-1',
 		  },
 		  buttonLiner: {
 			 tag: null,
@@ -38,11 +54,12 @@ function changeOption() {
 	};
 
 	// Event listener for floor selection
-	$('#validationCustom02').change(function () {
+	$('.change-floor').change(function () {
 	  const selectedFloor = $(this).val();
-	  const roomSelect = $('#validationCustom03');
+	  const roomSelect = $('.change-room');
 
 	  // Clear previous options
+	  roomSelect.removeAttr("disabled");
 	  roomSelect.empty().append('<option value="">--Select Room--</option>');
 
 	  // Populate room options based on selected floor
@@ -55,7 +72,7 @@ function changeOption() {
  }
 
  $(document).ready(function () {
-	$("a[id=tes]").addClass("active");
+	$("a[id=potency]").addClass("active");
 	$("#date").text(namaHari + ", " + tgl);
 	changeOption();
 }, startTime());

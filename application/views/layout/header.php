@@ -41,7 +41,7 @@
           <a href="<?= base_url() ?>Pages/temp" id="temp" class="nav_link"> <i class='bx bxs-thermometer nav_icon'></i> <span class="nav_name">Suhu Ruangan</span> </a>
           <a href="<?= base_url() ?>Pages/electric" id="electric" class="nav_link"> <i class='bx bx-bolt-circle nav_icon'></i> <span class="nav_name">Electricity</span> </a>
           <a href="<?= base_url() ?>Pages/fuel" id="fuel" class="nav_link"> <i class='bx bxs-gas-pump nav_icon'></i> <span class="nav_name">Level BBM</span> </a>
-          <a href="<?= base_url() ?>Pages/potency" id="folder" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Data Potensi</span> </a>
+          <a href="<?= base_url() ?>Pages/potency" id="potency" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Data Potensi</span> </a>
           <a href="<?= base_url() ?>Upload/space" id="space" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Space Management</span> </a>
           <a href="<?= base_url() ?>Pages/test" id="tes" class="nav_link"> <i class='bx bx-line-chart'></i> <span class="nav_name">PUE Harian</span> </a>
         </div>

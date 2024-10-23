@@ -49,7 +49,7 @@
                   <td><?= $p->maintanance; ?></td>
                   <td><?= $p->updated_at; ?></td>
                   <td>
-                     <button type="button" class="btn btn-success btnDetailElec" data-id="<?= $p->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
+                     <button type="button" class="btn btn-success btnDetailElec" data-bs-toggle="modal" data-bs-target="#detailPower" data data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
                         <i class='bx bxs-book-content'></i>
                      </button>
                      <button type="button" class="btn btn-primary btnEditElec" data-id="<?= $p->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
@@ -65,7 +65,50 @@
       </table>
    </div>
 
-   <!-- Modal Electric -->
+   <!-- Modal -->
+   <!-- Detail -->
+   <div class="modal fade" id="detailPower" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title fw-bold" id="detailLabel">Detail <span id="deviceName"></span></h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" method="post">
+               <div class="modal-body row g-3">
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">NE ID</div>
+                        <input type="text" class="form-control" name="ne_id" readonly disabled>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-body row g-3">
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">NE ID</div>
+                        <select class="form-select change-floor" name="floor" disabled>
+                           <option selected disabled value="">-- Pilih Lantai --</option>
+                           <option value="Basement">Basement</option>
+                           <option value="Semi Basement">Semi-Basement</option>
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+            </form>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+               <button type="button" id="edit" class="btn btn-primary">Edit</button>
+            </div>
+            </form>
+         </div>
+      </div>
+   </div>
    <!-- Add -->
    <div class="modal fade" id="addPower" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -85,7 +128,7 @@
                   </div>
                   <div class="mb-3 col-md-4">
                      <label for="validationCustom02" class="form-label">Lantai</label>
-                     <select class="form-select" name="floor" id="validationCustom02" required>
+                     <select class="form-select change-floor" name="floor" id="validationCustom02" required>
                         <option selected disabled value="">-- Pilih Lantai --</option>
                         <option value="Basement">Basement</option>
                         <option value="Semi Basement">Semi-Basement</option>
@@ -99,8 +142,8 @@
                   </div>
                   <div class="mb-3 col-md-4">
                      <label for="validationCustom03" class="form-label">Ruang</label>
-                     <select class="form-select" name="room" id="validationCustom03" required>
-                        <option selected disabled value="">-- Pilih Ruangan --</option>
+                     <select class="form-select change-room" name="room" id="validationCustom03" required disabled>
+                        <option selected disabled value="">-- Pilih Lantai --</option>
                      </select>
                      <div class="invalid-feedback">Pilih Ruangan</div>
                   </div>
@@ -164,23 +207,42 @@
                      <div class="invalid-feedback">Masukkan Occupancy</div>
                   </div>
                   <div class="mb-3 col-md-4">
-                     <label for="validationCustom14" class="form-label">System</label>
-                     <input type="text" class="form-control" id="validationCustom14" name="system" required />
-                     <div class="invalid-feedback">Masukkan System (Jika tidak ada isi dengan -)</div>
+                     <label for="validationCustom14" class="form-label">Jenis System</label>
+                     <select class="form-select" name="system" id="validationCustom17" required>
+                        <option selected disabled value="">-- Pilih Jenis System --</option>
+                        <option value="Baik">Large</option>
+                        <option value="Rusak">Small</option>
+                        <option value="-">Tidak Ada</option>
+                     </select>
+                     <div class="invalid-feedback">Pilih Jenis System</div>
                   </div>
                   <div class="mb-3 col-md-4">
-                     <label for="validationCustom15" class="form-label">Source A</label>
-                     <input type="text" class="form-control" id="validationCustom15" name="source_a" required />
+                     <label for="validationCustom15" class="form-label">Remark Aging</label>
+                     <select class="form-select" name="aging" id="validationCustom15" required>
+                        <option selected disabled value="">-- Pilih Remark Aging --</option>
+                        <option value="Baik">Under 10 Years</option>
+                        <option value="Rusak">Above 10 Years</option>
+                     </select>
+                     <div class="invalid-feedback">Pilih Remark Aging</div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <label for="validationCustom16" class="form-label">Jumlah Batterai</label>
+                     <input type="number" class="form-control" id="validationCustom16" name="battery" required />
+                     <div class="invalid-feedback">Masukkan Jumlah Batterai</div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <label for="validationCustom17" class="form-label">Source A</label>
+                     <input type="text" class="form-control" id="validationCustom17" name="source_a" required />
                      <div class="invalid-feedback">Masukkan Source A (Jika tidak ada isi dengan -)</div>
                   </div>
                   <div class="mb-3 col-md-4">
-                     <label for="validationCustom16" class="form-label">Source B</label>
-                     <input type="text" class="form-control" id="validationCustom16" name="source_b" required />
+                     <label for="validationCustom18" class="form-label">Source B</label>
+                     <input type="text" class="form-control" id="validationCustom18" name="source_b" required />
                      <div class="invalid-feedback">Masukkan Source B (Jika tidak ada isi dengan -)</div>
                   </div>
                   <div class="mb-3 col-md-4">
-                     <label for="validationCustom17" class="form-label">Kondisi</label>
-                     <select class="form-select" name="kondisi" id="validationCustom17" required>
+                     <label for="validationCustom19" class="form-label">Kondisi</label>
+                     <select class="form-select" name="kondisi" id="validationCustom19" required>
                         <option selected disabled value="">-- Pilih Kondisi --</option>
                         <option value="Baik">Baik</option>
                         <option value="Rusak">Rusak</option>
@@ -188,8 +250,8 @@
                      <div class="invalid-feedback">Pilih Kondisi</div>
                   </div>
                   <div class="mb-3 col-md-4">
-                     <label for="validationCustom18" class="form-label">Status</label>
-                     <select class="form-select" name="status" id="validationCustom18" required>
+                     <label for="validationCustom20" class="form-label">Status</label>
+                     <select class="form-select" name="status" id="validationCustom20" required>
                         <option selected disabled value="">-- Pilih Status --</option>
                         <option value="ON">ON</option>
                         <option value="OFF">OFF</option>
@@ -197,13 +259,13 @@
                      <div class="invalid-feedback">Pilih Status</div>
                   </div>
                   <div class="mb-3 col-md-4">
-                     <label for="validationCustom19" class="form-label">Keterangan</label>
-                     <textarea class="form-control" name="ket" id="validationCustom19" rows="3" required></textarea>
+                     <label for="validationCustom21" class="form-label">Keterangan</label>
+                     <textarea class="form-control" name="ket" id="validationCustom21" rows="3" required></textarea>
                      <div class="invalid-feedback">Masukkan Keterangan (Jika tidak ada isi dengan -)</div>
                   </div>
                   <div class="mb-3 col-md-4">
-                     <label for="validationCustom20" class="form-label">Tanggal Instalasi</label>
-                     <input type="date" class="form-control" id="validationCustom20" name="install" require />
+                     <label for="validationCustom22" class="form-label">Tanggal Instalasi</label>
+                     <input type="date" class="form-control" id="validationCustom22" name="install" require />
                      <div class="invalid-feedback">Masukkan Tanggal Instalasi</div>
                   </div>
                   <div class="mb-3 col-md-4">

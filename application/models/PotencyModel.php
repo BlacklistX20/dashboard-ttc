@@ -9,6 +9,13 @@ class PotencyModel extends CI_Model
       return $dapot->get($table);
    }
 
+   public function getById($id, $table)
+   {
+      $dapot = $this->load->database('dapot', TRUE);
+
+      return $dapot->get_where($table, $id);
+   }
+
    public function add($data, $table)
    {
       $dapot = $this->load->database('dapot', TRUE);

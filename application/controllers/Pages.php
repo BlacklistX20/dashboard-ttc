@@ -35,6 +35,12 @@ class Pages extends CI_Controller {
 
 	public function potency()
 	{
+		// print_r($data);
+		$this->load->view('potency');
+	}
+
+	public function test()
+	{
 		$data['electric'] = $this->TabelModel->getPotency('electricity')->result();
 		$data['cooling'] = $this->TabelModel->getPotency('cooling')->result();
 		$data['fire'] = $this->TabelModel->getPotency('fire')->result();
@@ -43,15 +49,9 @@ class Pages extends CI_Controller {
 		$data['penerangan'] = $this->TabelModel->getPotency('penerangan')->result();
 		$data['warning'] = $this->TabelModel->getPotency('warning')->result();
 		$data['support'] = $this->TabelModel->getPotency('support')->result();
-
+		
 		// print_r($data);
-		$this->load->view('potency', $data);
-	}
-
-	public function test()
-	{
-		// print_r($data);
-		$this->load->view('test_Page');
+		$this->load->view('test_Page', $data);
 	}
 
 }
