@@ -79,11 +79,9 @@
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
                         <div class="input-group-text">NE ID</div>
-                        <input type="text" class="form-control" name="ne_id" readonly disabled>
+                        <input type="text" class="form-control" name="ne_id" disabled>
                      </div>
                   </div>
-               </div>
-               <div class="modal-body row g-3">
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
                         <div class="input-group-text">NE ID</div>
@@ -99,12 +97,58 @@
                         </select>
                      </div>
                   </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">NE ID</div>
+                        <select class="form-select change-room" name="room" id="validationCustom03" disabled>
+                           <option selected disabled value="">-- Pilih Lantai --</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">NE ID</div>
+                        <select class="form-select" name="category" id="validationCustom04" disabled>
+                           <option selected disabled value="">-- Pilih Kategori --</option>
+                           <option value="Panel">Panel</option>
+                           <option value="Rectifier">Rectifier</option>
+                           <option value="UPS">UPS</option>
+                           <option value="Genset">Genset</option>
+                           <option value="Trafo">Trafo</option>
+                           <option value="Cubicle">Cubicle</option>
+                           <option value="PLN">PLN</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Nama</div>
+                        <input type="text" class="form-control" name="name" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Vendor</div>
+                        <input type="text" class="form-control" name="vendor" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Brand</div>
+                        <input type="text" class="form-control" name="brand" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Type</div>
+                        <input type="text" class="form-control" name="type" disabled>
+                     </div>
+                  </div>
                </div>
-            </form>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-               <button type="button" id="edit" class="btn btn-primary">Edit</button>
-            </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  <button type="button" id="edit" class="btn btn-primary">Edit</button>
+               </div>
             </form>
          </div>
       </div>
