@@ -48,8 +48,43 @@ class Potency extends CI_Controller
       redirect('potency/pages');
    }
 
-   function editPower() {
-      
+   function editPower($id) {
+      $data = array(
+         'ne_id' => $this->input->post("ne_id"),
+         'floor' => $this->input->post("floor"),
+         'room' => $this->input->post("room"),
+         'category' => $this->input->post("category"),
+         'name' => $this->input->post("name"),
+         'vendor' => $this->input->post("vendor"),
+         'brand' => $this->input->post("brand"),
+         'type' => $this->input->post("type"),
+         'role' => $this->input->post("role"),
+         'capacity' => $this->input->post("capacity"),
+         'modul' => $this->input->post("modul"),
+         'modul_capacity' => $this->input->post("modul_capacity"),
+         'occupancy' => $this->input->post("occupancy"),
+         'system' => $this->input->post("system"),
+         'aging' => $this->input->post("aging"),
+         'battery' => $this->input->post("battery"),
+         'source_a' => $this->input->post("source_a"),
+         'source_b' => $this->input->post("source_b"),
+         'kondisi' => $this->input->post("kondisi"),
+         'status' => $this->input->post("status"),
+         'ket' => $this->input->post("ket"),
+         'install' => $this->input->post("install"),
+         'maintanance' => $this->input->post("maintanance"),
+         'updated_at' => date('Y-m-d H:i:s'),
+      );
+
+      $this->PotencyModel->edit($id, $data, 'power');
+      redirect('potency/pages');
+   }
+
+   public function getPowerById($id)
+   {
+      $data = $this->PotencyModel->getById("id = $id", 'power')->row_array();
+
+      echo json_encode($data);
    }
 
    public function getDapot() {

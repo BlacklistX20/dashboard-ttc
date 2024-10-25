@@ -49,13 +49,13 @@
                   <td><?= $p->maintanance; ?></td>
                   <td><?= $p->updated_at; ?></td>
                   <td>
-                     <button type="button" class="btn btn-success btnDetailElec" data-bs-toggle="modal" data-bs-target="#detailPower" data data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
+                     <button type="button" class="btn btn-success btnDetailPower" data-id="<?= $p->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
                         <i class='bx bxs-book-content'></i>
                      </button>
-                     <button type="button" class="btn btn-primary btnEditElec" data-id="<?= $p->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                     <button type="button" class="btn btn-primary btnEditPower" data-id="<?= $p->id; ?>" data data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                         <i class='bx bxs-edit'></i>
                      </button>
-                     <button type="button" class="btn btn-danger btnDeleteElec" data-id="<?= $p->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                     <button type="button" class="btn btn-danger btnDeletePower" data-id="<?= $p->id; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
                         <i class='bx bxs-trash'></i>
                      </button>
                   </td>
@@ -66,26 +66,26 @@
    </div>
 
    <!-- Modal -->
-   <!-- Detail -->
+   <!-- Detail & Edit -->
    <div class="modal fade" id="detailPower" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title fw-bold" id="detailLabel">Detail <span id="deviceName"></span></h5>
+               <h5 class="modal-title fw-bold" id="detailLabel"><span id="title">Detail</span> <span id="deviceName"></span></h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="#" method="post">
+            <form action="#" id="editPower" method="post">
                <div class="modal-body row g-3">
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
                         <div class="input-group-text">NE ID</div>
-                        <input type="text" class="form-control" name="ne_id" disabled>
+                        <input type="text" class="form-control changeToEdit" id="ne_id" name="ne_id" disabled>
                      </div>
                   </div>
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
-                        <div class="input-group-text">NE ID</div>
-                        <select class="form-select change-floor" name="floor" disabled>
+                        <div class="input-group-text">Lantai</div>
+                        <select class="form-select changeToEdit change-floor" id="floor" name="floor" disabled>
                            <option selected disabled value="">-- Pilih Lantai --</option>
                            <option value="Basement">Basement</option>
                            <option value="Semi Basement">Semi-Basement</option>
@@ -99,16 +99,16 @@
                   </div>
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
-                        <div class="input-group-text">NE ID</div>
-                        <select class="form-select change-room" name="room" id="validationCustom03" disabled>
+                        <div class="input-group-text">Ruang</div>
+                        <select class="form-select changeToEdit change-room" id="room" name="room" disabled>
                            <option selected disabled value="">-- Pilih Lantai --</option>
                         </select>
                      </div>
                   </div>
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
-                        <div class="input-group-text">NE ID</div>
-                        <select class="form-select" name="category" id="validationCustom04" disabled>
+                        <div class="input-group-text">Kategori</div>
+                        <select class="form-select changeToEdit" id="category" name="category" disabled>
                            <option selected disabled value="">-- Pilih Kategori --</option>
                            <option value="Panel">Panel</option>
                            <option value="Rectifier">Rectifier</option>
@@ -123,31 +123,138 @@
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
                         <div class="input-group-text">Nama</div>
-                        <input type="text" class="form-control" name="name" disabled>
+                        <input type="text" class="form-control changeToEdit" id="name" name="name" disabled>
                      </div>
                   </div>
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
                         <div class="input-group-text">Vendor</div>
-                        <input type="text" class="form-control" name="vendor" disabled>
+                        <input type="text" class="form-control changeToEdit" id="vendor" name="vendor" disabled>
                      </div>
                   </div>
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
                         <div class="input-group-text">Brand</div>
-                        <input type="text" class="form-control" name="brand" disabled>
+                        <input type="text" class="form-control changeToEdit" id="brand" name="brand" disabled>
                      </div>
                   </div>
                   <div class="mb-3 col-md-4">
                      <div class="input-group">
                         <div class="input-group-text">Type</div>
-                        <input type="text" class="form-control" name="type" disabled>
+                        <input type="text" class="form-control changeToEdit" id="type" name="type" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Role</div>
+                        <input type="text" class="form-control changeToEdit" id="role" name="role" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Kapasitas</div>
+                        <input type="number" class="form-control changeToEdit" id="capacity" name="capacity" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Jumlah Modul</div>
+                        <input type="number" class="form-control changeToEdit" id="modul" name="modul" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Kapasitas Modul</div>
+                        <input type="number" class="form-control changeToEdit" id="modul_capacity" name="modul_capacity" step="0.01" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Occupancy (%)</div>
+                        <input type="number" class="form-control changeToEdit" id="occupancy" name="occupancy" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Jenis Sistem</div>
+                        <select class="form-select changeToEdit" id="system" name="system" disabled>
+                           <option selected disabled value="">-- Pilih Jenis System --</option>
+                           <option value="Large">Large System</option>
+                           <option value="Small">Small System</option>
+                           <option value="-">Tidak Ada</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Remark Aging</div>
+                        <select class="form-select changeToEdit" id="aging" name="aging" disabled>
+                           <option selected disabled value="">-- Pilih Remark Aging --</option>
+                           <option value="Under">Under 10 Years</option>
+                           <option value="Above">Above 10 Years</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Jumlah Baterai</div>
+                        <input type="number" class="form-control changeToEdit" id="battery" name="battery" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Source A</div>
+                        <input type="text" class="form-control changeToEdit" id="source_a" name="source_a" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Source B</div>
+                        <input type="text" class="form-control changeToEdit" id="source_b" name="source_b" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Kondisi</div>
+                        <select class="form-select changeToEdit" id="kondisi" name="kondisi" disabled>
+                           <option selected disabled value="">-- Pilih Kondisi --</option>
+                           <option value="Baik">Baik</option>
+                           <option value="Rusak">Rusak</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Status</div>
+                        <select class="form-select changeToEdit" id="status" name="status" disabled>
+                           <option selected disabled value="">-- Pilih Status --</option>
+                           <option value="ON">ON</option>
+                           <option value="OFF">OFF</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Tanggal Instalasi</div>
+                        <input type="date" class="form-control changeToEdit" id="install" name="install" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Tanggal Maintanance Terakhir</div>
+                        <input type="text" class="form-control changeToEdit" id="maintanance" name="maintanance" value="-" disabled>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-md-4">
+                     <div class="input-group">
+                        <div class="input-group-text">Keterangan</div>
+                        <textarea class="form-control changeToEdit" id="ket" name="ket" rows="3" disabled></textarea>
                      </div>
                   </div>
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                  <button type="button" id="edit" class="btn btn-primary">Edit</button>
+                  <button type="button" id="detailToEdit" class="btn btn-primary">Edit</button>
                </div>
             </form>
          </div>
@@ -254,8 +361,8 @@
                      <label for="validationCustom14" class="form-label">Jenis System</label>
                      <select class="form-select" name="system" id="validationCustom17" required>
                         <option selected disabled value="">-- Pilih Jenis System --</option>
-                        <option value="Baik">Large</option>
-                        <option value="Rusak">Small</option>
+                        <option value="Large">Large</option>
+                        <option value="Small">Small</option>
                         <option value="-">Tidak Ada</option>
                      </select>
                      <div class="invalid-feedback">Pilih Jenis System</div>
@@ -264,8 +371,8 @@
                      <label for="validationCustom15" class="form-label">Remark Aging</label>
                      <select class="form-select" name="aging" id="validationCustom15" required>
                         <option selected disabled value="">-- Pilih Remark Aging --</option>
-                        <option value="Baik">Under 10 Years</option>
-                        <option value="Rusak">Above 10 Years</option>
+                        <option value="Under">Under 10 Years</option>
+                        <option value="Above">Above 10 Years</option>
                      </select>
                      <div class="invalid-feedback">Pilih Remark Aging</div>
                   </div>
@@ -314,160 +421,7 @@
                   </div>
                   <div class="mb-3 col-md-4">
                      <label for="maintanance" class="form-label">Tanggal Maintanance Terakhir</label>
-                     <input type="date" class="form-control" id="maintanance" name="maintanance" value="-" />
-                  </div>
-               </div>
-               <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">Tambah</button>
-               </div>
-            </form>
-         </div>
-      </div>
-   </div>
-   <!-- Edit -->
-   <div class="modal fade" id="editElec" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <h5 class="modal-title" id="editLabel">Edit Data Potensi</h5>
-               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="#" method="post" id="editPower">
-               <div class="modal-body row g-3">
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom01" class="form-label">NE ID</label>
-                     <input type="text" class="form-control" id="validationCustom01" name="neid" required />
-                     <div class="invalid-feedback">
-                        Masukkan NE ID (Jika tidak ada isi dengan -)
-                     </div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom02" class="form-label">Lantai</label>
-                     <select class="form-select" name="floor" id="validationCustom02" required>
-                        <option selected disabled value="">-- Pilih Lantai --</option>
-                        <option value="Basement">Basement</option>
-                        <option value="Semi Basement">Semi-Basement</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                     </select>
-                     <div class="invalid-feedback">Pilih Lantai</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom03" class="form-label">Ruang</label>
-                     <select class="form-select" name="room" id="validationCustom03" required>
-                        <option selected disabled value="">-- Pilih Ruangan --</option>
-                     </select>
-                     <div class="invalid-feedback">Pilih Ruangan</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom04" class="form-label">Kategori</label>
-                     <select class="form-select" name="category" id="validationCustom04" required>
-                        <option selected disabled value="">-- Pilih Kategori --</option>
-                        <option value="Panel">Panel</option>
-                        <option value="Rectifier">Rectifier</option>
-                        <option value="UPS">UPS</option>
-                        <option value="Genset">Genset</option>
-                        <option value="Trafo">Trafo</option>
-                        <option value="Cubicle">Cubicle</option>
-                        <option value="PLN">PLN</option>
-                     </select>
-                     <div class="invalid-feedback">Pilih Kategori</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom05" class="form-label">Nama</label>
-                     <input type="text" class="form-control" id="validationCustom05" name="name" required />
-                     <div class="invalid-feedback">Masukkan Nama</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom06" class="form-label">Vendor</label>
-                     <input type="text" class="form-control" id="validationCustom06" name="vendor" required />
-                     <div class="invalid-feedback">Masukkan Vendor</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom07" class="form-label">Brand</label>
-                     <input type="text" class="form-control" id="validationCustom07" name="brand" required />
-                     <div class="invalid-feedback">Masukkan Brand (Jika tidak ada isi dengan -)</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom08" class="form-label">Type</label>
-                     <input type="text" class="form-control" id="validationCustom08" name="type" required />
-                     <div class="invalid-feedback">Masukkan Type (Jika tidak ada isi dengan -)</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom09" class="form-label">Role</label>
-                     <input type="text" class="form-control" id="validationCustom09" name="role" required />
-                     <div class="invalid-feedback">Masukkan Role (Jika tidak ada isi dengan -)</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom10" class="form-label">Kapasitas (Kva)</label>
-                     <input type="number" class="form-control" id="validationCustom10" name="capacity" required />
-                     <div class="invalid-feedback">Masukkan Kapasitas</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom11" class="form-label">Jumlah Modul</label>
-                     <input type="number" class="form-control" id="validationCustom11" name="modul" required />
-                     <div class="invalid-feedback">Masukkan Jumlah Modul</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom12" class="form-label">Kapasitas Modul (Kva)</label>
-                     <input type="number" class="form-control" id="validationCustom12" name="modulCapacity" required />
-                     <div class="invalid-feedback">Masukkan Kapasitas Modul</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom13" class="form-label">Occupancy (%)</label>
-                     <input type="number" class="form-control" id="validationCustom13" name="occupancy" required />
-                     <div class="invalid-feedback">Masukkan Occupancy</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom14" class="form-label">System</label>
-                     <input type="text" class="form-control" id="validationCustom14" name="system" required />
-                     <div class="invalid-feedback">Masukkan System (Jika tidak ada isi dengan -)</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom15" class="form-label">Source A</label>
-                     <input type="text" class="form-control" id="validationCustom15" name="sourceA" required />
-                     <div class="invalid-feedback">Masukkan Source A (Jika tidak ada isi dengan -)</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom16" class="form-label">Source B</label>
-                     <input type="text" class="form-control" id="validationCustom16" name="sourceB" required />
-                     <div class="invalid-feedback">Masukkan Source B (Jika tidak ada isi dengan -)</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom17" class="form-label">Kondisi</label>
-                     <select class="form-select" name="kondisi" id="validationCustom17" required>
-                        <option selected disabled value="">-- Pilih Kondisi --</option>
-                        <option value="Baik">Baik</option>
-                        <option value="Rusak">Rusak</option>
-                     </select>
-                     <div class="invalid-feedback">Pilih Kondisi</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom18" class="form-label">Status</label>
-                     <select class="form-select" name="status" id="validationCustom18" required>
-                        <option selected disabled value="">-- Pilih Status --</option>
-                        <option value="ON">ON</option>
-                        <option value="OFF">OFF</option>
-                     </select>
-                     <div class="invalid-feedback">Pilih Status</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom19" class="form-label">Keterangan</label>
-                     <textarea class="form-control" name="keterangan" id="validationCustom19" rows="3" required></textarea>
-                     <div class="invalid-feedback">Masukkan Keterangan (Jika tidak ada isi dengan -)</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom20" class="form-label">Tanggal Instalasi</label>
-                     <input type="date" class="form-control" id="validationCustom20" name="install" required />
-                     <div class="invalid-feedback">Masukkan Tanggal Instalasi</div>
-                  </div>
-                  <div class="mb-3 col-md-4">
-                     <label for="validationCustom21" class="form-label">Tanggal Maintanance Terakhir</label>
-                     <input type="date" class="form-control" id="validationCustom21" name="maintanance" required />
-                     <div class="invalid-feedback">Masukkan Tanggal Maintanance Terakhir</div>
+                     <input type="text" class="form-control" id="maintanance" name="maintanance" value="-" />
                   </div>
                </div>
                <div class="modal-footer">
@@ -499,6 +453,84 @@
 <?php $this->load->view('layout/footer'); ?>
 
 <script src="<?= base_url(); ?>asset/js/scriptPotency.js"></script>
+<script>
+   $(".btnDetailPower").click(function() {
+      let id = $(this).data("id");
+      $.ajax({
+         url: '<?= base_url('potency/getpowerbyid/'); ?>' + id,
+         success: function(respond) {
+            let data = JSON.parse(respond);
+            $("#deviceName").text(data.name);
+            $("#ne_id").val(data.ne_id);
+            $("#floor").val(data.floor).change();
+            $("#room").val(data.room).change();
+            $("#room").attr("disabled", "disabled");
+            $("#category").val(data.category).change();
+            $("#name").val(data.name);
+            $("#vendor").val(data.vendor);
+            $("#brand").val(data.brand);
+            $("#type").val(data.type);
+            $("#role").val(data.role);
+            $("#capacity").val(data.capacity);
+            $("#modul").val(data.modul);
+            $("#modul_capacity").val(data.modul_capacity);
+            $("#occupancy").val(data.occupancy);
+            $("#system").val(data.system).change();
+            $("#aging").val(data.aging).change();
+            $("#battery").val(data.battery);
+            $("#source_a").val(data.source_a);
+            $("#source_b").val(data.source_b);
+            $("#kondisi").val(data.kondisi).change();
+            $("#status").val(data.status).change();
+            $("#install").val(data.install);
+            $("#maintanance").val(data.maintanance);
+            $("#ket").val(data.ket);
+            $("#detailPower").modal("show");
+         },
+      })
+   })
+   $("#detailToEdit").click(function() {
+      $("#title").text("Edit")
+      $(".changeToEdit").removeAttr("disabled");
+      $('#editPower').attr('action', '<?= base_url() ?>potency/editpower/' + id);
+   })
+   $(".btnEditPower").click(function() {
+      let id = $(this).data("id");
+      $.ajax({
+         url: '<?= base_url('potency/getpowerbyid/'); ?>' + id,
+         success: function(respond) {
+            let data = JSON.parse(respond);
+            $(".changeToEdit").removeAttr("disabled");
+            $("#deviceName").text(data.name);
+            $("#ne_id").val(data.ne_id);
+            $("#floor").val(data.floor).change();
+            $("#room").val(data.room).change();
+            $("#category").val(data.category).change();
+            $("#name").val(data.name);
+            $("#vendor").val(data.vendor);
+            $("#brand").val(data.brand);
+            $("#type").val(data.type);
+            $("#role").val(data.role);
+            $("#capacity").val(data.capacity);
+            $("#modul").val(data.modul);
+            $("#modul_capacity").val(data.modul_capacity);
+            $("#occupancy").val(data.occupancy);
+            $("#system").val(data.system).change();
+            $("#aging").val(data.aging).change();
+            $("#battery").val(data.battery);
+            $("#source_a").val(data.source_a);
+            $("#source_b").val(data.source_b);
+            $("#kondisi").val(data.kondisi).change();
+            $("#status").val(data.status).change();
+            $("#install").val(data.install);
+            $("#maintanance").val(data.maintanance);
+            $("#ket").val(data.ket);
+            $('#editPower').attr('action', '<?= base_url() ?>potency/editpower/' + id);
+            $("#detailPower").modal("show");
+         },
+      })
+   })
+</script>
 
 </body>
 
