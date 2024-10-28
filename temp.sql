@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `suhu`
+-- Database: `temp`
 --
 
 -- --------------------------------------------------------
@@ -29,12 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `battery4` (
   `id` int(255) NOT NULL,
-  `s1` double(15,2) DEFAULT NULL,
-  `k1` double(15,2) DEFAULT NULL,
-  `w1` datetime NOT NULL,
-  `s2` double(15,2) DEFAULT NULL,
-  `k2` double(15,2) DEFAULT NULL,
-  `w2` datetime NOT NULL
+  `updated_at` datetime NOT NULL,
+  `t1` double(15,2) NOT NULL,
+  `h1` double(15,2) NOT NULL,
+  `t2` double(15,2) NOT NULL,
+  `h2` double(15,2) NOT NULL,
+  `t_avg` double(15,2) NOT NULL,
+  `h_avg` double(15,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -45,18 +46,17 @@ CREATE TABLE `battery4` (
 
 CREATE TABLE `bss` (
   `id` int(255) NOT NULL,
-  `s1` double(15,2) NOT NULL,
-  `k1` double(15,2) DEFAULT NULL,
-  `w1` datetime NOT NULL,
-  `s2` double(15,2) DEFAULT NULL,
-  `k2` double(15,2) DEFAULT NULL,
-  `w2` datetime NOT NULL,
-  `s3` double(15,2) DEFAULT NULL,
-  `k3` double(15,2) DEFAULT NULL,
-  `w3` datetime NOT NULL,
-  `s4` double(15,2) DEFAULT NULL,
-  `k4` double(15,2) DEFAULT NULL,
-  `w4` datetime NOT NULL
+  `updated_at` datetime NOT NULL,
+  `t1` double(15,2) NOT NULL,
+  `h1` double(15,2) NOT NULL,
+  `t2` double(15,2) NOT NULL,
+  `h2` double(15,2) NOT NULL,
+  `t3` double(15,2) NOT NULL,
+  `h3` double(15,2) NOT NULL,
+  `t4` double(15,2) NOT NULL,
+  `h4` double(15,2) NOT NULL,
+  `t_avg` double(15,2) NOT NULL,
+  `h_avg` double(15,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -67,18 +67,17 @@ CREATE TABLE `bss` (
 
 CREATE TABLE `inter` (
   `id` int(255) NOT NULL,
-  `s1` double(15,2) NOT NULL,
-  `k1` double(15,2) NOT NULL,
-  `w1` datetime NOT NULL,
-  `s2` double(15,2) NOT NULL,
-  `k2` double(15,2) NOT NULL,
-  `w2` datetime NOT NULL,
-  `s3` double(15,2) NOT NULL,
-  `k3` double(15,2) NOT NULL,
-  `w3` datetime NOT NULL,
-  `s4` double(15,2) NOT NULL,
-  `k4` double(15,2) NOT NULL,
-  `w4` datetime NOT NULL
+  `updated_at` datetime NOT NULL,
+  `t1` double(15,2) NOT NULL,
+  `h1` double(15,2) NOT NULL,
+  `t2` double(15,2) NOT NULL,
+  `h2` double(15,2) NOT NULL,
+  `t3` double(15,2) NOT NULL,
+  `h3` double(15,2) NOT NULL,
+  `t4` double(15,2) NOT NULL,
+  `h4` double(15,2) NOT NULL,
+  `t_avg` double(15,2) NOT NULL,
+  `h_avg` double(15,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -89,15 +88,15 @@ CREATE TABLE `inter` (
 
 CREATE TABLE `recti4` (
   `id` int(255) NOT NULL,
-  `s1` double(15,2) NOT NULL,
-  `k1` double(15,2) NOT NULL,
-  `w1` datetime NOT NULL,
-  `s2` double(15,2) NOT NULL,
-  `k2` double(15,2) NOT NULL,
-  `w2` datetime NOT NULL,
-  `s3` double(15,2) NOT NULL,
-  `k3` double(15,2) NOT NULL,
-  `w3` datetime NOT NULL
+  `updated_at` datetime NOT NULL,
+  `t1` double(15,2) NOT NULL,
+  `h1` double(15,2) NOT NULL,
+  `t2` double(15,2) NOT NULL,
+  `h2` double(15,2) NOT NULL,
+  `t3` double(15,2) NOT NULL,
+  `h3` double(15,2) NOT NULL,
+  `t_avg` double(15,2) NOT NULL,
+  `h_avg` double(15,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -108,24 +107,21 @@ CREATE TABLE `recti4` (
 
 CREATE TABLE `trans` (
   `id` int(255) NOT NULL,
-  `s1` double(15,2) NOT NULL,
-  `k1` double(15,2) NOT NULL,
-  `w1` datetime NOT NULL,
-  `s2` double(15,2) NOT NULL,
-  `k2` double(15,2) NOT NULL,
-  `w2` datetime NOT NULL,
-  `s3` double(15,2) NOT NULL,
-  `k3` double(15,2) NOT NULL,
-  `w3` datetime NOT NULL,
-  `s4` double(15,2) NOT NULL,
-  `k4` double(15,2) NOT NULL,
-  `w4` datetime NOT NULL,
-  `s5` double(15,2) NOT NULL,
-  `k5` double(15,2) NOT NULL,
-  `w5` datetime NOT NULL,
-  `s6` double(15,2) NOT NULL,
-  `k6` double(15,2) NOT NULL,
-  `w6` datetime NOT NULL
+  `updated_at` datetime NOT NULL,
+  `t1` double(15,2) NOT NULL,
+  `h1` double(15,2) NOT NULL,
+  `t2` double(15,2) NOT NULL,
+  `h2` double(15,2) NOT NULL,
+  `t3` double(15,2) NOT NULL,
+  `h3` double(15,2) NOT NULL,
+  `t4` double(15,2) NOT NULL,
+  `h4` double(15,2) NOT NULL,
+  `t5` double(15,2) NOT NULL,
+  `h5` double(15,2) NOT NULL,
+  `t6` double(15,2) NOT NULL,
+  `h6` double(15,2) NOT NULL,
+  `t_avg` double(15,2) NOT NULL,
+  `h_avg` double(15,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

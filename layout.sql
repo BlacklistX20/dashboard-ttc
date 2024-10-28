@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2024 at 08:18 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Oct 28, 2024 at 12:56 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,14 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `lantai2` (
   `id` int(255) NOT NULL,
   `upload_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `lantai2`
 --
 
 INSERT INTO `lantai2` (`id`, `upload_at`) VALUES
-(1, '2024-04-24');
+(1, '2024-04-24'),
+(2, '2024-07-25'),
+(3, '2024-07-25');
 
 -- --------------------------------------------------------
 
@@ -48,14 +50,16 @@ INSERT INTO `lantai2` (`id`, `upload_at`) VALUES
 CREATE TABLE `lantai3` (
   `id` int(255) NOT NULL,
   `upload_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `lantai3`
 --
 
 INSERT INTO `lantai3` (`id`, `upload_at`) VALUES
-(1, '2024-04-24');
+(1, '2024-04-24'),
+(2, '2024-07-25'),
+(3, '2024-07-25');
 
 -- --------------------------------------------------------
 
@@ -66,14 +70,15 @@ INSERT INTO `lantai3` (`id`, `upload_at`) VALUES
 CREATE TABLE `lantai4` (
   `id` int(255) NOT NULL,
   `upload_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `lantai4`
 --
 
 INSERT INTO `lantai4` (`id`, `upload_at`) VALUES
-(1, '2024-04-24');
+(1, '2024-04-24'),
+(2, '2024-07-25');
 
 -- --------------------------------------------------------
 
@@ -84,14 +89,15 @@ INSERT INTO `lantai4` (`id`, `upload_at`) VALUES
 CREATE TABLE `lantai5` (
   `id` int(255) NOT NULL,
   `upload_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `lantai5`
 --
 
 INSERT INTO `lantai5` (`id`, `upload_at`) VALUES
-(1, '2024-04-24');
+(1, '2024-04-24'),
+(2, '2024-07-25');
 
 --
 -- Indexes for dumped tables
@@ -129,25 +135,25 @@ ALTER TABLE `lantai5`
 -- AUTO_INCREMENT for table `lantai2`
 --
 ALTER TABLE `lantai2`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `lantai3`
 --
 ALTER TABLE `lantai3`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `lantai4`
 --
 ALTER TABLE `lantai4`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `lantai5`
 --
 ALTER TABLE `lantai5`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
